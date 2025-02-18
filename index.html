@@ -36,13 +36,20 @@
                 <div class="card-inner">
                     <!-- Front of the Card -->
                     <div class="card-front">
-                        <div class="character-layer">
-                            <img class="pixel-avatar" src="assets/images/character.png" alt="Pixel Nico">
+                        <div class="rotate-hint">
+                            <span class="arrow">↻</span>
+                            <span class="text">Drag to rotate</span>
                         </div>
-                        <h3>Nico</h3>
-                        <p>Computer Scientist & Engineer</p>
-                        <p>Passions: Coding, Art, Music</p>
-                        <p>Skills: C, Java, Web Development</p>
+                        <div class="character-layer">
+                            <img class="pixel-avatar" src="assets/images/character.png" alt="Pixel Nico" draggable="false">
+                        </div>
+                        <div class="front-layer">
+                            <img class="front-layer1" src="assets/images/3dLayer.png" alt="3D Overlay" draggable="false">
+                        </div>
+                        <div class="front-letters">
+                            <h3>Nico</h3>
+                            <p>Computer Scientist & Engineer</p>
+                        </div>
                     </div>
 
                     <!-- ✅ Adding Real 3D Thickness (Edges) -->
@@ -51,12 +58,17 @@
                     <div class="card-edge top"></div>
                     <div class="card-edge bottom"></div>
 
-                    <!-- Back of the Card -->
+                    <!---------------------- Back of the Card -------------------->
                     <div class="card-back">
-                        <h3>More About Me</h3>
-                        <p>- I love pixel art 🎨</p>
-                        <p>- I play the flute and harmonica 🎵</p>
-                        <p>- I enjoy making games 🎮</p>
+                        <div class="back-layer">
+                            <img class="back-layer1" src="assets/images/3dLayer.png" alt="3D Overlay Back" draggable="false">
+                        </div>
+                        <div class="back-letters">
+                            <h3>More About Me</h3>
+                            <p>- bla bla 🎨</p>
+                            <p>- bla bla bla 🎵</p>
+                            <p>- bla bla bla 🎮</p>
+                        </div>
                     </div>
                 </div>
             </div>

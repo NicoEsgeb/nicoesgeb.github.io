@@ -18,6 +18,7 @@ let rotationX = 0, rotationY = 0;
 
 // Start dragging
 card.addEventListener("mousedown", (event) => {
+    event.preventDefault();  // Prevent default selection behavior
     isDragging = true;
     previousX = event.clientX;
     previousY = event.clientY;
