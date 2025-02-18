@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="style.css">
         <script defer src="script.js"></script>
     </head>
-
+<body>
     <!-- Here is where the main boddy starts -->
     <header>
         <h1> Hello there traveller! Welcome to my Portfolio</h1>
@@ -22,7 +22,6 @@
                 <li> <a href="#about">About</a></li>
                 <li> <a href="#projects">Projects</a></li>
                 <li> <a href="#contact">Contact</a></li>
-                <li> <a href="#assets/cv/Nico-CV.pdf" download>Download CV</a></li>
             </ul>
         </nav>
     </header>
@@ -45,7 +44,7 @@
     </section>
 
     <!--------------------------------------- PROJECT Section ------------------------------------------>
-    <section id=projects">
+    <section id="projects">
         <h2>Projects</h2>
         <!-------------- Project 1: Bonfire Project -------------->
         <div class="project">
@@ -68,7 +67,7 @@
         </div>
         <!------------- Project 3: Under Construction ------------>
         <div class="project">
-            <h3>Project 3: Under Construction</h3>
+            <h3>Project 4: Under Construction</h3>
             <p>Project Under Construction</p>
         </div>
     </section>
@@ -78,13 +77,26 @@
             <h2>Contact me</h2>
             <p>Email: nico.esg.rey@gmail.com</p>
             <p>Phone:+44 7782 138497</p>
+            <!---------- Buttons ----------->
+            <div class="button-container">
+                <a href="assets/cv/NicoCV.pdf" download class="pixel-button download">Download CV</a>
+            </div>
         </section>
 
+    <!----------------------------------------PARALLAX Section ----------------------------------------->
+    <section id="parallax">
+        <div class="layer" id="layer1"></div>
+        <div class="layer" id="layer2"></div>
+        <div class="layer" id="layer3"></div>
+        <h2>Welcome to My Pixel Portfolio</h2>
+    </section>
+
+    <img id="pixel-character" src="assets/images/character.png" alt="Pixel Character">
     <!----------------------------------------BOTTOM Section ------------------------------------------->
     <footer>
         <p>&copy; 2025 Nico</p>
     </footer>
 
 
-
+</body>
 </html>
