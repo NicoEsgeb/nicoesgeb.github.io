@@ -1,0 +1,14 @@
+/*------------------------------------ Pixel Me ----------------------------------------*/
+#pixel-character {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 150px;
+    image-rendering: pixelated; /* Makes it look sharp */
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}

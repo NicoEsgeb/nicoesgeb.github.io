@@ -1,0 +1,16 @@
+/*----------------- Global Style to all elements ----------------*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+/*----------------- Styles the entire Body ----------------*/
+body {
+    background-color: #1e1e1e;
+    color: white;
+    text-align: center;
+}
+

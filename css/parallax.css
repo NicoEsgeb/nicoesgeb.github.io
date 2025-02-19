@@ -1,0 +1,36 @@
+/*-------------------------------- Parallax -----------------------------------*/
+.layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+#layer1 {
+    background-image: url('assets/images/layer1.png');
+}
+#layer2 {
+    background-image: url('assets/images/layer2.png');
+}
+#layer3 {
+    background-image: url('assets/images/layer3.png');
+}
+
+.project {
+    background: #444;
+    padding: 20px;
+    margin: 20px auto;
+    width: 50%;
+    border-radius: 10px;
+}
+#parallax {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2em;
+}

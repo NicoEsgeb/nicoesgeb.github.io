@@ -10,8 +10,20 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Nico's Portfolio</title>
-        <link rel="stylesheet" href="style.css">
-        <script defer src="script.js"></script>
+        <link rel="stylesheet" href="css/global.css">
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/parallax.css">
+        <link rel="stylesheet" href="css/buttons.css">
+        <link rel="stylesheet" href="css/pixel-character.css">
+        <link rel="stylesheet" href="css/id-card.css">
+        <link rel="stylesheet" href="css/projects.css">
+        <link rel="stylesheet" href="css/fireflies.css">
+        <link rel="stylesheet" href="css/text.css">
+        <script defer src="scripts/parallax.js"></script>
+        <script defer src="scripts/idCard.js"></script>
+        <script defer src="scripts/bonfire.js"></script>
+        <script defer src="scripts/fireflies.js"></script> <!-- Fireflies class first -->
+        <script defer src="scripts/main.js"></script> <!-- main.js should be LAST -->
     </head>
 <body>
     <!-- Here is where the main boddy starts -->
@@ -32,7 +44,7 @@
         <h2>About me</h2>
         <!--------------- 3D Presentation Card -------------->
         <section id="id-card-section">
-            <div class="id-card">
+            <div class="id-card interactive">
                 <div class="card-inner">
                     <!-- Front of the Card -->
                     <div class="card-front">
@@ -47,8 +59,9 @@
                             <img class="front-layer1" src="assets/images/3dLayer.png" alt="3D Overlay" draggable="false">
                         </div>
                         <div class="front-letters">
-                            <h3>Nico</h3>
-                            <p>Computer Scientist & Engineer</p>
+                            <h3>Nicolas Esgeb</h3>
+                            <p>MSc Computer Science Student</p>
+                            <p>Civil Engineer in Mining</p>
                         </div>
                     </div>
 
@@ -65,26 +78,28 @@
                         </div>
                         <div class="back-letters">
                             <h3>More About Me</h3>
-                            <p>- bla bla 🎨</p>
-                            <p>- bla bla bla 🎵</p>
+                            <p>- University of Bristol 🎨</p>
+                            <p>- Looking for new challenges 🎵</p>
                             <p>- bla bla bla 🎮</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <div class="about-me-text">
         <!----------------- Text about me ------------------->
-        <p>Hello! I'm Nico, from Chile. I graduated with a bachelor's degree in Civil Engineering
-            in Mining in 2021. I worked for one year as a geophysical data processing engineer
-            before moving to Dublin, Ireland, in 2022 to expand my horizons and learn English at
-            University College Dublin. After two years immersed in Ireland's culture, I moved to
-            Bristol to achieve my next goal: an MSc in Computer Science. I am eager to choose a
-            new career path that will help me gain a comprehensive vision of technology and the world.
+            <p>Hello! I'm Nico, from Chile. I graduated with a bachelor's degree in Civil Engineering
+                in Mining in 2021. I worked for one year as a geophysical data processing engineer
+                before moving to Dublin, Ireland, in 2022 to expand my horizons and learn English at
+                University College Dublin. After two years immersed in Ireland's culture, I moved to
+                Bristol to achieve my next goal: an MSc in Computer Science. I am eager to choose a
+                new career path that will help me gain a comprehensive vision of technology and the world.
 
-            This is the beginning of a new adventure. I want to share this with the world and with
-            my future self. My current focus is on the MSc Computer Science course at the University
-            of Bristol, knowing that this will be an excellent year for growth. I couldn't be happier
-            to open new doors and explore new paths along this quest!</p>
+                This is the beginning of a new adventure. I want to share this with the world and with
+                my future self. My current focus is on the MSc Computer Science course at the University
+                of Bristol, knowing that this will be an excellent year for growth. I couldn't be happier
+                to open new doors and explore new paths along this quest!</p>
+        </div>
     </section>
 
     <!--------------------------------------- PROJECT Section ------------------------------------------>
@@ -143,6 +158,6 @@
         <p>&copy; 2025 Nico</p>
     </footer>
 
-
+    <canvas id="fireflies-canvas"></canvas>
 </body>
 </html>
