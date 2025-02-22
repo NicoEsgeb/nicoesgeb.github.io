@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     /* ============================================================= */
     /*                  AMBIENCE ASSET CONFIGURATION                 */
     /* ============================================================= */
+    // Each ambience now includes its own unique sound effects and radio configuration.
     const ambiences = {
         1: {
             background: "assets/images/stage1_1792x1024.png",
@@ -38,18 +39,52 @@ document.addEventListener("DOMContentLoaded", function() {
                     stream: "https://www.youtube.com/embed/9IOmDeoHSo8?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 }
+            ],
+            soundEffects: [
+                { name: "Fire", sound: "fire" },
+                { name: "Rain", sound: "rain" },
+                { name: "Surroundings", sound: "surroundings" }
             ]
         },
         2: {
             background: "assets/images/stage2.png",
             audio: "assets/audio/stage2_playlist.mp3",
             radios: [
-                { name: "Rainy Day", stream: "http://example.com/stream7" },
-                { name: "Drizzle", stream: "http://example.com/stream8" },
-                { name: "Umbrella", stream: "http://example.com/stream9" },
-                { name: "Stormy", stream: "http://example.com/stream10" },
-                { name: "Downpour", stream: "http://example.com/stream11" },
-                { name: "Mist", stream: "http://example.com/stream12" }
+                {
+                    name: "Future Chill",
+                    stream: "https://www.youtube.com/embed/sQ28KTOUgVM?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
+                },
+                {
+                    name: "Deep Focus",
+                    stream: "https://www.youtube.com/embed/GB6wLooVFEI?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type:"youtube"
+                },
+                {
+                    name: "Night Flow",
+                    stream: "https://www.youtube.com/embed/qMgtHxt0XbU?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
+                },
+                {
+                    name: "Chill Synth",
+                    stream: "https://www.youtube.com/embed/UedTcufyrHc?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
+                },
+                {
+                    name: "Retrowave",
+                    stream: "https://www.youtube.com/embed/SwhsegXolTs?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type:"youtube"
+                },
+                {
+                    name: "Synthwave",
+                    stream: "https://www.youtube.com/embed/4xDzrJKXOOY?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
+                }
+            ],
+            soundEffects: [
+                { name: "Fire", sound: "fire" },
+                { name: "Thunderstorm", sound: "thunderstorm" },
+                { name: "Deep Forest", sound: "Deep Forest"}
             ]
         },
         3: {
@@ -62,7 +97,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 { name: "Concrete Jungle", stream: "http://example.com/stream16" },
                 { name: "Subway", stream: "http://example.com/stream17" },
                 { name: "Late Commute", stream: "http://example.com/stream18" }
-            ]
+            ],
+            soundEffects: [] // No unique sound effects for Ambience 3
         },
         4: {
             background: "assets/images/stage4.png",
@@ -74,6 +110,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 { name: "Tranquility", stream: "http://example.com/stream22" },
                 { name: "Birdsong", stream: "http://example.com/stream23" },
                 { name: "River Flow", stream: "http://example.com/stream24" }
+            ],
+            soundEffects: [
+                { name: "Forest Echoes", sound: "forest" },
+                { name: "Birdsong", sound: "birdsong" }
             ]
         },
         5: {
@@ -86,6 +126,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 { name: "Nebula", stream: "http://example.com/stream28" },
                 { name: "Orbit", stream: "http://example.com/stream29" },
                 { name: "Eclipse", stream: "http://example.com/stream30" }
+            ],
+            soundEffects: [
+                { name: "Cosmic", sound: "cosmic" },
+                { name: "Nebula", sound: "nebula" }
             ]
         }
     };
@@ -110,6 +154,83 @@ document.addEventListener("DOMContentLoaded", function() {
     customPlayBtn.textContent = "Play";
 
     /* ============================================================= */
+    /*       INSTANTIATE SOUND EFFECTS MANAGER GLOBALLY              */
+    /* ============================================================= */
+    let soundEffectsManager = new SoundEffects({ basePath: "assets/sounds/" });
+
+    /* ============================================================= */
+    /*          UPDATE SOUND EFFECTS MENU DYNAMICALLY                */
+    /* ============================================================= */
+    function updateSoundEffectsMenu(ambienceData) {
+        const menu = document.getElementById("sound-effects-menu");
+        // Clear previous content of the sound effects menu.
+        menu.innerHTML = "";
+
+        // Check if this ambience has any unique sound effects
+        if (ambienceData.soundEffects && ambienceData.soundEffects.length > 0) {
+            ambienceData.soundEffects.forEach(effect => {
+                // Create a container div for each sound effect
+                const effectDiv = document.createElement("div");
+                effectDiv.className = "sound-effect";
+
+                // Create the button with the sound effect's display name
+                const btn = document.createElement("button");
+                btn.className = "sound-btn";
+                btn.setAttribute("data-sound", effect.sound);
+                btn.textContent = effect.name;
+
+                // Create the volume slider for this sound effect
+                const volumeInput = document.createElement("input");
+                volumeInput.className = "sound-volume";
+                volumeInput.setAttribute("data-sound", effect.sound);
+                volumeInput.setAttribute("type", "range");
+                volumeInput.setAttribute("min", "0");
+                volumeInput.setAttribute("max", "1");
+                volumeInput.setAttribute("step", "0.01");
+                volumeInput.value = "0.5";
+
+                // Append button and volume slider to the container div
+                effectDiv.appendChild(btn);
+                effectDiv.appendChild(volumeInput);
+
+                // Append the container div to the sound effects menu
+                menu.appendChild(effectDiv);
+            });
+        }
+        // Attach event listeners to the newly created elements
+        addSoundEffectListeners();
+    }
+
+    /* ============================================================= */
+    /*         ATTACH SOUND EFFECTS EVENT LISTENERS FUNCTION         */
+    /* ============================================================= */
+    function addSoundEffectListeners() {
+        const soundButtons = document.querySelectorAll(".sound-btn");
+        const volumeInputs = document.querySelectorAll(".sound-volume");
+
+        // When a sound button is clicked, toggle the corresponding sound effect
+        soundButtons.forEach(btn => {
+            btn.addEventListener("click", function() {
+                const soundName = this.getAttribute("data-sound");
+                const volumeInput = document.querySelector(`.sound-volume[data-sound="${soundName}"]`);
+                const volume = volumeInput ? parseFloat(volumeInput.value) : 0.5;
+                soundEffectsManager.toggle(soundName, volume);
+                // Toggle the "active" class for the glowing effect
+                this.classList.toggle("active");
+            });
+        });
+
+        // When the volume slider is adjusted, update the sound effect volume in real time
+        volumeInputs.forEach(input => {
+            input.addEventListener("input", function() {
+                const soundName = this.getAttribute("data-sound");
+                const volume = parseFloat(this.value);
+                soundEffectsManager.setVolume(soundName, volume);
+            });
+        });
+    }
+
+    /* ============================================================= */
     /*                    LOAD AMBIENCE FUNCTION                     */
     /* ============================================================= */
     function loadAmbience(ambienceNum) {
@@ -129,7 +250,17 @@ document.addEventListener("DOMContentLoaded", function() {
             // Reset to standard audio stream and clear YouTube stream.
             window.currentStationType = "audio";
             window.currentYouTubeStream = null;
-            // Do not reset window.radioSelected; preserve if a radio station is active.
+
+            // NEW: Stop any currently playing sound effects from the previous ambience
+            soundEffectsManager.pauseAll();
+
+            // NEW: Update the sound effects menu based on the current ambience's configuration
+            updateSoundEffectsMenu(ambienceData);
+
+            // NEW: If the radio menu is currently open, update its station list to match the new ambience.
+            if (document.getElementById("radio-menu").classList.contains("show")) {
+                window.radioMenu.populate(ambienceData.radios);
+            }
         }
         starsContainer.style.display = (ambienceNum === "1" || ambienceNum === 1) ? "block" : "none";
     }
@@ -247,40 +378,24 @@ document.addEventListener("DOMContentLoaded", function() {
     /* ============================================================= */
     /*             SOUND EFFECTS (BUTTONS & VOLUME SLIDERS)          */
     /* ============================================================= */
-    // Instantiate the SoundEffects manager (from soundEffects.js)
-    const soundEffectsManager = new SoundEffects({ basePath: "assets/sounds/" });
-
-    // Get all sound effect buttons and volume inputs from your sound effects menu
-    const soundButtons = document.querySelectorAll(".sound-btn");
-    const volumeInputs = document.querySelectorAll(".sound-volume");
-
-    // Event listener for toggling sounds when a button is clicked
-    soundButtons.forEach(btn => {
-        btn.addEventListener("click", function() {
-            const soundName = this.getAttribute("data-sound");
-            // Retrieve the current volume from the corresponding range input
-            const volumeInput = document.querySelector(`.sound-volume[data-sound="${soundName}"]`);
-            const volume = volumeInput ? parseFloat(volumeInput.value) : 0.5;
-            // Toggle the sound: if playing, it will pause; if paused, it will play
-            soundEffectsManager.toggle(soundName, volume);
-            // Optionally toggle a visual active state on the button
-            this.classList.toggle("active");
-        });
-    });
-
-    // Event listener for adjusting volume in real time when the range input changes
-    volumeInputs.forEach(input => {
-        input.addEventListener("input", function() {
-            const soundName = this.getAttribute("data-sound");
-            const volume = parseFloat(this.value);
-            soundEffectsManager.setVolume(soundName, volume);
-        });
-    });
+    // The SoundEffects manager is already instantiated,
+    // and event listeners are attached dynamically via updateSoundEffectsMenu().
 
     /* ============================================================= */
     /*                 INITIALIZE AUDIO VISUALIZER                   */
     /* ============================================================= */
     const visualizerCanvas = document.getElementById("visualizer-canvas");
     new Visualizer(visualizerCanvas, document.getElementById("radio-audio"));
+
+    /* ============================================================= */
+    /*          MAIN AMBIENCE VOLUME CONTROL EVENT LISTENER          */
+    /* ============================================================= */
+    const mainVolumeSlider = document.getElementById("main-volume-slider");
+    if (mainVolumeSlider) {
+        mainVolumeSlider.addEventListener("input", function() {
+            // Update the volume of the main ambience audio element (radio-audio)
+            radioAudio.volume = parseFloat(this.value);
+        });
+    }
 
 });

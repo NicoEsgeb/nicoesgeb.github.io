@@ -9,6 +9,30 @@
 }
 
 /* ============================================================= */
+/*               RADIO LINK (YOUTUBE BUTTON) STYLE             */
+/* ============================================================= */
+/* ============================================================= */
+/*               RADIO LINK (YOUTUBE BUTTON) STYLE             */
+/* ============================================================= */
+.radio-link {
+    display: inline-block;
+    margin-left: 8px;
+    text-decoration: none;
+    color: #0ff;
+    border: 1px solid #0ff;
+    border-radius: 50%;
+    padding: 4px;
+    font-size: 0.8em;
+    transition: box-shadow 0.3s;
+}
+
+.radio-link:hover {
+    box-shadow: 0 0 10px 2px rgba(0,255,255,0.7);
+    animation: glow 1.5s infinite alternate;
+}
+
+
+/* ============================================================= */
 /*                 RADIO MENU & TOGGLE BUTTON                    */
 /* ============================================================= */
 .radio-toggle-btn {

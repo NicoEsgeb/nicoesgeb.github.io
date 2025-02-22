@@ -26,10 +26,20 @@ class RadioMenu {
         this.listContainer.innerHTML = "";
 
         stations.forEach(station => {
+            // Create a container div for each station entry
+            let container = document.createElement("div");
+            // Use flex layout so the station button and the link sit side-by-side
+            container.style.display = "flex";
+            container.style.alignItems = "center";
+            container.style.justifyContent = "space-between";
+            container.style.marginBottom = "8px"; // spacing between entries
+
+            // Create the main station button
             let btn = document.createElement("button");
             btn.textContent = station.name;
+            btn.style.flexGrow = "1"; // let the button take available space
 
-            // When a station button is clicked:
+            // When the station button is clicked:
             btn.addEventListener("click", () => {
                 /* ----- Stop any current stream ----- */
                 this.audioPlayer.pause();
@@ -75,7 +85,28 @@ class RadioMenu {
                 // Highlight the active station button
                 this.highlightButton(btn);
             });
-            this.listContainer.appendChild(btn);
+
+            // Append the station button to the container
+            container.appendChild(btn);
+
+            // If the station is a YouTube station, add a tiny circle link at the right
+            if (station.type === "youtube") {
+                let link = document.createElement("a");
+                link.href = station.stream;
+                link.target = "_blank";
+                // Use a Unicode circle as the icon
+                link.textContent = "◉";
+                // Add the "radio-link" class for glowing styling
+                link.className = "radio-link";
+                // Prevent the link click from triggering the main button click
+                link.addEventListener("click", function(e) {
+                    e.stopPropagation();
+                });
+                container.appendChild(link);
+            }
+
+            // Append the entire container to the radio list
+            this.listContainer.appendChild(container);
         });
     }
 

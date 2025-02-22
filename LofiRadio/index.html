@@ -34,22 +34,9 @@
     <div class="stage-background"></div>
 
     <!-- ============================================================= -->
-    <!--                SOUND EFFECTS MENU (AS BEFORE)               -->
+    <!--         SOUND EFFECTS MENU (DYNAMICALLY POPULATED)          -->
     <!-- ============================================================= -->
-    <div id="sound-effects-menu">
-        <div class="sound-effect">
-            <button class="sound-btn" data-sound="fire">Fire</button>
-            <input type="range" class="sound-volume" data-sound="fire" min="0" max="1" step="0.01" value="0.5">
-        </div>
-        <div class="sound-effect">
-            <button class="sound-btn" data-sound="rain">Rain</button>
-            <input type="range" class="sound-volume" data-sound="rain" min="0" max="1" step="0.01" value="0.5">
-        </div>
-        <div class="sound-effect">
-            <button class="sound-btn" data-sound="surroundings">Surroundings</button>
-            <input type="range" class="sound-volume" data-sound="surroundings" min="0" max="1" step="0.01" value="0.5">
-        </div>
-    </div>
+    <div id="sound-effects-menu"></div>
 
     <!-- ============================================================= -->
     <!--                    STARS FOR AMBIENCE 1                     -->
@@ -93,6 +80,7 @@
         <button id="custom-play" class="custom-play-btn">Play</button>
         <button id="see-radios-btn" class="radio-toggle-btn">See Ambience Radios</button>
     </div>
+
 
     <!-- ============================================================= -->
     <!--                    AUDIO PLAYBACK ELEMENT                   -->
