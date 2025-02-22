@@ -5,6 +5,9 @@ const modalVideo = modal.querySelector("video");
 const bonfireProject = document.getElementById("project-bonfire");
 const steelProject = document.getElementById("project");
 const closeModal = document.querySelector(".modal .close");
+// Get the Lofi project element (make sure its id is "project-lofi")
+const lofiProject = document.getElementById("project-lofi");
+
 
 // Function to open modal with the desired video source
 function openModal(videoSrc) {
@@ -34,4 +37,11 @@ window.addEventListener("click", (event) => {
     if (event.target === modal) {
         modal.classList.remove("show");
     }
+});
+
+
+
+// When the Lofi project is clicked, redirect to the LofiRadio page
+lofiProject.addEventListener("click", () => {
+    window.location.href = "https://nicoesgeb.github.io/LofiRadio";
 });

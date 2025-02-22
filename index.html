@@ -19,11 +19,14 @@
         <link rel="stylesheet" href="css/projects.css">
         <link rel="stylesheet" href="css/fireflies.css">
         <link rel="stylesheet" href="css/text.css">
+        <link rel="stylesheet" href="css/story.css">
         <script defer src="scripts/parallax.js"></script>
         <script defer src="scripts/idCard.js"></script>
+        <script defer src="scripts/projectModal.js"></script>
+        <script defer src="scripts/story.js"></script>
         <script defer src="scripts/bonfire.js"></script>
         <script defer src="scripts/fireflies.js"></script> <!-- Fireflies class first -->
-        <script defer src="scripts/projectModal.js"></script>
+        <script defer src="scripts/MouseTrail.js"></script>
         <script defer src="scripts/main.js"></script> <!-- main.js should be LAST -->
     </head>
 <body>
@@ -87,21 +90,72 @@
                 </div>
             </div>
         </section>
-        <div class="about-me-text">
-        <!----------------- Text about me ------------------->
-            <p>Hello! I'm Nico, from Chile. I graduated with a bachelor's degree in Civil Engineering
-                in Mining in 2021. I worked for one year as a geophysical data processing engineer
-                before moving to Dublin, Ireland, in 2022 to expand my horizons and learn English at
-                University College Dublin. After two years immersed in Ireland's culture, I moved to
-                Bristol to achieve my next goal: an MSc in Computer Science. I am eager to choose a
-                new career path that will help me gain a comprehensive vision of technology and the world.
-
-                This is the beginning of a new adventure. I want to share this with the world and with
-                my future self. My current focus is on the MSc Computer Science course at the University
-                of Bristol, knowing that this will be an excellent year for growth. I couldn't be happier
-                to open new doors and explore new paths along this quest!</p>
+        <div class="about-me-text interactive" id="about-story-trigger">
+            <p>
+                Hello! I'm Nico, from Chile. I graduated with a bachelor's degree
+                in Civil Engineering in Mining in 2021. I worked for one year as a
+                geophysical data processing engineer before moving to Dublin, Ireland,
+                in 2022 to expand my horizons and learn English at University College
+                Dublin. After two years immersed in Ireland's culture, I moved to
+                Bristol to achieve my next goal: an MSc in Computer Science. This
+                is the beginning of a new adventure...
+            </p>
+            <div class="about-more-cta">
+                <span>Click here if you want to know more about me!</span>
+            </div>
         </div>
     </section>
+
+    <!--------------------- Story Modal Popup --------------------------->
+    <div id="about-story-modal" class="story-modal">
+        <div class="story-modal-content">
+            <span class="story-close">&times;</span>
+            <!-- Horizontal scrollable container for the story -->
+            <div class="story-container">
+                <!------------------------------ Story Stage 1------------------------------ -->
+                <div class="story-stage stage-1">
+                    <!------ Parallax assets for Stage 1 ------>
+                    <div class="parallax-asset" data-speed="0.1" style="left:10px; top:70px;">
+                        <img src="../assets/images/story1_layer2.png" alt="Mountains" width="2400" height="1000" draggable="false">
+                    </div>
+                    <div class="parallax-asset" data-speed="0.2" style="left:200px; top:80px;">
+                        <img src="../assets/images/trees.png" alt="Trees" width="800" height="600" draggable="false">
+                    </div>
+                    <div class="parallax-asset" data-speed="0.3" style="left:350px; top:100px;">
+                        <img src="../assets/images/buildings.png" alt="Buildings" width="800" height="600" draggable="false">
+                    </div>
+                    <div class="parallax-asset" data-speed="0.05" style="left:150px; top:150px;">
+                        <img src="../assets/images/character.png" alt="Character" width="200" height="600" draggable="false">
+                    </div>
+
+                    <!-------- Your Stage 1 text content -------->
+                    <div class="story-content">
+                        <h3>Stage 1: Beginnings</h3>
+                        <p>This is where my journey started...</p>
+                    </div>
+                </div>
+                <div class="story-stage stage-2">
+                    <h3>Stage 2: Discovery</h3>
+                    <p>I began to explore my passions...</p>
+                </div>
+                <div class="story-stage stage-3">
+                    <h3>Stage 3: Transition</h3>
+                    <p>A turning point in my career...</p>
+                </div>
+                <div class="story-stage stage-4">
+                    <h3>Stage 4: Growth</h3>
+                    <p>Learning, adapting, and growing every day...</p>
+                </div>
+                <div class="story-stage stage-5">
+                    <h3>Stage 5: Future</h3>
+                    <p>The adventure continues. Welcome to my future!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <!--------------------------------------- PROJECT Section ------------------------------------------>
     <!-- Project Section -->
@@ -128,13 +182,29 @@
             <div class="project-content">
                 <div class="project-text">
                     <h3>Steel Drum app</h3>
-                    <p>Steel Tongue Drum - My first Android Application. This is a real instrument I have, it weitghs
-                        around 8 kg. I created a digital version of it because I was moving abroad and it was impossible
+                    <p>Steel Tongue Drum - My first Android Application. This is a real instrument I have, it weights
+                        around 8 kg. I created a digital version of it because I was moving abroad so it was impossible
                         for me to travel with it. This was my way of doing it.
                     </p>
                 </div>
                 <div class="project-image">
                     <img src="assets/images/steel-app.png" alt="Steel Tongue app Preview">
+                </div>
+            </div>
+        </div>
+        <!-------------- Project 3: Lofi Fantasy Radio -------------->
+        <div class="project interactive" id="project-lofi">
+            <div class="project-content">
+                <div class="project-text">
+                    <h3>Lofi Fantasy Page</h3>
+                    <p>I tried to mix my passion for fantasy with lofi. This site is a mix of both made for studying
+                        and listening to online radios of different genra. It has different ambience and tools to help
+                        with the inmersion. This was my first project in which I mixed what I know about HTML, JavaScript
+                        and CSS.
+                    </p>
+                </div>
+                <div class="project-image">
+                    <img src="assets/images/lofi-app.png" alt="Steel Tongue app Preview">
                 </div>
             </div>
         </div>
