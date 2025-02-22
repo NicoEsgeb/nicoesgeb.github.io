@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="css/stars.css">
     <link rel="stylesheet" href="css/surroundings.css">
     <link rel="stylesheet" href="css/audioVisualiser.css">
+    <link rel="stylesheet" href="css/clock.css">
+    <link rel="stylesheet" href="css/message.css">
     <link rel="stylesheet" href="../css/fireflies.css">
+
     <!-- ============================================================= -->
     <!--               EXTERNAL SCRIPTS & DEPENDENCIES                -->
     <!-- ============================================================= -->
@@ -23,11 +26,17 @@
     <script defer src="scripts/visualizer.js"></script>
     <script defer src="scripts/soundEffects.js"></script>
     <!-- Our main scripts: lofi.js (handles ambience, fireflies, radio, visualizer) and radio.js (radio menu) -->
-    <script defer src="scripts/lofi.js"></script>
     <script defer src="scripts/radio.js"></script>
+    <script defer src="scripts/clock.js"></script>
+    <script defer src="scripts/lofi.js"></script>
 </head>
 <body>
-<div id="radio-container">
+    <!-- Clock at the top elft corner-->
+    <div id="clock"></div>
+    <!-- Ambience Message -->
+    <div id="ambience-message"></div>
+    <!-- Radio Container at the right -->
+    <div id="radio-container">
     <!-- ============================================================= -->
     <!--                  FULLSCREEN BACKGROUND                    -->
     <!-- ============================================================= -->
@@ -101,7 +110,13 @@
         <div id="radio-list" class="radio-list"></div>
     </div>
 </div>
-
-<canvas id="fireflies-canvas"></canvas>
+    <!-- ============================================================= -->
+    <!--              RADIO INFOR CONTAINER (bottom left)              -->
+    <!-- ============================================================= -->
+    <div id="current-radio-info"></div>
+    <!-- ============================================================= -->
+    <!--                    FIREFLIES CONTAINER                        -->
+    <!-- ============================================================= -->
+    <canvas id="fireflies-canvas"></canvas>
 </body>
 </html>

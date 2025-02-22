@@ -26,9 +26,8 @@ class RadioMenu {
         this.listContainer.innerHTML = "";
 
         stations.forEach(station => {
-            // Create a container div for each station entry
+            // Create a container div for each station entry with flex layout
             let container = document.createElement("div");
-            // Use flex layout so the station button and the link sit side-by-side
             container.style.display = "flex";
             container.style.alignItems = "center";
             container.style.justifyContent = "space-between";
@@ -41,7 +40,7 @@ class RadioMenu {
 
             // When the station button is clicked:
             btn.addEventListener("click", () => {
-                /* ----- Stop any current stream ----- */
+                // Stop any current stream
                 this.audioPlayer.pause();
                 this.audioPlayer.currentTime = 0;
                 this.audioPlayer.src = "";
@@ -49,7 +48,6 @@ class RadioMenu {
 
                 // Store the current station type globally
                 window.currentStationType = station.type || "audio";
-                // If it's a YouTube station, store its stream URL globally; else clear it.
                 if (station.type === "youtube") {
                     window.currentYouTubeStream = station.stream;
                 } else {
@@ -84,19 +82,23 @@ class RadioMenu {
 
                 // Highlight the active station button
                 this.highlightButton(btn);
+
+                // Update the current radio info with our custom info text;
+                // If station.info is not provided, use station.name as fallback.
+                document.getElementById("current-radio-info").textContent = station.info || station.name;
             });
 
             // Append the station button to the container
             container.appendChild(btn);
 
-            // If the station is a YouTube station, add a tiny circle link at the right
+            // If the station is a YouTube station, add a tiny glowing circle link at the right
             if (station.type === "youtube") {
                 let link = document.createElement("a");
                 link.href = station.stream;
                 link.target = "_blank";
                 // Use a Unicode circle as the icon
                 link.textContent = "◉";
-                // Add the "radio-link" class for glowing styling
+                // Add the "radio-link" class for glowing styling (defined in radio.css)
                 link.className = "radio-link";
                 // Prevent the link click from triggering the main button click
                 link.addEventListener("click", function(e) {
@@ -107,7 +109,18 @@ class RadioMenu {
 
             // Append the entire container to the radio list
             this.listContainer.appendChild(container);
+
+            // Optional: Check if this station should be highlighted on menu load
+            if (window.radioSelected) {
+                if (station.type === "youtube" && station.stream === window.currentYouTubeStream) {
+                    this.highlightButton(btn);
+                }
+                if (station.type !== "youtube" && this.audioPlayer.src && station.stream === this.audioPlayer.src) {
+                    this.highlightButton(btn);
+                }
+            }
         });
+        // Removed main volume slider from radio menu per request.
     }
 
     /* ============================================================= */

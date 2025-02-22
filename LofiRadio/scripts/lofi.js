@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     /* ============================================================= */
     /*                  AMBIENCE ASSET CONFIGURATION                 */
     /* ============================================================= */
-    // Each ambience now includes its own unique sound effects and radio configuration.
+    // Each ambience now includes its own unique sound effects, radio configuration, and a top message.
     const ambiences = {
         1: {
             background: "assets/images/stage1_1792x1024.png",
@@ -11,31 +11,37 @@ document.addEventListener("DOMContentLoaded", function() {
             radios: [
                 {
                     name: "Healing forest",
+                    info: "Healing Forest – Calm & Soothing", // Custom info text
                     stream: "https://www.youtube.com/embed/hLMLCPX4zyA?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 },
                 {
                     name: "Journey ahead",
+                    info: "Journey Ahead – A Serene Escape",
                     stream: "https://www.youtube.com/embed/vK5VwVyxkbI?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 },
                 {
                     name: "Fantasy Tavern",
+                    info: "Fantasy Tavern – Magical Melodies",
                     stream: "https://www.youtube.com/embed/0p6UidTS7Ao?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 },
                 {
                     name: "A hero's Journey",
+                    info: "A Hero's Journey – Epic & Soothing",
                     stream: "https://www.youtube.com/embed/RUyrgVKP6vo?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 },
                 {
                     name: "Celtic",
+                    info: "Celtic – Enchanting Echoes",
                     stream: "https://www.youtube.com/embed/naWrbS4EUnY?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 },
                 {
                     name: "Lofi Fantasy",
+                    info: "Lofi Fantasy – Chill & Dreamy",
                     stream: "https://www.youtube.com/embed/9IOmDeoHSo8?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 }
@@ -44,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 { name: "Fire", sound: "fire" },
                 { name: "Rain", sound: "rain" },
                 { name: "Surroundings", sound: "surroundings" }
-            ]
+            ],
+            message: "Lay down your burdens, traveler. The trees will keep watch."
         },
         2: {
             background: "assets/images/stage2.png",
@@ -52,31 +59,37 @@ document.addEventListener("DOMContentLoaded", function() {
             radios: [
                 {
                     name: "Future Chill",
+                    info: "Future Chill – Smooth futuristic vibes",
                     stream: "https://www.youtube.com/embed/sQ28KTOUgVM?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 },
                 {
                     name: "Deep Focus",
+                    info: "Deep Focus – Concentrate and relax",
                     stream: "https://www.youtube.com/embed/GB6wLooVFEI?autoplay=1&controls=0&modestbranding=1&rel=0",
-                    type:"youtube"
+                    type: "youtube"
                 },
                 {
                     name: "Night Flow",
+                    info: "Night Flow – Calm night tunes",
                     stream: "https://www.youtube.com/embed/qMgtHxt0XbU?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 },
                 {
                     name: "Chill Synth",
+                    info: "Chill Synth – Synthwave serenity",
                     stream: "https://www.youtube.com/embed/UedTcufyrHc?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 },
                 {
                     name: "Retrowave",
+                    info: "Retrowave – Retro beats",
                     stream: "https://www.youtube.com/embed/SwhsegXolTs?autoplay=1&controls=0&modestbranding=1&rel=0",
-                    type:"youtube"
+                    type: "youtube"
                 },
                 {
                     name: "Synthwave",
+                    info: "Synthwave – Dreamy electronic",
                     stream: "https://www.youtube.com/embed/4xDzrJKXOOY?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 }
@@ -84,53 +97,129 @@ document.addEventListener("DOMContentLoaded", function() {
             soundEffects: [
                 { name: "Fire", sound: "fire" },
                 { name: "Thunderstorm", sound: "thunderstorm" },
-                { name: "Deep Forest", sound: "Deep Forest"}
-            ]
+                { name: "Deep Forest", sound: "Deep Forest" }
+            ],
+            message: "Ruins watch in silence… take a moment."
         },
         3: {
             background: "assets/images/stage3.png",
             audio: "assets/audio/stage3_playlist.mp3",
             radios: [
-                { name: "City Lights", stream: "http://example.com/stream13" },
-                { name: "Urban Chill", stream: "http://example.com/stream14" },
-                { name: "Neon Nights", stream: "http://example.com/stream15" },
-                { name: "Concrete Jungle", stream: "http://example.com/stream16" },
-                { name: "Subway", stream: "http://example.com/stream17" },
-                { name: "Late Commute", stream: "http://example.com/stream18" }
+                {
+                    name: "City Lights",
+                    info: "City Lights – Urban ambience",
+                    stream: "http://example.com/stream13"
+                },
+                {
+                    name: "Urban Chill",
+                    info: "Urban Chill – City vibes",
+                    stream: "http://example.com/stream14"
+                },
+                {
+                    name: "Neon Nights",
+                    info: "Neon Nights – Vibrant and cool",
+                    stream: "http://example.com/stream15"
+                },
+                {
+                    name: "Concrete Jungle",
+                    info: "Concrete Jungle – Beat of the city",
+                    stream: "http://example.com/stream16"
+                },
+                {
+                    name: "Subway",
+                    info: "Subway – Underground sounds",
+                    stream: "http://example.com/stream17"
+                },
+                {
+                    name: "Late Commute",
+                    info: "Late Commute – Evening travel tunes",
+                    stream: "http://example.com/stream18"
+                }
             ],
-            soundEffects: [] // No unique sound effects for Ambience 3
+            soundEffects: [], // No unique sound effects for Ambience 3
+            message: "Bright lights, empty souls… take a moment to breathe."
         },
         4: {
             background: "assets/images/stage4.png",
             audio: "assets/audio/stage4_playlist.mp3",
             radios: [
-                { name: "Forest Echoes", stream: "http://example.com/stream19" },
-                { name: "Woodland", stream: "http://example.com/stream20" },
-                { name: "Nature Beats", stream: "http://example.com/stream21" },
-                { name: "Tranquility", stream: "http://example.com/stream22" },
-                { name: "Birdsong", stream: "http://example.com/stream23" },
-                { name: "River Flow", stream: "http://example.com/stream24" }
+                {
+                    name: "Forest Echoes",
+                    info: "Forest Echoes – Nature's rhythm",
+                    stream: "http://example.com/stream19"
+                },
+                {
+                    name: "Woodland",
+                    info: "Woodland – Rustic serenity",
+                    stream: "http://example.com/stream20"
+                },
+                {
+                    name: "Nature Beats",
+                    info: "Nature Beats – Organic tunes",
+                    stream: "http://example.com/stream21"
+                },
+                {
+                    name: "Tranquility",
+                    info: "Tranquility – Peaceful vibes",
+                    stream: "http://example.com/stream22"
+                },
+                {
+                    name: "Birdsong",
+                    info: "Birdsong – Melodic chirps",
+                    stream: "http://example.com/stream23"
+                },
+                {
+                    name: "River Flow",
+                    info: "River Flow – Soothing water sounds",
+                    stream: "http://example.com/stream24"
+                }
             ],
             soundEffects: [
                 { name: "Forest Echoes", sound: "forest" },
                 { name: "Birdsong", sound: "birdsong" }
-            ]
+            ],
+            message: "Ruins watch in silence… take a moment."
         },
         5: {
             background: "assets/images/stage5.png",
             audio: "assets/audio/stage5_playlist.mp3",
             radios: [
-                { name: "Cosmic", stream: "http://example.com/stream25" },
-                { name: "Galactic", stream: "http://example.com/stream26" },
-                { name: "Stardust", stream: "http://example.com/stream27" },
-                { name: "Nebula", stream: "http://example.com/stream28" },
-                { name: "Orbit", stream: "http://example.com/stream29" },
-                { name: "Eclipse", stream: "http://example.com/stream30" }
+                {
+                    name: "Cosmic",
+                    info: "Cosmic – Out of this world",
+                    stream: "http://example.com/stream25"
+                },
+                {
+                    name: "Galactic",
+                    info: "Galactic – Stellar soundscapes",
+                    stream: "http://example.com/stream26"
+                },
+                {
+                    name: "Stardust",
+                    info: "Stardust – Dreamy and vast",
+                    stream: "http://example.com/stream27"
+                },
+                {
+                    name: "Nebula",
+                    info: "Nebula – Ethereal vibes",
+                    stream: "http://example.com/stream28"
+                },
+                {
+                    name: "Orbit",
+                    info: "Orbit – Circular journeys",
+                    stream: "http://example.com/stream29"
+                },
+                {
+                    name: "Eclipse",
+                    info: "Eclipse – Dark and mysterious",
+                    stream: "http://example.com/stream30"
+                }
             ],
             soundEffects: [
                 { name: "Cosmic", sound: "cosmic" },
                 { name: "Nebula", sound: "nebula" }
-            ]
+            ],
+            message: "Drift through cosmic dreams, effortlessly."
         }
     };
 
@@ -237,9 +326,15 @@ document.addEventListener("DOMContentLoaded", function() {
         const ambienceData = ambiences[ambienceNum];
         if (ambienceData) {
             currentAmbience = ambienceData;
+            // Update background and top message
             ambienceBackground.style.backgroundImage = `url('${ambienceData.background}')`;
-            radioAudio.src = ambienceData.audio;
-            // When loading a new ambience, preserve the current play state:
+            document.getElementById("ambience-message").textContent = ambienceData.message;
+
+            // If no radio station is currently selected, load the ambience audio.
+            if (!window.radioSelected) {
+                radioAudio.src = ambienceData.audio;
+            }
+            // Preserve the current play state for radioAudio if a station is playing
             if (window.isPlaying) {
                 radioAudio.play();
                 customPlayBtn.textContent = "Pause";
@@ -247,17 +342,19 @@ document.addEventListener("DOMContentLoaded", function() {
                 radioAudio.pause();
                 customPlayBtn.textContent = "Play";
             }
-            // Reset to standard audio stream and clear YouTube stream.
-            window.currentStationType = "audio";
-            window.currentYouTubeStream = null;
+            // Only reset the radio selection variables if no radio is currently selected.
+            if (!window.radioSelected) {
+                window.currentStationType = "audio";
+                window.currentYouTubeStream = null;
+            }
 
-            // NEW: Stop any currently playing sound effects from the previous ambience
+            // Stop any currently playing sound effects from the previous ambience
             soundEffectsManager.pauseAll();
 
-            // NEW: Update the sound effects menu based on the current ambience's configuration
+            // Update the sound effects menu based on the current ambience's configuration
             updateSoundEffectsMenu(ambienceData);
 
-            // NEW: If the radio menu is currently open, update its station list to match the new ambience.
+            // If the radio menu is currently open, update its station list to match the new ambience.
             if (document.getElementById("radio-menu").classList.contains("show")) {
                 window.radioMenu.populate(ambienceData.radios);
             }
@@ -386,16 +483,5 @@ document.addEventListener("DOMContentLoaded", function() {
     /* ============================================================= */
     const visualizerCanvas = document.getElementById("visualizer-canvas");
     new Visualizer(visualizerCanvas, document.getElementById("radio-audio"));
-
-    /* ============================================================= */
-    /*          MAIN AMBIENCE VOLUME CONTROL EVENT LISTENER          */
-    /* ============================================================= */
-    const mainVolumeSlider = document.getElementById("main-volume-slider");
-    if (mainVolumeSlider) {
-        mainVolumeSlider.addEventListener("input", function() {
-            // Update the volume of the main ambience audio element (radio-audio)
-            radioAudio.volume = parseFloat(this.value);
-        });
-    }
 
 });
