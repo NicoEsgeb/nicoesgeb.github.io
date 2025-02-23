@@ -448,9 +448,14 @@ document.addEventListener("DOMContentLoaded", function() {
             mouseTrail.draw(ctx);
         }
 
-        // Draw rain particles only if the "Rain" button is active.
+        // Draw rain particles only if the "Rain" or "thunderstom" button is active.
         const rainButton = document.querySelector(".sound-btn[data-sound='rain']");
-        if (rainButton && rainButton.classList.contains("active")) {
+        const thunderButton = document.querySelector(".sound-btn[data-sound='thunderstorm']");
+
+        if (
+            (rainButton && rainButton.classList.contains("active")) ||
+            (thunderButton && thunderButton.classList.contains("active"))
+        ) {
             for (let rain of rainParticles) {
                 rain.update();
                 rain.draw(ctx);
