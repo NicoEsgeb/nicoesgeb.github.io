@@ -398,7 +398,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     /* ============================================================= */
-    /*           FIREFLIES, BONFIRES & MOUSE TRAIL SETUP              */
+    /*           FIREFLIES, BONFIRES, RAIN & MOUSE TRAIL SETUP       */
     /* ============================================================= */
     const canvas = document.getElementById("fireflies-canvas");
     const ctx = canvas.getContext("2d");
@@ -410,23 +410,32 @@ document.addEventListener("DOMContentLoaded", function() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     });
+
     let fireflies = [];
     let bonfires = [];
+    let rainParticles = []; // Rain particles array
     const mouseTrail = new MouseTrail({ lifetime: 400, radius: 13 });
     let mouse = { x: null, y: null, radius: 13 };
     window.mouse = mouse;
     window.bonfires = bonfires;
+
     window.addEventListener("mousemove", event => {
         mouse.x = event.clientX;
         mouse.y = event.clientY;
         mouseTrail.addPoint(event.clientX, event.clientY);
     });
+
     document.addEventListener("click", (event) => {
         if (event.target.closest(".interactive")) return;
         bonfires.push(new Bonfire(event.clientX, event.clientY));
     });
+
+    // Initialize particles
     for (let i = 0; i < 70; i++) {
         fireflies.push(new Firefly());
+    }
+    for (let i = 0; i < 100; i++) {
+        rainParticles.push(new Rain());
     }
 
     /* ============================================================= */
@@ -434,9 +443,21 @@ document.addEventListener("DOMContentLoaded", function() {
     /* ============================================================= */
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
         if (mouse.x && mouse.y) {
             mouseTrail.draw(ctx);
         }
+
+        // Draw rain particles only if the "Rain" button is active.
+        const rainButton = document.querySelector(".sound-btn[data-sound='rain']");
+        if (rainButton && rainButton.classList.contains("active")) {
+            for (let rain of rainParticles) {
+                rain.update();
+                rain.draw(ctx);
+            }
+        }
+
+        // Then draw bonfires
         for (let i = bonfires.length - 1; i >= 0; i--) {
             bonfires[i].update();
             bonfires[i].draw(ctx);
@@ -444,10 +465,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 bonfires.splice(i, 1);
             }
         }
+
+        // Then draw fireflies
         for (let firefly of fireflies) {
             firefly.update();
             firefly.draw(ctx);
         }
+
         requestAnimationFrame(animate);
     }
     animate();
