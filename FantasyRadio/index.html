@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Analytics Tracking Snippet -->
-    <!-- Replace G-XXXXXXXXXX with your actual Measurement ID -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-61WS06W417"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-61WS06W417');
-    </script>
-
     <!-- ============================================================= -->
     <!--                       DOCUMENT HEAD                         -->
     <!-- ============================================================= -->
@@ -28,6 +18,16 @@
     <link rel="stylesheet" href="css/extras.css">
     <link rel="stylesheet" href="../css/fireflies.css">
 
+    <!-- Google Analytics Tracking Snippet -->
+    <!-- Replace G-61WS06W417 with your actual Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-61WS06W417"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-61WS06W417');
+    </script>
+
     <!-- External Scripts -->
     <script defer src="../scripts/bonfire.js"></script>
     <script defer src="../scripts/fireflies.js"></script>
@@ -38,6 +38,8 @@
     <script defer src="scripts/clock.js"></script>
     <script defer src="scripts/lofi.js"></script>
     <script defer src="scripts/extras.js"></script>
+    <!-- New script for Rested Time tracking -->
+    <script defer src="scripts/rested.js"></script>
 </head>
 <body>
 <!-- Clock at the top left corner -->
@@ -156,5 +158,10 @@
         </div>
     </div>
 </div>
+
+<!-- ============================================================= -->
+<!--           RESTED TIME MESSAGE (Bottom Right)                  -->
+<!-- ============================================================= -->
+<div id="rested-time"></div>
 </body>
 </html>

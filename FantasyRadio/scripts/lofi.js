@@ -11,19 +11,19 @@ document.addEventListener("DOMContentLoaded", function() {
             radios: [
                 {
                     name: "Healing forest",
-                    info: "Healing Forest – Calm & Soothing", // Custom info text
+                    info: "Healing Forest Radio – Calm & Soothing", // Custom info text
                     stream: "https://www.youtube.com/embed/hLMLCPX4zyA?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 },
                 {
                     name: "Journey ahead",
-                    info: "Journey Ahead – A Serene Escape",
+                    info: "Journey Ahead Radio – A Serene Escape",
                     stream: "https://www.youtube.com/embed/vK5VwVyxkbI?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 },
                 {
                     name: "Fantasy Tavern",
-                    info: "Fantasy Tavern – Magical Melodies",
+                    info: "Fantasy Tavern Radio – Magical Melodies",
                     stream: "https://www.youtube.com/embed/0p6UidTS7Ao?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 },
@@ -35,13 +35,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 },
                 {
                     name: "Celtic",
-                    info: "Celtic – Enchanting Echoes",
+                    info: "Celtic Radio – Enchanting Echoes",
                     stream: "https://www.youtube.com/embed/naWrbS4EUnY?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 },
                 {
                     name: "Lofi Fantasy",
-                    info: "Lofi Fantasy – Chill & Dreamy",
+                    info: "Lofi Fantasy Radio – Chill & Dreamy",
                     stream: "https://www.youtube.com/embed/9IOmDeoHSo8?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 }
@@ -49,13 +49,61 @@ document.addEventListener("DOMContentLoaded", function() {
             soundEffects: [
                 { name: "Fire", sound: "fire" },
                 { name: "Rain", sound: "rain" },
-                { name: "Surroundings", sound: "surroundings" }
+                { name: "Forest Surroundings", sound: "surroundings" }
             ],
             message: "Lay down your burdens, traveler. The trees will keep watch."
         },
         2: {
             background: "assets/images/stage2.png",
             audio: "assets/audio/stage2_playlist.mp3",
+            radios: [
+                {
+                    name: "You Shall Pass",
+                    info: "You Shall Pass Radio - Gandalf's Study Ambient Music",
+                    stream: "https://www.youtube.com/embed/12IcBLhhxbY?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
+                },
+                {
+                    name: "Witcher's Journey",
+                    info: "Witcher's Journey Radio - Daydreaming of Persephone",
+                    stream: "https://www.youtube.com/embed/cldfWgydN2Y?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
+                },
+                {
+                    name: "Relaxing Celtic",
+                    info: "Relaxing Celtic Music Radio - Celtic Spirit",
+                    stream: "https://www.youtube.com/embed/B1Lp7RA4fqY?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
+                },
+                {
+                    name: "Epic Music",
+                    info: "Epic Music Radio - Epic Music VN",
+                    stream: "https://www.youtube.com/embed/7uNNF6RGwM0?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
+                },
+                {
+                    name: "Ori and the Will of the Wisps",
+                    info: "Ori WoW (Not Radio) - Icelandic Overgrowth",
+                    stream: "https://www.youtube.com/embed/I7830FvhQi4?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
+                },
+                {
+                    name: "Song of the North",
+                    info: "Song of the North (Not Radio) - BrunuhVille",
+                    stream: "https://www.youtube.com/embed/gRuggMzH3Gw?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
+                }
+            ],
+            soundEffects: [
+                { name: "Fire", sound: "fire" },
+                { name: "Thunderstorm", sound: "thunderstorm" },
+                { name: "Calm Forest", sound: "Deep Forest" }
+            ],
+            message: "Ruins watch in silence… take a moment."
+        },
+        3: {
+            background: "assets/images/stage3.png",
+            audio: "assets/audio/stage3_playlist.mp3",
             radios: [
                 {
                     name: "Future Chill",
@@ -96,50 +144,8 @@ document.addEventListener("DOMContentLoaded", function() {
             ],
             soundEffects: [
                 { name: "Fire", sound: "fire" },
-                { name: "Thunderstorm", sound: "thunderstorm" },
-                { name: "Deep Forest", sound: "Deep Forest" }
-            ],
-            message: "Ruins watch in silence… take a moment."
-        },
-        3: {
-            background: "assets/images/stage3.png",
-            audio: "assets/audio/stage3_playlist.mp3",
-            radios: [
-                {
-                    name: "-----",
-                    info: "-----",
-                    stream: "http://example.com/stream13"
-                },
-                {
-                    name: "-----",
-                    info: "-----",
-                    stream: "http://example.com/stream14"
-                },
-                {
-                    name: "-----",
-                    info: "-----",
-                    stream: "http://example.com/stream15"
-                },
-                {
-                    name: "-----",
-                    info: "-----",
-                    stream: "http://example.com/stream16"
-                },
-                {
-                    name: "-----",
-                    info: "-----",
-                    stream: "http://example.com/stream17"
-                },
-                {
-                    name: "-----",
-                    info: "-----",
-                    stream: "http://example.com/stream18"
-                }
-            ],
-            soundEffects: [
-                { name: "Fire", sound: "fire" },
                 { name: "Rain", sound: "rain" },
-                { name: "Surroundings", sound: "surroundings" }
+                { name: "City Terrace", sound: "cityTerrace" }
             ],
             message: "Bright lights, empty souls… take a moment to breathe."
         },
@@ -160,14 +166,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     type: "youtube"
                 },
                 {
-                    name: "-----",
-                    info: "-----",
-                    stream: "http://example.com/stream21"
+                    name: "Blade Runner Radio",
+                    info: "Blade Runner Radio - Ambient Music",
+                    stream: "https://www.youtube.com/embed/RrkrdYm3HPQ?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
                 },
                 {
-                    name: "-----",
-                    info: "-----",
-                    stream: "http://example.com/stream22"
+                    name: "Cyber Jazz/Blues",
+                    info: "Cyber Jazz/Blues Radio - Ambient Music",
+                    stream: "https://www.youtube.com/embed/et5HueFNjkI?autoplay=1&controls=0&modestbranding=1&rel=0x",
+                    type: "youtube"
                 },
                 {
                     name: "It's ok, calm down",
@@ -185,9 +193,9 @@ document.addEventListener("DOMContentLoaded", function() {
             soundEffects: [
                 { name: "Fire", sound: "fire" },
                 { name: "Rain", sound: "rain" },
-                { name: "Surroundings", sound: "surroundings" }
+                { name: "Hollow", sound: "hollow" }
             ],
-            message: "Ruins watch in silence… take a moment."
+            message: "The world is broken, but this fire is yours—rest."
         },
         5: {
             background: "assets/images/stage5.png",
@@ -233,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function() {
             soundEffects: [
                 { name: "Fire", sound: "fire" },
                 { name: "Rain", sound: "rain" },
-                { name: "Surroundings", sound: "surroundings" }
+                { name: "Calm Night", sound: "night" }
             ],
             message: "Stay by the fire. The world can wait."
         }
