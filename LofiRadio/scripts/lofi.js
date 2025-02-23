@@ -106,37 +106,41 @@ document.addEventListener("DOMContentLoaded", function() {
             audio: "assets/audio/stage3_playlist.mp3",
             radios: [
                 {
-                    name: "City Lights",
-                    info: "City Lights – Urban ambience",
+                    name: "-----",
+                    info: "-----",
                     stream: "http://example.com/stream13"
                 },
                 {
-                    name: "Urban Chill",
-                    info: "Urban Chill – City vibes",
+                    name: "-----",
+                    info: "-----",
                     stream: "http://example.com/stream14"
                 },
                 {
-                    name: "Neon Nights",
-                    info: "Neon Nights – Vibrant and cool",
+                    name: "-----",
+                    info: "-----",
                     stream: "http://example.com/stream15"
                 },
                 {
-                    name: "Concrete Jungle",
-                    info: "Concrete Jungle – Beat of the city",
+                    name: "-----",
+                    info: "-----",
                     stream: "http://example.com/stream16"
                 },
                 {
-                    name: "Subway",
-                    info: "Subway – Underground sounds",
+                    name: "-----",
+                    info: "-----",
                     stream: "http://example.com/stream17"
                 },
                 {
-                    name: "Late Commute",
-                    info: "Late Commute – Evening travel tunes",
+                    name: "-----",
+                    info: "-----",
                     stream: "http://example.com/stream18"
                 }
             ],
-            soundEffects: [], // No unique sound effects for Ambience 3
+            soundEffects: [
+                { name: "Fire", sound: "fire" },
+                { name: "Rain", sound: "rain" },
+                { name: "Surroundings", sound: "surroundings" }
+            ],
             message: "Bright lights, empty souls… take a moment to breathe."
         },
         4: {
@@ -144,39 +148,44 @@ document.addEventListener("DOMContentLoaded", function() {
             audio: "assets/audio/stage4_playlist.mp3",
             radios: [
                 {
-                    name: "Forest Echoes",
-                    info: "Forest Echoes – Nature's rhythm",
-                    stream: "http://example.com/stream19"
+                    name: "Dark Ambient Radio",
+                    info: "Dark Ambient - Lofi Girl",
+                    stream: "https://www.youtube.com/embed/S_MOd40zlYU?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
                 },
                 {
-                    name: "Woodland",
-                    info: "Woodland – Rustic serenity",
-                    stream: "http://example.com/stream20"
+                    name: "Low Mist",
+                    info: "Low Mist Var.2 – dhe Perissann",
+                    stream: "https://www.youtube.com/embed/91fkcTxXkLI?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
                 },
                 {
-                    name: "Nature Beats",
-                    info: "Nature Beats – Organic tunes",
+                    name: "-----",
+                    info: "-----",
                     stream: "http://example.com/stream21"
                 },
                 {
-                    name: "Tranquility",
-                    info: "Tranquility – Peaceful vibes",
+                    name: "-----",
+                    info: "-----",
                     stream: "http://example.com/stream22"
                 },
                 {
-                    name: "Birdsong",
-                    info: "Birdsong – Melodic chirps",
-                    stream: "http://example.com/stream23"
+                    name: "It's ok, calm down",
+                    info: "It's ok, calm down – liminal sorrow",
+                    stream: "https://www.youtube.com/embed/AzP6YmaQNdI?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
                 },
                 {
-                    name: "River Flow",
-                    info: "River Flow – Soothing water sounds",
-                    stream: "http://example.com/stream24"
+                    name: "Sad Lofi",
+                    info: "Sad Lofi – Lofi Girl",
+                    stream: "https://www.youtube.com/embed/P6Segk8cr-c?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
                 }
             ],
             soundEffects: [
-                { name: "Forest Echoes", sound: "forest" },
-                { name: "Birdsong", sound: "birdsong" }
+                { name: "Fire", sound: "fire" },
+                { name: "Rain", sound: "rain" },
+                { name: "Surroundings", sound: "surroundings" }
             ],
             message: "Ruins watch in silence… take a moment."
         },
@@ -185,41 +194,48 @@ document.addEventListener("DOMContentLoaded", function() {
             audio: "assets/audio/stage5_playlist.mp3",
             radios: [
                 {
-                    name: "Cosmic",
-                    info: "Cosmic – Out of this world",
-                    stream: "http://example.com/stream25"
+                    name: "Japanese Lofi Radio",
+                    info: "Japanese Lofi Radio – lofi geek",
+                    stream: "https://www.youtube.com/embed/yr9ZxQaWkqs?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
                 },
                 {
-                    name: "Galactic",
-                    info: "Galactic – Stellar soundscapes",
-                    stream: "http://example.com/stream26"
+                    name: "Raining in Japan",
+                    info: "Raining in Japan Radio – Pluviophile Lofi",
+                    stream: "https://www.youtube.com/embed/Vg13S-zzol0?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
                 },
                 {
-                    name: "Stardust",
-                    info: "Stardust – Dreamy and vast",
-                    stream: "http://example.com/stream27"
+                    name: "Poke Nostalgia",
+                    info: "Poke Nostalgia Radio – Twinleaf Lullaby",
+                    stream: "https://www.youtube.com/embed/5h5NiM39kFs?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
                 },
                 {
-                    name: "Nebula",
-                    info: "Nebula – Ethereal vibes",
-                    stream: "http://example.com/stream28"
+                    name: "Pokemon Lofi Beats",
+                    info: "Pokemon Lofi Beats Radio – Studio Matcha Us",
+                    stream: "https://www.youtube.com/embed/j5TAqVqZF6A?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
                 },
                 {
-                    name: "Orbit",
-                    info: "Orbit – Circular journeys",
-                    stream: "http://example.com/stream29"
+                    name: "Samurai Meditation",
+                    info: "Samurai Meditation Radio – Emotional Music",
+                    stream: "https://www.youtube.com/embed/TfYBaIsVzhs?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
                 },
                 {
-                    name: "Eclipse",
-                    info: "Eclipse – Dark and mysterious",
-                    stream: "http://example.com/stream30"
+                    name: "Rainy Night in Ramen Store",
+                    info: "Rainy Night Radio – Pluviophile Lofi",
+                    stream: "https://www.youtube.com/embed/G-3Qmm1fXXg?autoplay=1&controls=0&modestbranding=1&rel=0",
+                    type: "youtube"
                 }
             ],
             soundEffects: [
-                { name: "Cosmic", sound: "cosmic" },
-                { name: "Nebula", sound: "nebula" }
+                { name: "Fire", sound: "fire" },
+                { name: "Rain", sound: "rain" },
+                { name: "Surroundings", sound: "surroundings" }
             ],
-            message: "Drift through cosmic dreams, effortlessly."
+            message: "Stay by the fire. The world can wait."
         }
     };
 
@@ -483,5 +499,4 @@ document.addEventListener("DOMContentLoaded", function() {
     /* ============================================================= */
     const visualizerCanvas = document.getElementById("visualizer-canvas");
     new Visualizer(visualizerCanvas, document.getElementById("radio-audio"));
-
 });

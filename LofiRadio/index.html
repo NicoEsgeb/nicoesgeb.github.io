@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lofi Radio</title>
+    <!-- External CSS Files -->
     <link rel="stylesheet" href="css/lofi.css">
     <link rel="stylesheet" href="css/radio.css">
     <link rel="stylesheet" href="css/stars.css">
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="css/audioVisualiser.css">
     <link rel="stylesheet" href="css/clock.css">
     <link rel="stylesheet" href="css/message.css">
+    <link rel="stylesheet" href="css/extras.css">
     <link rel="stylesheet" href="../css/fireflies.css">
 
     <!-- ============================================================= -->
@@ -25,18 +27,23 @@
     <script defer src="../scripts/MouseTrail.js"></script>
     <script defer src="scripts/visualizer.js"></script>
     <script defer src="scripts/soundEffects.js"></script>
-    <!-- Our main scripts: lofi.js (handles ambience, fireflies, radio, visualizer) and radio.js (radio menu) -->
+    <!-- Lofi Radio & Clock & Radio Scripts -->
     <script defer src="scripts/radio.js"></script>
     <script defer src="scripts/clock.js"></script>
     <script defer src="scripts/lofi.js"></script>
+    <!-- Extras Modal Script -->
+    <script defer src="scripts/extras.js"></script>
 </head>
 <body>
-    <!-- Clock at the top elft corner-->
-    <div id="clock"></div>
-    <!-- Ambience Message -->
-    <div id="ambience-message"></div>
-    <!-- Radio Container at the right -->
-    <div id="radio-container">
+<!-- Clock at the top left corner -->
+<div id="clock"></div>
+<!-- Ambience Message (Displayed at Top Center) -->
+<div id="ambience-message"></div>
+<!-- Extras Button (Displayed at Top Right) -->
+<button id="extras-btn">Extras</button>
+
+<!-- Radio Container (Main Lofi Radio Section) -->
+<div id="radio-container">
     <!-- ============================================================= -->
     <!--                  FULLSCREEN BACKGROUND                    -->
     <!-- ============================================================= -->
@@ -90,7 +97,6 @@
         <button id="see-radios-btn" class="radio-toggle-btn">See Ambience Radios</button>
     </div>
 
-
     <!-- ============================================================= -->
     <!--                    AUDIO PLAYBACK ELEMENT                   -->
     <!-- ============================================================= -->
@@ -110,13 +116,61 @@
         <div id="radio-list" class="radio-list"></div>
     </div>
 </div>
-    <!-- ============================================================= -->
-    <!--              RADIO INFOR CONTAINER (bottom left)              -->
-    <!-- ============================================================= -->
-    <div id="current-radio-info"></div>
-    <!-- ============================================================= -->
-    <!--                    FIREFLIES CONTAINER                        -->
-    <!-- ============================================================= -->
-    <canvas id="fireflies-canvas"></canvas>
+
+<!-- ============================================================= -->
+<!--      CURRENT RADIO INFO (Displayed at Bottom Left)            -->
+<!-- ============================================================= -->
+<div id="current-radio-info"></div>
+
+<!-- ============================================================= -->
+<!--                    FIREFLIES CONTAINER                         -->
+<!-- ============================================================= -->
+<canvas id="fireflies-canvas"></canvas>
+
+<!-- ============================================================= -->
+<!--               EXTRAS MODAL (Comments, Likes, Donation)         -->
+<!-- ============================================================= -->
+<div id="extras-modal">
+    <div class="modal-content">
+        <span class="close-extras">&times;</span>
+        <h2>Extras</h2>
+        <!-- Visitor Count Section (Placeholder) -->
+        <div id="visitor-count">
+            <h3>Visitor Count</h3>
+            <p>Visitors: <span id="visitor-number">Loading...</span></p>
+        </div>
+        <!-- Comments/Suggestions Section (Disqus embed example) -->
+        <div id="comments-section">
+            <h3>Comments / Suggestions</h3>
+            <div id="disqus_thread"></div>
+            <script>
+                /*
+                var disqus_config = function () {
+                    this.page.url = window.location.href;
+                    this.page.identifier = "lofi-radio";
+                };
+                */
+                (function() {
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+        <!-- Like Section (Placeholder) -->
+        <div id="like-section">
+            <h3>Like this page!</h3>
+            <button id="like-btn">Like</button>
+            <span id="like-count">0</span>
+        </div>
+        <!-- Donation Section -->
+        <div id="donation-section">
+            <h3>Support me</h3>
+            <a class="donation-link" href="https://www.buymeacoffee.com/yourprofile" target="_blank">Donate via Buy Me a Coffee</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
