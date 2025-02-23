@@ -45,3 +45,4 @@ window.addEventListener("click", (event) => {
 lofiProject.addEventListener("click", () => {
     window.location.href = "https://nicoesgeb.github.io/FantasyRadio";
 });
+
