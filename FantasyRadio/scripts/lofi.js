@@ -262,7 +262,6 @@ document.addEventListener("DOMContentLoaded", function() {
     window.currentStationType = "audio";
     window.currentYouTubeStream = null;
     // Global flag to control visualizer animation (true if playing, false if paused)
-    // Do not force a state change on load; assume paused by default.
     window.isPlaying = false;
     customPlayBtn.textContent = "Play";
 
@@ -498,18 +497,19 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
         if (window.currentStationType === "youtube") {
-            // For YouTube streams, mimic pause/resume by removing/reinjecting the iframe.
-            if (customPlayBtn.textContent === "Pause") {
-                document.getElementById("radio-iframe-container").innerHTML = "";
-                customPlayBtn.textContent = "Play";
-                window.isPlaying = false;
-            } else {
-                if (window.currentYouTubeStream) {
-                    document.getElementById("radio-iframe-container").innerHTML =
-                        `<iframe src="${window.currentYouTubeStream}&autoplay=1&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>`;
+            // For YouTube streams, use the YouTube Player API to control playback
+            if (window.currentPlayer) {
+                if (customPlayBtn.textContent === "Pause") {
+                    window.currentPlayer.pauseVideo();
+                    customPlayBtn.textContent = "Play";
+                    window.isPlaying = false;
+                } else {
+                    window.currentPlayer.playVideo();
                     customPlayBtn.textContent = "Pause";
                     window.isPlaying = true;
                 }
+            } else {
+                alert("YouTube player not ready yet.");
             }
         } else {
             // For standard audio streams, toggle play/pause on the audio element.

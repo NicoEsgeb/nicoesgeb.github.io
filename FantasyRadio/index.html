@@ -28,6 +28,9 @@
         gtag('config', 'G-61WS06W417');
     </script>
 
+    <!-- Load the YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
     <!-- External Scripts -->
     <script defer src="../scripts/bonfire.js"></script>
     <script defer src="../scripts/fireflies.js"></script>
@@ -120,6 +123,11 @@
     <div id="radio-menu" class="radio-menu">
         <button id="close-radio-menu" class="radio-close-btn">Close</button>
         <div id="radio-list" class="radio-list"></div>
+        <!-- New Volume Control Section under the radio stations -->
+        <div id="volume-control-container">
+            <label for="volume-slider">Volume:</label>
+            <input type="range" id="volume-slider" min="0" max="100" value="50">
+        </div>
     </div>
 </div>
 
@@ -154,7 +162,7 @@
         <div id="donation-section">
             <h3>Support me</h3>
             <div class="donation-wrapper">
-                <a class="donation-link" href="https://www.buymeacoffee.com/yourprofile" target="_blank">Buy me a coffee!</a>
+                <a class="donation-link" href="https://www.buymeacoffee.com/NicoGeb" target="_blank">Buy me a coffee!</a>
             </div>
         </div>
     </div>

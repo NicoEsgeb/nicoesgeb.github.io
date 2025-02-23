@@ -16,6 +16,19 @@ class RadioMenu {
         this.closeBtn.addEventListener("click", () => {
             this.hide();
         });
+
+        // Attach event listener to the volume slider (controls overall radio volume)
+        const volumeSlider = document.getElementById("volume-slider");
+        volumeSlider.addEventListener("input", function() {
+            const vol = parseInt(volumeSlider.value);
+            // For YouTube streams, use the YouTube API method to set volume
+            if (window.currentStationType === "youtube" && window.currentPlayer) {
+                window.currentPlayer.setVolume(vol);
+            } else {
+                // For standard audio, the volume property ranges from 0.0 to 1.0
+                document.getElementById("radio-audio").volume = vol / 100;
+            }
+        });
     }
 
     /* ============================================================= */
@@ -46,6 +59,12 @@ class RadioMenu {
                 this.audioPlayer.src = "";
                 this.iframeContainer.innerHTML = "";
 
+                // If there is an existing YouTube player, destroy it
+                if (window.currentPlayer && typeof window.currentPlayer.destroy === "function") {
+                    window.currentPlayer.destroy();
+                    window.currentPlayer = null;
+                }
+
                 // Store the current station type globally
                 window.currentStationType = station.type || "audio";
                 if (station.type === "youtube") {
@@ -62,9 +81,32 @@ class RadioMenu {
 
                 /* ----- Load the new stream based on its type ----- */
                 if (station.type === "youtube") {
-                    // For YouTube streams, hide the audio element and load the iframe
+                    // For YouTube streams, hide the audio element
                     this.audioPlayer.style.display = "none";
-                    this.iframeContainer.innerHTML = `<iframe src="${station.stream}&autoplay=1&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>`;
+                    // Create a container for the YouTube player
+                    this.iframeContainer.innerHTML = '<div id="youtube-player"></div>';
+                    // Extract the video ID from the embed URL using our helper function
+                    const videoId = getYouTubeVideoID(station.stream);
+                    // Create the YouTube player (hidden, as we only need audio)
+                    window.currentPlayer = new YT.Player('youtube-player', {
+                        height: '0',  // Hide video
+                        width: '0',
+                        videoId: videoId,
+                        playerVars: {
+                            autoplay: 1,
+                            controls: 0,
+                            modestbranding: 1,
+                            rel: 0
+                        },
+                        events: {
+                            'onReady': (event) => {
+                                // Set the volume based on the volume slider value
+                                const vol = parseInt(document.getElementById("volume-slider").value);
+                                event.target.setVolume(vol);
+                                event.target.playVideo();
+                            }
+                        }
+                    });
                     this.iframeContainer.style.display = "block";
                 } else {
                     // For standard streams, hide the iframe and use the audio element
@@ -144,6 +186,19 @@ class RadioMenu {
     hide() {
         this.menu.classList.remove("show");
     }
+}
+
+/* ============================================================= */
+/*         HELPER FUNCTION TO EXTRACT YOUTUBE VIDEO ID           */
+/* ============================================================= */
+function getYouTubeVideoID(url) {
+    // Expect URL like "https://www.youtube.com/embed/VIDEO_ID?..."
+    const parts = url.split('/embed/');
+    if (parts.length > 1) {
+        const idPart = parts[1].split('?')[0];
+        return idPart;
+    }
+    return '';
 }
 
 /* ============================================================= */

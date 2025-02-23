@@ -11,9 +11,6 @@
 /* ============================================================= */
 /*               RADIO LINK (YOUTUBE BUTTON) STYLE             */
 /* ============================================================= */
-/* ============================================================= */
-/*               RADIO LINK (YOUTUBE BUTTON) STYLE             */
-/* ============================================================= */
 .radio-link {
     display: inline-block;
     margin-left: 8px;
@@ -30,7 +27,6 @@
     box-shadow: 0 0 10px 2px rgba(0,255,255,0.7);
     animation: glow 1.5s infinite alternate;
 }
-
 
 /* ============================================================= */
 /*                 RADIO MENU & TOGGLE BUTTON                    */
@@ -120,4 +116,19 @@
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
     z-index: 100;
+}
+
+/* ============================================================= */
+/*                  VOLUME CONTROL STYLES                        */
+/* ============================================================= */
+#volume-control-container {
+    margin-top: 10px;
+    text-align: center;
+    color: #0ff;
+}
+#volume-control-container label {
+    margin-right: 5px;
+}
+#volume-slider {
+    width: 80%;
 }
