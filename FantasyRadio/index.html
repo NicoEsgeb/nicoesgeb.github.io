@@ -45,7 +45,7 @@
 <!-- Ambience Message (Displayed at Top Center) -->
 <div id="ambience-message"></div>
 <!-- Extras Button (Displayed at Top Right) -->
-<button id="extras-btn">Extras</button>
+<button id="extras-btn">Get to know me!</button>
 
 <!-- Radio Container (Main Lofi Radio Section) -->
 <div id="radio-container">
@@ -131,47 +131,28 @@
 <canvas id="fireflies-canvas"></canvas>
 
 <!-- ============================================================= -->
-<!--           EXTRAS MODAL (Comments, Likes, Donation)             -->
+<!--           EXTRAS MODAL (Personal Message, Email, Donation)       -->
 <!-- ============================================================= -->
 <div id="extras-modal">
     <div class="modal-content">
         <span class="close-extras">&times;</span>
-        <h2>Extras</h2>
-        <!-- Visitor Count Section -->
-        <div id="visitor-count">
-            <h3>Visitor Count</h3>
-            <p>Visitors: <span id="visitor-number">Loading...</span></p>
-        </div>
-        <!-- Comments/Suggestions Section (Disqus embed) -->
-        <div id="comments-section">
-            <h3>Comments / Suggestions</h3>
-            <div id="disqus_thread"></div>
-            <script>
-                /*
-                var disqus_config = function () {
-                    this.page.url = window.location.href;
-                    this.page.identifier = "lofi-radio";
-                };
-                */
-                (function() {
-                    var d = document, s = d.createElement('script');
-                    s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js';
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the comments.</noscript>
-        </div>
-        <!-- Like Section -->
-        <div id="like-section">
-            <h3>Like this page!</h3>
-            <button id="like-btn">Like</button>
-            <span id="like-count">0</span>
-        </div>
+        <h2>About Nico</h2>
+        <!-- Personal Message Section -->
+        <p>
+            Hi! I’m Nico. Welcome to my Fantasy Radio. Enjoy the chill vibes and immersive experience.
+            Any comments, suggestions, or new ideas would be appreciated! I’m new to this and just learning how to build these kinds of sites!
+            <br>
+            Don't be afraid to reach out!
+        </p>
+        <!-- Email Section -->
+        <h3>My email</h3>
+        <p>nico.esg.rey@gmail.com</p>
         <!-- Donation Section -->
         <div id="donation-section">
             <h3>Support me</h3>
-            <a class="donation-link" href="https://www.buymeacoffee.com/yourprofile" target="_blank">Donate via Buy Me a Coffee</a>
+            <div class="donation-wrapper">
+                <a class="donation-link" href="https://www.buymeacoffee.com/yourprofile" target="_blank">Buy me a coffee!</a>
+            </div>
         </div>
     </div>
 </div>
