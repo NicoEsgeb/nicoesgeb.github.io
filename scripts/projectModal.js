@@ -43,5 +43,5 @@ window.addEventListener("click", (event) => {
 
 // When the Lofi project is clicked, redirect to the LofiRadio page
 lofiProject.addEventListener("click", () => {
-    window.location.href = "https://nicoesgeb.github.io/LofiRadio";
+    window.location.href = "https://nicoesgeb.github.io/FantasyRadio";
 });

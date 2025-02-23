@@ -6,7 +6,7 @@
     <!-- ============================================================= -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lofi Radio</title>
+    <title>Fantasy Radio</title>
     <!-- External CSS Files -->
     <link rel="stylesheet" href="css/lofi.css">
     <link rel="stylesheet" href="css/radio.css">
@@ -18,20 +18,25 @@
     <link rel="stylesheet" href="css/extras.css">
     <link rel="stylesheet" href="../css/fireflies.css">
 
-    <!-- ============================================================= -->
-    <!--               EXTERNAL SCRIPTS & DEPENDENCIES                -->
-    <!-- ============================================================= -->
-    <!-- External scripts: bonfire, fireflies, MouseTrail -->
+    <!-- Google Analytics Tracking Snippet -->
+    <!-- Replace G-XXXXXXXXXX with your actual Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <!-- External Scripts -->
     <script defer src="../scripts/bonfire.js"></script>
-    <script defer src="../scripts/fireflies.js"></script> <!-- Firefly class defined here -->
+    <script defer src="../scripts/fireflies.js"></script>
     <script defer src="../scripts/MouseTrail.js"></script>
     <script defer src="scripts/visualizer.js"></script>
     <script defer src="scripts/soundEffects.js"></script>
-    <!-- Lofi Radio & Clock & Radio Scripts -->
     <script defer src="scripts/radio.js"></script>
     <script defer src="scripts/clock.js"></script>
     <script defer src="scripts/lofi.js"></script>
-    <!-- Extras Modal Script -->
     <script defer src="scripts/extras.js"></script>
 </head>
 <body>
@@ -56,7 +61,6 @@
 
     <!-- ============================================================= -->
     <!--                    STARS FOR AMBIENCE 1                     -->
-    <!-- (Bonfire particles removed as per new requirement)         -->
     <!-- ============================================================= -->
     <div class="stars-container">
         <div class="star" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
@@ -100,7 +104,6 @@
     <!-- ============================================================= -->
     <!--                    AUDIO PLAYBACK ELEMENT                   -->
     <!-- ============================================================= -->
-    <!-- Remove default controls to use custom UI -->
     <audio id="radio-audio" autoplay loop></audio>
 
     <!-- ============================================================= -->
@@ -128,18 +131,18 @@
 <canvas id="fireflies-canvas"></canvas>
 
 <!-- ============================================================= -->
-<!--               EXTRAS MODAL (Comments, Likes, Donation)         -->
+<!--           EXTRAS MODAL (Comments, Likes, Donation)             -->
 <!-- ============================================================= -->
 <div id="extras-modal">
     <div class="modal-content">
         <span class="close-extras">&times;</span>
         <h2>Extras</h2>
-        <!-- Visitor Count Section (Placeholder) -->
+        <!-- Visitor Count Section -->
         <div id="visitor-count">
             <h3>Visitor Count</h3>
             <p>Visitors: <span id="visitor-number">Loading...</span></p>
         </div>
-        <!-- Comments/Suggestions Section (Disqus embed example) -->
+        <!-- Comments/Suggestions Section (Disqus embed) -->
         <div id="comments-section">
             <h3>Comments / Suggestions</h3>
             <div id="disqus_thread"></div>
@@ -159,7 +162,7 @@
             </script>
             <noscript>Please enable JavaScript to view the comments.</noscript>
         </div>
-        <!-- Like Section (Placeholder) -->
+        <!-- Like Section -->
         <div id="like-section">
             <h3>Like this page!</h3>
             <button id="like-btn">Like</button>
