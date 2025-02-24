@@ -1,9 +1,43 @@
+// ------------------------- YouTube Iframe API Integration -------------------------
+// Global variable for the YouTube player
+let ytPlayer = null;
+
+// Called automatically by the YouTube IFrame API when it is ready.
+function onYouTubeIframeAPIReady() {
+    ytPlayer = new YT.Player('radio-iframe-container', {
+        height: '0', // Hide video
+        width: '0',
+        videoId: '', // Initially empty
+        playerVars: {
+            autoplay: 1,
+            controls: 0,
+            modestbranding: 1,
+            rel: 0
+        },
+        events: {
+            'onReady': onPlayerReady
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    event.target.setVolume(100); // Set initial volume to 100%
+}
+
+function extractVideoID(url) {
+    const parts = url.split("/embed/");
+    if (parts.length > 1) {
+        return parts[1].split('?')[0];
+    }
+    return url;
+}
+// ------------------------------------------------------------------------------------
+
 document.addEventListener("DOMContentLoaded", function() {
 
     /* ============================================================= */
     /*                  AMBIENCE ASSET CONFIGURATION                 */
     /* ============================================================= */
-    // Each ambience now includes its own unique sound effects, radio configuration, and a top message.
     const ambiences = {
         1: {
             background: "assets/images/stage1_1792x1024.png",
@@ -11,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
             radios: [
                 {
                     name: "Healing forest",
-                    info: "Healing Forest Radio – Calm & Soothing", // Custom info text
+                    info: "Healing Forest Radio – Calm & Soothing",
                     stream: "https://www.youtube.com/embed/hLMLCPX4zyA?autoplay=1&controls=0&modestbranding=1&rel=0",
                     type: "youtube"
                 },
@@ -147,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 { name: "Rain", sound: "rain" },
                 { name: "City Terrace", sound: "cityTerrace" }
             ],
-            message: "Bright lights, empty souls… take a moment to breathe."
+            message: "Bright lights, dim souls… take a moment to breathe."
         },
         4: {
             background: "assets/images/stage4.png",
@@ -258,10 +292,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const seeRadiosBtn = document.getElementById("see-radios-btn");
     const customPlayBtn = document.getElementById("custom-play");
 
-    // Set default state: no radio station selected; initial stream state remains unchanged.
     window.currentStationType = "audio";
     window.currentYouTubeStream = null;
-    // Global flag to control visualizer animation (true if playing, false if paused)
     window.isPlaying = false;
     customPlayBtn.textContent = "Play";
 
@@ -275,23 +307,15 @@ document.addEventListener("DOMContentLoaded", function() {
     /* ============================================================= */
     function updateSoundEffectsMenu(ambienceData) {
         const menu = document.getElementById("sound-effects-menu");
-        // Clear previous content of the sound effects menu.
         menu.innerHTML = "";
-
-        // Check if this ambience has any unique sound effects
         if (ambienceData.soundEffects && ambienceData.soundEffects.length > 0) {
             ambienceData.soundEffects.forEach(effect => {
-                // Create a container div for each sound effect
                 const effectDiv = document.createElement("div");
                 effectDiv.className = "sound-effect";
-
-                // Create the button with the sound effect's display name
                 const btn = document.createElement("button");
                 btn.className = "sound-btn";
                 btn.setAttribute("data-sound", effect.sound);
                 btn.textContent = effect.name;
-
-                // Create the volume slider for this sound effect
                 const volumeInput = document.createElement("input");
                 volumeInput.className = "sound-volume";
                 volumeInput.setAttribute("data-sound", effect.sound);
@@ -300,16 +324,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 volumeInput.setAttribute("max", "1");
                 volumeInput.setAttribute("step", "0.01");
                 volumeInput.value = "0.5";
-
-                // Append button and volume slider to the container div
                 effectDiv.appendChild(btn);
                 effectDiv.appendChild(volumeInput);
-
-                // Append the container div to the sound effects menu
                 menu.appendChild(effectDiv);
             });
         }
-        // Attach event listeners to the newly created elements
         addSoundEffectListeners();
     }
 
@@ -319,20 +338,15 @@ document.addEventListener("DOMContentLoaded", function() {
     function addSoundEffectListeners() {
         const soundButtons = document.querySelectorAll(".sound-btn");
         const volumeInputs = document.querySelectorAll(".sound-volume");
-
-        // When a sound button is clicked, toggle the corresponding sound effect
         soundButtons.forEach(btn => {
             btn.addEventListener("click", function() {
                 const soundName = this.getAttribute("data-sound");
                 const volumeInput = document.querySelector(`.sound-volume[data-sound="${soundName}"]`);
                 const volume = volumeInput ? parseFloat(volumeInput.value) : 0.5;
                 soundEffectsManager.toggle(soundName, volume);
-                // Toggle the "active" class for the glowing effect
                 this.classList.toggle("active");
             });
         });
-
-        // When the volume slider is adjusted, update the sound effect volume in real time
         volumeInputs.forEach(input => {
             input.addEventListener("input", function() {
                 const soundName = this.getAttribute("data-sound");
@@ -349,15 +363,11 @@ document.addEventListener("DOMContentLoaded", function() {
         const ambienceData = ambiences[ambienceNum];
         if (ambienceData) {
             currentAmbience = ambienceData;
-            // Update background and top message
             ambienceBackground.style.backgroundImage = `url('${ambienceData.background}')`;
             document.getElementById("ambience-message").textContent = ambienceData.message;
-
-            // If no radio station is currently selected, load the ambience audio.
             if (!window.radioSelected) {
                 radioAudio.src = ambienceData.audio;
             }
-            // Preserve the current play state for radioAudio if a station is playing
             if (window.isPlaying) {
                 radioAudio.play();
                 customPlayBtn.textContent = "Pause";
@@ -365,19 +375,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 radioAudio.pause();
                 customPlayBtn.textContent = "Play";
             }
-            // Only reset the radio selection variables if no radio is currently selected.
             if (!window.radioSelected) {
                 window.currentStationType = "audio";
                 window.currentYouTubeStream = null;
             }
-
-            // Stop any currently playing sound effects from the previous ambience
             soundEffectsManager.pauseAll();
-
-            // Update the sound effects menu based on the current ambience's configuration
             updateSoundEffectsMenu(ambienceData);
-
-            // If the radio menu is currently open, update its station list to match the new ambience.
             if (document.getElementById("radio-menu").classList.contains("show")) {
                 window.radioMenu.populate(ambienceData.radios);
             }
@@ -409,27 +412,22 @@ document.addEventListener("DOMContentLoaded", function() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     });
-
     let fireflies = [];
     let bonfires = [];
-    let rainParticles = []; // Rain particles array
+    let rainParticles = [];
     const mouseTrail = new MouseTrail({ lifetime: 400, radius: 13 });
     let mouse = { x: null, y: null, radius: 13 };
     window.mouse = mouse;
     window.bonfires = bonfires;
-
     window.addEventListener("mousemove", event => {
         mouse.x = event.clientX;
         mouse.y = event.clientY;
         mouseTrail.addPoint(event.clientX, event.clientY);
     });
-
     document.addEventListener("click", (event) => {
         if (event.target.closest(".interactive")) return;
         bonfires.push(new Bonfire(event.clientX, event.clientY));
     });
-
-    // Initialize particles
     for (let i = 0; i < 70; i++) {
         fireflies.push(new Firefly());
     }
@@ -442,15 +440,12 @@ document.addEventListener("DOMContentLoaded", function() {
     /* ============================================================= */
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
         if (mouse.x && mouse.y) {
             mouseTrail.draw(ctx);
         }
-
-        // Draw rain particles only if the "Rain" or "thunderstom" button is active.
+        // Draw rain only if the "Rain" or "Thunderstorm" button is active.
         const rainButton = document.querySelector(".sound-btn[data-sound='rain']");
         const thunderButton = document.querySelector(".sound-btn[data-sound='thunderstorm']");
-
         if (
             (rainButton && rainButton.classList.contains("active")) ||
             (thunderButton && thunderButton.classList.contains("active"))
@@ -460,8 +455,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 rain.draw(ctx);
             }
         }
-
-        // Then draw bonfires
         for (let i = bonfires.length - 1; i >= 0; i--) {
             bonfires[i].update();
             bonfires[i].draw(ctx);
@@ -469,13 +462,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 bonfires.splice(i, 1);
             }
         }
-
-        // Then draw fireflies
         for (let firefly of fireflies) {
             firefly.update();
             firefly.draw(ctx);
         }
-
         requestAnimationFrame(animate);
     }
     animate();
@@ -491,28 +481,24 @@ document.addEventListener("DOMContentLoaded", function() {
     /*         CUSTOM PLAY/PAUSE BUTTON FUNCTIONALITY                */
     /* ============================================================= */
     customPlayBtn.addEventListener("click", () => {
-        // Only allow toggling if a radio station has been selected.
         if (!window.radioSelected) {
             alert("Please select a radio station first.");
             return;
         }
         if (window.currentStationType === "youtube") {
-            // For YouTube streams, use the YouTube Player API to control playback
-            if (window.currentPlayer) {
-                if (customPlayBtn.textContent === "Pause") {
-                    window.currentPlayer.pauseVideo();
-                    customPlayBtn.textContent = "Play";
-                    window.isPlaying = false;
-                } else {
-                    window.currentPlayer.playVideo();
+            if (customPlayBtn.textContent === "Pause") {
+                ytPlayer.pauseVideo();
+                customPlayBtn.textContent = "Play";
+                window.isPlaying = false;
+            } else {
+                if (window.currentYouTubeStream) {
+                    const videoId = extractVideoID(window.currentYouTubeStream);
+                    ytPlayer.loadVideoById(videoId);
                     customPlayBtn.textContent = "Pause";
                     window.isPlaying = true;
                 }
-            } else {
-                alert("YouTube player not ready yet.");
             }
         } else {
-            // For standard audio streams, toggle play/pause on the audio element.
             if (radioAudio.paused) {
                 radioAudio.play();
                 customPlayBtn.textContent = "Pause";
@@ -526,10 +512,22 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     /* ============================================================= */
+    /*       RADIO VOLUME CONTROL (Using YouTube API or Audio)       */
+    /* ============================================================= */
+    const radioVolumeSlider = document.getElementById("volume-slider");
+    radioVolumeSlider.addEventListener("input", function() {
+        const vol = parseInt(this.value);
+        if (window.currentStationType === "youtube" && ytPlayer && ytPlayer.setVolume) {
+            ytPlayer.setVolume(vol);
+        } else {
+            radioAudio.volume = vol / 100;
+        }
+    });
+
+    /* ============================================================= */
     /*             SOUND EFFECTS (BUTTONS & VOLUME SLIDERS)          */
     /* ============================================================= */
-    // The SoundEffects manager is already instantiated,
-    // and event listeners are attached dynamically via updateSoundEffectsMenu().
+    // The SoundEffects manager is already instantiated and event listeners are attached dynamically.
 
     /* ============================================================= */
     /*                 INITIALIZE AUDIO VISUALIZER                   */

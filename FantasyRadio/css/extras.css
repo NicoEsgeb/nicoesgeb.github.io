@@ -3,9 +3,8 @@
 /* ============================================================= */
 /*                   EXTRAS BUTTON (Top Right)                   */
 /* ============================================================= */
-#extras-btn {
+#extras-btn, #ads-btn {
     position: fixed;
-    top: 10px;
     right: 10px;
     background: rgba(0, 0, 0, 0.6);
     color: #0ff;
@@ -16,14 +15,23 @@
     z-index: 200;
     transition: background 0.3s;
 }
-#extras-btn:hover {
+
+/* Position the "Get to know me!" button at the top, and the ads button below it */
+#extras-btn {
+    top: 10px;
+}
+#ads-btn {
+    top: 60px;
+}
+
+#extras-btn:hover, #ads-btn:hover {
     background: rgba(0, 255, 255, 0.3);
 }
 
 /* ============================================================= */
 /*                    EXTRAS MODAL OVERLAY                        */
 /* ============================================================= */
-#extras-modal {
+#extras-modal, #ads-modal {
     display: none; /* Hidden by default */
     position: fixed;
     z-index: 300;
@@ -38,7 +46,8 @@
 /* ============================================================= */
 /*                      MODAL CONTENT BOX                         */
 /* ============================================================= */
-#extras-modal .modal-content {
+#extras-modal .modal-content,
+#ads-modal .modal-content {
     background-color: #111;
     margin: 10% auto;
     padding: 20px;
@@ -55,32 +64,32 @@
 /* ============================================================= */
 /*                      CLOSE BUTTON STYLE                        */
 /* ============================================================= */
-#extras-modal .close-extras {
+.close-extras, .close-ads {
     color: #0ff;
     float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
 }
-#extras-modal .close-extras:hover,
-#extras-modal .close-extras:focus {
+.close-extras:hover, .close-extras:focus,
+.close-ads:hover, .close-ads:focus {
     color: #fff;
     text-decoration: none;
 }
 
 /* ============================================================= */
-/*                 SECTION STYLING INSIDE MODAL                   */
+/*                   SECTION STYLING INSIDE MODAL                 */
 /* ============================================================= */
-#extras-modal h2,
-#extras-modal h3 {
+#extras-modal h2, #extras-modal h3,
+#ads-modal h2, #ads-modal h3 {
     text-align: center;
     margin-bottom: 10px;
 }
-#extras-modal p {
+#extras-modal p, #ads-modal p {
     text-align: center;
     margin: 10px 0;
 }
-#extras-modal div {
+#extras-modal div, #ads-modal div {
     margin: 10px 0;
 }
 
@@ -91,7 +100,7 @@
     margin-top: 20px;
 }
 .donation-wrapper {
-    text-align: center; /* Center the donation button */
+    text-align: center;
 }
 #extras-modal a.donation-link {
     display: inline-block;
