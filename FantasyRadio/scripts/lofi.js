@@ -1,27 +1,11 @@
 // ------------------------- YouTube Iframe API Integration -------------------------
-// Global variable for the YouTube player
-let ytPlayer = null;
-
-// Called automatically by the YouTube IFrame API when it is ready.
+// We no longer use a separate "ytPlayer" variable.
+// Instead, the RadioMenu creates a new YouTube player and stores it in window.currentPlayer.
+// The API script (loaded in index.html) will call onYouTubeIframeAPIReady,
+// but we won't use this to create the player initially.
 function onYouTubeIframeAPIReady() {
-    ytPlayer = new YT.Player('radio-iframe-container', {
-        height: '0', // Hide video
-        width: '0',
-        videoId: '', // Initially empty
-        playerVars: {
-            autoplay: 1,
-            controls: 0,
-            modestbranding: 1,
-            rel: 0
-        },
-        events: {
-            'onReady': onPlayerReady
-        }
-    });
-}
-
-function onPlayerReady(event) {
-    event.target.setVolume(100); // Set initial volume to 100%
+    // This callback can be used if you want a default player.
+    // Our code creates a new player when a YouTube radio station is selected.
 }
 
 function extractVideoID(url) {
@@ -292,6 +276,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const seeRadiosBtn = document.getElementById("see-radios-btn");
     const customPlayBtn = document.getElementById("custom-play");
 
+    // Global flags for radio selection and playing state.
     window.currentStationType = "audio";
     window.currentYouTubeStream = null;
     window.isPlaying = false;
@@ -486,17 +471,18 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
         if (window.currentStationType === "youtube") {
-            if (customPlayBtn.textContent === "Pause") {
-                ytPlayer.pauseVideo();
-                customPlayBtn.textContent = "Play";
-                window.isPlaying = false;
-            } else {
-                if (window.currentYouTubeStream) {
-                    const videoId = extractVideoID(window.currentYouTubeStream);
-                    ytPlayer.loadVideoById(videoId);
+            if (window.currentPlayer) {
+                if (customPlayBtn.textContent === "Pause") {
+                    window.currentPlayer.pauseVideo();
+                    customPlayBtn.textContent = "Play";
+                    window.isPlaying = false;
+                } else {
+                    window.currentPlayer.playVideo();
                     customPlayBtn.textContent = "Pause";
                     window.isPlaying = true;
                 }
+            } else {
+                alert("YouTube player not ready yet.");
             }
         } else {
             if (radioAudio.paused) {
@@ -517,8 +503,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const radioVolumeSlider = document.getElementById("volume-slider");
     radioVolumeSlider.addEventListener("input", function() {
         const vol = parseInt(this.value);
-        if (window.currentStationType === "youtube" && ytPlayer && ytPlayer.setVolume) {
-            ytPlayer.setVolume(vol);
+        if (window.currentStationType === "youtube" && window.currentPlayer && window.currentPlayer.setVolume) {
+            window.currentPlayer.setVolume(vol);
         } else {
             radioAudio.volume = vol / 100;
         }
