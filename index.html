@@ -14,7 +14,12 @@
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-61WS06W417');
+
+            // Tell Google Analytics this is a different page
+            gtag('config', 'G-61WS06W417', {
+                'page_title': "Main Portfolio Page",
+                'page_path': "/portfolio-home"
+            });
         </script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +46,7 @@
 <body>
     <!-- Here is where the main boddy starts -->
     <header>
-        <h1> Hello there traveller! Welcome to my Portfolio</h1>
+        <h1> Hello there traveller!</h1>
         <nav>
             <ul>
                 <li> <a href="#about">About</a></li>
@@ -54,7 +59,7 @@
 
     <!-----------------------------------------ABOUT Section ------------------------------------------->
     <section id ="about">
-        <h2>About me</h2>
+        <h2>Welcome to My Portfolio</h2>
         <!--------------- 3D Presentation Card -------------->
         <section id="id-card-section">
             <div class="id-card interactive">
@@ -109,9 +114,11 @@
                 Bristol to achieve my next goal: an MSc in Computer Science. This
                 is the beginning of a new adventure...
             </p>
+            <!--------------------- COMMENTED FOR NOW ---------------------------
             <div class="about-more-cta">
                 <span>Click here if you want to know more about me!</span>
             </div>
+            --------------------- COMMENTED FOR NOW --------------------------->
         </div>
     </section>
 
@@ -170,15 +177,35 @@
     <!-- Project Section -->
     <section id="projects">
         <h2>Projects</h2>
+        <!-------------- Project 3: Lofi Fantasy Radio -------------->
+        <div class="project interactive" id="project-lofi">
+            <div class="project-content">
+                <div class="project-text">
+                    <h3>Lofi Fantasy Radio Page</h3>
+                    <p>I wanted to combine my love for fantasy with the cozy vibes of lofi
+                        and Fantasy radios. This site blends both, creating a space for studying
+                        while listening to online radio stations across different genres. It
+                        features various ambiences and tools to enhance immersion. This was my
+                        first project where I brought together what I’ve learned about HTML,
+                        JavaScript, and CSS.
+                    </p>
+                </div>
+                <div class="project-image">
+                    <img src="assets/images/lofi-app.png" alt="Steel Tongue app Preview">
+                </div>
+            </div>
+        </div>
         <!-------------- Project 1: Bonfire Project -------------->
         <div class="project interactive" id="project-bonfire">
             <div class="project-content">
                 <div class="project-text">
                     <h3>Bonfire Project</h3>
                     <p>
-                        Bonfire Particle Simulator. Started as a way of playing with particles.
-                        Ended up being an app for chill music and animations. It helps me study with its
-                        to-do list and timer. I added background music and ambience sounds.
+                        Bonfire Particle Simulator began as a simple experiment with particles
+                        but grew into an app for relaxing music and animations. It helps me stay
+                        focused while studying with a built-in to-do list and timer. I also added
+                        background music and ambient sounds to enhance the immersive experience.
+
                     </p>
                 </div>
                 <div class="project-image">
@@ -191,9 +218,9 @@
             <div class="project-content">
                 <div class="project-text">
                     <h3>Steel Drum app</h3>
-                    <p>Steel Tongue Drum - My first Android Application. This is a real instrument I have, it weights
-                        around 8 kg. I created a digital version of it because I was moving abroad so it was impossible
-                        for me to travel with it. This was my way of doing it.
+                    <p> My first Android app! This is a real instrument I own, but since it weighs
+                        around 8 kg, taking it with me when moving abroad wasn’t an option. So, I
+                        created a digital version—my way of bringing it with me wherever I go.
                     </p>
                 </div>
                 <div class="project-image">
@@ -201,22 +228,7 @@
                 </div>
             </div>
         </div>
-        <!-------------- Project 3: Lofi Fantasy Radio -------------->
-        <div class="project interactive" id="project-lofi">
-            <div class="project-content">
-                <div class="project-text">
-                    <h3>Lofi Fantasy Radio Page</h3>
-                    <p>I tried to mix my passion for fantasy with lofi. This site is a mix of both made for studying
-                        and listening to online radios of different genra. It has different ambience and tools to help
-                        with the inmersion. This was my first project in which I mixed what I know about HTML, JavaScript
-                        and CSS.
-                    </p>
-                </div>
-                <div class="project-image">
-                    <img src="assets/images/lofi-app.png" alt="Steel Tongue app Preview">
-                </div>
-            </div>
-        </div>
+
     </section>
 
     <!----------- Modal Popup for Project Video ----------->
@@ -245,7 +257,6 @@
         <div class="layer" id="layer1"></div>
         <div class="layer" id="layer2"></div>
         <div class="layer" id="layer3"></div>
-        <h2>Welcome to My Pixel Portfolio</h2>
     </section>
 
     <!----------------------------------------CHARACTER Section ------------------------------------------->
