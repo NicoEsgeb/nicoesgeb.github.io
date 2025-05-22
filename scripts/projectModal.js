@@ -46,3 +46,19 @@ lofiProject.addEventListener("click", () => {
     window.location.href = "https://nicoesgeb.github.io/FantasyRadio";
 });
 
+const pengwingsProject = document.getElementById("project-pengwings");
+const pengwingsModal = document.getElementById("pengwings-modal");
+
+pengwingsProject.addEventListener("click", () => {
+    pengwingsModal.classList.add("show");
+});
+
+pengwingsModal.querySelector(".close").addEventListener("click", () => {
+    pengwingsModal.classList.remove("show");
+});
+
+window.addEventListener("click", (event) => {
+    if (event.target === pengwingsModal) {
+        pengwingsModal.classList.remove("show");
+    }
+});

@@ -98,3 +98,37 @@
         filter: blur(0);
     }
 }
+
+.pengwings-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.pengwings-option {
+    background: #222;
+    border: 2px solid #0ff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: fit-content;
+    max-width: 90%;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    color: white;
+}
+
+.pengwings-option:hover {
+    transform: scale(1.05);
+    background-color: #333;
+}
+
+.pengwings-option img {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+}
