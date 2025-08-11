@@ -7,6 +7,9 @@ const steelProject = document.getElementById("project");
 const closeModal = document.querySelector(".modal .close");
 // Get the Lofi project element (make sure its id is "project-lofi")
 const lofiProject = document.getElementById("project-lofi");
+// Get The Hatchling project element
+const hatchlingProject = document.getElementById("project-The-Hatchling");
+
 
 
 // Function to open modal with the desired video source
@@ -16,6 +19,11 @@ function openModal(videoSrc) {
     modalVideo.load();
     modal.classList.add("show");
 }
+
+// When The Hatchling project is clicked, show the modal with its video
+hatchlingProject.addEventListener("click", () => {
+    openModal("assets/videos/TheHatchlingVideo.mp4");
+});
 
 // When the Bonfire project is clicked, show the modal with bonfire video
 bonfireProject.addEventListener("click", () => {
