@@ -1,80 +1,93 @@
+// Fast fireflies using cached glow sprites + additive blending
+function makeGlowSprite(hue) {
+    const s = 64;
+    const c = document.createElement("canvas");
+    c.width = c.height = s;
+    const g = c.getContext("2d");
+    const grad = g.createRadialGradient(s / 2, s / 2, 0, s / 2, s / 2, s / 2);
+    grad.addColorStop(0.0, `hsla(${hue},100%,70%,1)`);
+    grad.addColorStop(0.5, `hsla(${hue},100%,70%,0.45)`);
+    grad.addColorStop(1.0, `hsla(${hue},100%,70%,0)`);
+    g.fillStyle = grad;
+    g.fillRect(0, 0, s, s);
+    return c;
+}
+
+const FIREFLY_SPRITES = {
+    180: makeGlowSprite(180), // teal-blue
+    50: makeGlowSprite(50),   // amber
+};
+
 class Firefly {
     constructor() {
-        this.x = Math.random() * canvas.width;
+        this.x = Math.random() * canvas.width;   // uses global canvas from main.js
         this.y = Math.random() * canvas.height;
-        this.radius = Math.random() * 2.5 + 1;
+        this.radius = Math.random() * 2 + 1.5;
         this.alpha = Math.random() * 0.5 + 0.5;
-        // Initial organic speeds (used via noise offsets)
-        this.noiseOffsetX = Math.random() * 1000;
-        this.noiseOffsetY = Math.random() * 1000;
-        this.glowFactor = Math.random() * 0.2 + 0.8;
-        this.hue = Math.random() < 0.5 ? 180 : 50;
-        // Random orbit direction: -1 for clockwise, 1 for anticlockwise.
+        this.noiseX = Math.random() * 1000;
+        this.noiseY = Math.random() * 1000;
+        this.hue = Math.random() < 0.55 ? 180 : 50;
         this.orbitDirection = Math.random() < 0.5 ? -1 : 1;
+        this.t = Math.random() * 100;
     }
 
-    update() {
-        // Organic floating motion (using noise)
-        this.noiseOffsetX += 0.002;
-        this.noiseOffsetY += 0.002;
-        this.x += Math.cos(this.noiseOffsetX) * 0.5;
-        this.y += Math.sin(this.noiseOffsetY) * 0.5;
+    update(dt) {
+        // Gentle float
+        this.noiseX += 0.35 * dt;
+        this.noiseY += 0.35 * dt;
+        this.x += Math.cos(this.noiseX) * 0.45;
+        this.y += Math.sin(this.noiseY) * 0.45;
 
-        // Gentle attraction to mouse (if not too close)
-        if (mouse.x && mouse.y) {
-            let dx = this.x - mouse.x;
-            let dy = this.y - mouse.y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < mouse.radius && distance > 10) {
-                let angle = Math.atan2(dy, dx);
-                let force = (mouse.radius - distance) / mouse.radius;
-                this.x -= Math.cos(angle) * force * 0.5;
-                this.y -= Math.sin(angle) * force * 0.5;
+        // Mouse attraction (global mouse from main.js)
+        if (mouse.x != null && mouse.y != null) {
+            const dx = this.x - mouse.x;
+            const dy = this.y - mouse.y;
+            const d2 = dx * dx + dy * dy;
+            const r = mouse.radius * mouse.radius;
+            if (d2 < r && d2 > 100) {
+                const d = Math.sqrt(d2);
+                const force = (mouse.radius - d) / mouse.radius;
+                const ang = Math.atan2(dy, dx);
+                this.x -= Math.cos(ang) * force * 0.4;
+                this.y -= Math.sin(ang) * force * 0.4;
             }
         }
 
-        // Bonfire interaction: if near an active bonfire, apply orbital forces
-        for (let bonfire of bonfires) {
-            let dx = this.x - bonfire.x;
-            let dy = this.y - bonfire.y;
-            let d = Math.sqrt(dx * dx + dy * dy);
-            if (d < 150) {
-                // Calculate a factor that grows as the firefly gets closer to the bonfire
-                let factor = (150 - d) / 150;
-                // Gravitational (radial) force pulling toward the bonfire:
-                let kGrav = 0.05 * factor; // Increase for a stronger pull
-                let forceGravX = -dx * kGrav;
-                let forceGravY = -dy * kGrav;
-                // Tangential force: compute the perpendicular vector (-dy/d, dx/d)
-                // Multiply by a coefficient to get a fast, swirling orbit.
-                let kTang = 0.1 * factor; // Base tangential coefficient
-                let forceTangX = (-dy / d) * kTang * this.orbitDirection;
-                let forceTangY = (dx / d) * kTang * this.orbitDirection;
-
-                // Total force is the sum of radial and tangential forces.
-                // Multiply tangential force further for a more pronounced orbit effect.
-                this.x += forceGravX + forceTangX * 2.5;
-                this.y += forceGravY + forceTangY * 2.5;
+        // Bonfire orbit pull (global bonfires from main.js)
+        for (let b of bonfires) {
+            const dx = this.x - b.x;
+            const dy = this.y - b.y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < 150 * 150) {
+                const d = Math.sqrt(d2) || 1;
+                const factor = (150 - d) / 150;
+                const kGrav = 0.045 * factor;
+                const kTang = 0.09 * factor;
+                // radial pull
+                this.x += (-dx) * kGrav;
+                this.y += (-dy) * kGrav;
+                // tangential swirl
+                this.x += (-dy / d) * kTang * this.orbitDirection * 2.2;
+                this.y += ( dx / d) * kTang * this.orbitDirection * 2.2;
             }
         }
 
-        // Wrap around screen edges
-        if (this.x > canvas.width) this.x = 0;
-        if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        if (this.y < 0) this.y = canvas.height;
+        // Wrap
+        const W = canvas.width, H = canvas.height;
+        if (this.x > W) this.x = 0;
+        else if (this.x < 0) this.x = W;
+        if (this.y > H) this.y = 0;
+        else if (this.y < 0) this.y = H;
 
-        // Normal glow pulsation (adjust as needed)
-        this.glowFactor = 0.8 + Math.sin(Date.now() * 0.002 + this.noiseOffsetX) * 0.2;
+        // Pulse
+        this.t += dt;
+        this.glow = 0.85 + Math.sin(this.t * 2.1 + this.noiseX) * 0.15;
     }
 
     draw(ctx) {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        let glowColor = `hsla(${this.hue}, 100%, 60%, ${this.alpha * this.glowFactor})`;
-        ctx.fillStyle = glowColor;
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = glowColor;
-        ctx.fill();
+        const sprite = FIREFLY_SPRITES[this.hue];
+        const size = this.radius * 6; // visual glow size
+        ctx.globalAlpha = this.alpha * this.glow;
+        ctx.drawImage(sprite, this.x - size / 2, this.y - size / 2, size, size);
     }
 }
