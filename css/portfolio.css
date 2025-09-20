@@ -1,3 +1,4 @@
+/* ===== Availability badge ===== */
 .availability-wrap{
     display:flex;
     justify-content:center;
@@ -44,6 +45,7 @@
     font-size: 14px;
 }
 
+/* ===== Hero ===== */
 .hero{
     padding: clamp(60px, 12vw, 120px) 0 clamp(40px, 8vw, 70px);
 }
@@ -159,6 +161,7 @@
     text-transform: uppercase;
 }
 
+/* ===== Section headings ===== */
 .section-heading{
     margin-bottom: clamp(26px, 4.5vw, 36px);
     display:flex;
@@ -172,6 +175,7 @@
     line-height: 1.8;
 }
 
+/* ===== About ===== */
 .about-layout{
     display:grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
@@ -211,6 +215,7 @@
     line-height: 1.7;
 }
 
+/* ===== Collaboration ===== */
 .collaboration-grid{
     display:grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -253,6 +258,7 @@
     line-height: 1.4;
 }
 
+/* ===== Capabilities ===== */
 .capability-grid{
     display:grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -276,6 +282,7 @@
     line-height: 1.7;
 }
 
+/* ===== Experience ===== */
 .experience-timeline{
     display:grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -318,34 +325,50 @@
     background: var(--accent);
 }
 
+/* ===== Projects (PORTFOLIO CARDS) ===== */
 .projects-grid{
     display:flex;
     flex-direction:column;
-    gap: clamp(20px, 4vw, 34px);
+    gap: clamp(24px, 4vw, 40px);
+    width:100%;
 }
+
+/* Card layout: media | text.
+   Fixes:
+   - Cards fill container width
+   - Media min reduced
+   - Text column guaranteed min width
+   - Top-aligned content */
 .project-card{
+    width:100%;
     display:grid;
-    grid-template-columns: clamp(300px, 32vw, 380px) minmax(0, 1fr);
-    align-items:stretch;
-    padding: clamp(24px, 4vw, 36px);
+    grid-template-columns: clamp(280px, 36%, 520px) minmax(420px, 1fr);
+    align-items:start;
+    gap: clamp(24px, 4.2vw, 42px);
+    padding: clamp(26px, 4.2vw, 38px);
     border-radius:24px;
-    gap: clamp(20px, 4vw, 40px);
+
+    background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(18,20,34,.02));
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow: 0 18px 34px rgba(0,0,0,.28);
     transition: transform var(--d-fast) var(--ease-out), box-shadow var(--d-fast) var(--ease-out);
     position:relative;
 }
 .project-card.interactive{ cursor:pointer; }
 .project-card:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 16px 40px rgba(76,245,234,.14);
+    transform: translateY(-3px);
+    box-shadow: 0 22px 44px rgba(76,245,234,.16);
 }
+
+/* Media */
 .project-media{
     border-radius:18px;
     overflow:hidden;
     border:1px solid rgba(255,255,255,.14);
-    box-shadow: 0 14px 32px rgba(0,0,0,.38);
-    position:relative;
-    aspect-ratio: 4 / 3;
+    box-shadow: 0 14px 32px rgba(0,0,0,.35);
     background: rgba(255,255,255,.04);
+    width:100%;
+    aspect-ratio: 16 / 10;
 }
 .project-media img{
     display:block;
@@ -355,42 +378,49 @@
 }
 .project-featured{
     border:1px solid rgba(76,245,234,.35);
-    background: linear-gradient(135deg, rgba(76,245,234,.14), rgba(155,132,255,.08));
+    background: linear-gradient(135deg, rgba(76,245,234,.18), rgba(155,132,255,.12));
 }
-.project-featured::before{
-    content:"";
-    position:absolute;
-    inset:-1px;
-    border-radius:inherit;
-    border:1px solid rgba(76,245,234,.25);
-    z-index:-1;
-    pointer-events:none;
-}
+
+/* Text column */
 .project-content{
-    display:flex;
-    flex-direction:column;
+    display:grid;
+    grid-auto-rows:min-content;
     gap: 16px;
-    justify-content:center;
-    align-self:stretch;
+    min-width: 420px;
 }
 .project-topline{
     display:flex;
     flex-wrap:wrap;
-    justify-content:space-between;
-    gap: 10px;
+    gap: 10px 16px;
+    align-items:center;
     font-size: 12px;
     letter-spacing:.08em;
     text-transform: uppercase;
     color: var(--muted);
 }
 .project-label{ font-weight: 600; }
-.project-status{ opacity:.8; }
+.project-status{ opacity:.85; }
+
+.project-content h3{
+    font-size: clamp(18px, 1.7vw, 22px);
+    line-height:1.25;
+    font-weight:800;
+    letter-spacing:-0.01em;
+    text-wrap: balance;
+    margin: -2px 0 2px;
+}
+
+/* Paragraphs: comfy measure */
 .project-content p{
     color: var(--muted);
     line-height: 1.75;
-    font-size: 15px;
-    max-width: 60ch;
+    font-size: 16px;
+    max-width: 72ch;
+    hyphens: auto;
+    word-break: normal;
+    text-wrap: pretty;
 }
+
 .project-tags{
     list-style:none;
     display:flex;
@@ -423,6 +453,7 @@
     color: var(--muted);
 }
 
+/* ===== Contact ===== */
 .contact-grid{
     display:grid;
     grid-template-columns: minmax(0, .9fr) minmax(0, .7fr);
@@ -438,7 +469,8 @@
 .contact-intro p{ color: var(--muted); line-height:1.75; }
 .contact-detail{ font-size: 14px; opacity:.8; }
 
-@media (max-width: 1024px){
+/* ===== Responsive ===== */
+@media (max-width: 1200px){
     .hero-grid{ grid-template-columns: minmax(0, 1fr); }
     .hero-copy{ max-width: 100%; }
     .hero-metrics{ grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
@@ -447,9 +479,17 @@
     .capability-grid{ grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
     .experience-timeline{ grid-template-columns: 1fr; }
     .contact-grid{ grid-template-columns: 1fr; }
-    .project-card{ grid-template-columns: 1fr; align-items:stretch; }
-    .project-media{ aspect-ratio: 16 / 9; }
-    .project-content{ max-height: none; }
+
+    .project-card{
+        grid-template-columns: clamp(260px, 40%, 480px) minmax(360px, 1fr);
+    }
+}
+
+@media (max-width: 1024px){
+    .project-card{ grid-template-columns: 1fr; }
+    .project-content{ min-width: 0; }
+    .project-media{ width: 100%; aspect-ratio: 16 / 9; }
+    .project-content{ margin-top: clamp(16px, 3vw, 20px); }
 }
 
 @media (max-width: 640px){
@@ -457,12 +497,11 @@
     .hero-actions{ flex-direction:column; align-items:flex-start; }
     .hero-highlights span{ min-width: 0; margin-right: 10px; }
     .hero-metrics{ grid-template-columns: 1fr; }
-    .project-card{ grid-template-columns: 1fr; }
-    .project-media{ width: 100%; aspect-ratio: 16 / 9; }
-    .project-content{ max-height: none; }
     .availability-badge{ flex-direction:column; align-items:flex-start; }
+    .project-content{ margin-top: 14px; }
 }
 
+/* ===== Little pulse for availability dot ===== */
 @keyframes pulse{
     0%{ transform: scale(.85); opacity:.9; }
     70%{ transform: scale(1.15); opacity:0; }
