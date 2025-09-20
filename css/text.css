@@ -1,11 +1,11 @@
 .about-me-text{
     background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
     border:1px solid rgba(255,255,255,.12);
-    border-radius:14px;
+    border-radius:16px;
     box-shadow: var(--shadow);
-    padding: clamp(18px, 3.5vw, 26px);
-    margin: 6px auto 0;
-    width: min(900px, 92vw);
+    padding: clamp(20px, 3.8vw, 28px);
+    margin: 0;
+    width: 100%;
     color: var(--text);
     text-align:left;
     line-height:1.8;
@@ -15,6 +15,6 @@
     transition: box-shadow var(--d-fast) var(--ease-out), transform var(--d-fast) var(--ease-out);
 }
 .about-me-text:hover{
-    transform: translateY(-1px);
-    box-shadow: 0 12px 28px rgba(76,245,234,.12);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(76,245,234,.14);
 }

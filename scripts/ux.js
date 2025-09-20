@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
     setHeaderState();
     window.addEventListener("scroll", setHeaderState, { passive: true });
 
-    // Smooth reveal: id-card, about card, and each project
-    const targets = document.querySelectorAll("#id-card-section, .about-me-text, .project");
+    // Smooth reveal on any element marked with data-reveal
+    const targets = document.querySelectorAll("[data-reveal]");
     if (!targets.length) {
-        console.warn("[ux] reveal targets not found");
+        console.warn("[ux] no reveal targets found");
         return;
     }
 

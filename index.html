@@ -27,23 +27,23 @@
     <link rel="stylesheet" href="css/id-card.css">
     <link rel="stylesheet" href="css/projects.css">
     <link rel="stylesheet" href="css/text.css">
-    <!-- story.css removed earlier -->
+    <link rel="stylesheet" href="css/portfolio.css">
 
     <!-- JS (order matters) -->
     <script defer src="scripts/parallax.js"></script>
     <script defer src="scripts/idCard.js"></script>
     <script defer src="scripts/projectModal.js"></script>
-    <!-- NEW: micro-UX (reveal + header scroll polish) -->
     <script defer src="scripts/ux.js"></script>
 </head>
 <body>
-<!-- Sticky Header -->
 <header class="site-header">
     <div class="container header-inner">
         <h1 class="brand">Nico<span class="accent">.</span></h1>
         <nav>
             <ul class="nav">
                 <li><a href="#about">About</a></li>
+                <li><a href="#capabilities">Capabilities</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -51,171 +51,384 @@
     </div>
 </header>
 
-<!-- About -->
-<section id="about" class="section">
-    <div class="container">
-        <h2 class="section-title">Welcome</h2>
-
-        <!-- 3D Card -->
-        <section id="id-card-section">
-            <div class="id-card">
-                <div class="card-inner">
-                    <!-- Front -->
-                    <div class="card-front">
-                        <div class="rotate-hint">
-                            <span class="arrow">↻</span>
-                            <span class="text">Drag to rotate</span>
-                        </div>
-                        <div class="character-layer">
-                            <img class="pixel-avatar" src="assets/images/character.png" alt="Pixel Nico" draggable="false" loading="lazy" decoding="async">
-                        </div>
-                        <div class="front-layer">
-                            <img class="front-layer1" src="assets/images/3dLayer.png" alt="3D Overlay" draggable="false" loading="lazy" decoding="async">
-                        </div>
-                        <div class="front-letters">
-                            <h3>Nicolas Esgeb</h3>
-                            <p>MSc Computer Science Student</p>
-                            <p>Civil Engineer in Mining</p>
+<main>
+    <section id="hero" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-copy" data-reveal>
+                <p class="eyebrow">Immersive software developer</p>
+                <h1 class="hero-title">I build playful learning tools with engineering depth.</h1>
+                <p class="hero-subtitle">
+                    I’m Nico, a Chilean developer finishing an MSc in Computer Science at the University of Bristol.
+                    With roots in civil and geophysical engineering, I love turning complex systems into joyful, human-centered
+                    experiences.
+                </p>
+                <div class="hero-actions">
+                    <a class="pixel-button" href="mailto:nico.esg.rey@gmail.com">Start a conversation</a>
+                    <a class="button-ghost" href="assets/cv/NicoCv.pdf" download>Download CV</a>
+                    <a class="button-ghost" href="#projects">See selected work</a>
+                </div>
+                <ul class="hero-highlights">
+                    <li><span>Current</span> Partnering with IBM on a VR language coach that blends Watson Assistant, STT/TTS, translation, and generative AI.</li>
+                    <li><span>Previously</span> Geophysical data processing engineer after graduating as a Civil Engineer in Mining.</li>
+                    <li><span>Global</span> Grew my voice at University College Dublin and now Bristol, bridging engineering, design, and storytelling.</li>
+                </ul>
+            </div>
+            <div class="hero-visual" data-reveal>
+                <section id="id-card-section" data-reveal>
+                    <div class="id-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="rotate-hint">
+                                    <span class="arrow">↻</span>
+                                    <span class="text">Drag to rotate</span>
+                                </div>
+                                <div class="character-layer">
+                                    <img class="pixel-avatar" src="assets/images/character.png" alt="Pixel Nico" draggable="false" loading="lazy" decoding="async">
+                                </div>
+                                <div class="front-layer">
+                                    <img class="front-layer1" src="assets/images/3dLayer.png" alt="3D Overlay" draggable="false" loading="lazy" decoding="async">
+                                </div>
+                                <div class="front-letters">
+                                    <h3>Nicolas Esgeb</h3>
+                                    <p>MSc Computer Science Student</p>
+                                    <p>Civil Engineer in Mining</p>
+                                </div>
+                            </div>
+                            <div class="card-edge left"></div>
+                            <div class="card-edge right"></div>
+                            <div class="card-edge top"></div>
+                            <div class="card-edge bottom"></div>
+                            <div class="card-back">
+                                <div class="back-layer">
+                                    <img class="back-layer1" src="assets/images/3dLayer.png" alt="3D Overlay Back" draggable="false" loading="lazy" decoding="async">
+                                </div>
+                                <div class="back-letters">
+                                    <h3>More About Me</h3>
+                                    <p>- University of Bristol 🎓</p>
+                                    <p>- Always exploring new challenges 🎯</p>
+                                    <p>- Game &amp; music enthusiast 🎮</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- Edges -->
-                    <div class="card-edge left"></div>
-                    <div class="card-edge right"></div>
-                    <div class="card-edge top"></div>
-                    <div class="card-edge bottom"></div>
-
-                    <!-- Back -->
-                    <div class="card-back">
-                        <div class="back-layer">
-                            <img class="back-layer1" src="assets/images/3dLayer.png" alt="3D Overlay Back" draggable="false" loading="lazy" decoding="async">
-                        </div>
-                        <div class="back-letters">
-                            <h3>More About Me</h3>
-                            <p>- University of Bristol 🎨</p>
-                            <p>- Looking for new challenges 🎵</p>
-                            <p>- 🎮</p>
-                        </div>
-                    </div>
+                </section>
+                <p class="hero-caption">Drag the card or double-click to flip—my pixel alter ego says hi.</p>
+            </div>
+        </div>
+        <div class="container hero-metrics">
+            <div class="metric-card glass" data-reveal>
+                <h3>Focus areas</h3>
+                <p>Immersive learning, conversational AI companions, and game systems that invite curiosity.</p>
+            </div>
+            <div class="metric-card glass" data-reveal>
+                <h3>Toolbox</h3>
+                <div class="chip-row">
+                    <span class="chip">Unity (C#)</span>
+                    <span class="chip">JavaScript</span>
+                    <span class="chip">HTML &amp; CSS</span>
+                    <span class="chip">p5.js</span>
+                    <span class="chip">Blender</span>
                 </div>
             </div>
-        </section>
-
-        <!-- About copy -->
-        <div class="about-me-text">
-            <p>
-                Hello! I'm Nico, from Chile. I graduated with a bachelor's degree in Civil Engineering in Mining in 2021.
-                I worked as a geophysical data processing engineer, then moved to Dublin to improve my English (UCD),
-                and now I’m finishing an MSc in Computer Science at the University of Bristol. New adventure unlocked.
-            </p>
+            <div class="metric-card glass" data-reveal>
+                <h3>How I work</h3>
+                <p>Prototype-driven, collaborative, and comfortable translating between technical detail and player experience.</p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Projects (vertical rows with big images) -->
-<section id="projects" class="section">
-    <div class="container">
-        <h2 class="section-title">Projects</h2>
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">About</h2>
+                <p class="section-subtitle">Engineering foundations, creative-tech ambition.</p>
+            </div>
+            <div class="about-layout">
+                <article class="about-me-text" data-reveal>
+                    <p>
+                        Hello! I’m Nico, from Chile. I earned my bachelor’s degree in Civil Engineering in Mining in 2021,
+                        then stepped into geophysical data processing—translating complex subsurface datasets into insights for teams on the ground.
+                        That experience trained my analytical eye and collaborative instincts.
+                    </p>
+                    <p>
+                        I moved to Dublin to strengthen my English at University College Dublin, and today I’m finishing an MSc in Computer Science at the University of Bristol.
+                        Across these chapters I’ve blended engineering rigour with a love of games, storytelling, and playful technology—always looking for the sweet spot where learning feels like discovery.
+                    </p>
+                </article>
+                <aside class="about-side glass" data-reveal>
+                    <h3>Now &amp; next</h3>
+                    <ul class="about-list">
+                        <li><span>Currently</span> Co-creating an immersive AI language coach with IBM, shaping dialogue, systems design, and player experience.</li>
+                        <li><span>Strength</span> Bridging technical depth with narrative thinking—comfortable switching between code, design, and delivery.</li>
+                        <li><span>Next</span> Joining a 2025 software team building immersive, game, or human-centred products.</li>
+                    </ul>
+                    <p class="about-note">I care about inclusive teams, thoughtful pacing, and products that invite people to explore new skills.</p>
+                </aside>
+            </div>
+        </div>
+    </section>
 
-        <div class="projects-list">
-            <!-- IBM VR -->
-            <div class="project interactive" id="project-IBM-VR">
-                <div class="project-content">
-                    <div class="project-text">
+    <section id="capabilities" class="section capabilities-section">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Capabilities</h2>
+                <p class="section-subtitle">Where I create the most impact on cross-functional teams.</p>
+            </div>
+            <div class="capability-grid">
+                <article class="cap-card glass" data-reveal>
+                    <h3>Immersive product development</h3>
+                    <p>Build VR and 3D experiences in Unity with a gameplay-first mindset, including animation pipelines and satisfying interactions.</p>
+                    <div class="chip-row">
+                        <span class="chip">Unity</span>
+                        <span class="chip">C#</span>
+                        <span class="chip">Blender</span>
+                        <span class="chip">Animation</span>
+                    </div>
+                </article>
+                <article class="cap-card glass" data-reveal>
+                    <h3>Conversational &amp; AI UX</h3>
+                    <p>Design and integrate voice, dialogue, and generative flows—balancing online services with robust offline fallbacks.</p>
+                    <div class="chip-row">
+                        <span class="chip">Watson Assistant</span>
+                        <span class="chip">STT/TTS</span>
+                        <span class="chip">Generative AI</span>
+                        <span class="chip">Dialogue design</span>
+                    </div>
+                </article>
+                <article class="cap-card glass" data-reveal>
+                    <h3>Creative coding</h3>
+                    <p>Ship polished web experiences and tools with modern JavaScript, p5.js, and thoughtful UI systems.</p>
+                    <div class="chip-row">
+                        <span class="chip">JavaScript</span>
+                        <span class="chip">p5.js</span>
+                        <span class="chip">HTML &amp; CSS</span>
+                        <span class="chip">UI systems</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section experience-section">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Experience</h2>
+                <p class="section-subtitle">A pathway that fuses engineering rigour with creative technology.</p>
+            </div>
+            <div class="experience-timeline">
+                <article class="experience-card glass" data-reveal>
+                    <span class="experience-period">2024 — 2025</span>
+                    <h3>MSc Computer Science</h3>
+                    <p class="experience-org">University of Bristol</p>
+                    <ul class="experience-points">
+                        <li>Collaborating with IBM on an immersive language-learning pilot spanning Unity, Watson Assistant, and generative AI.</li>
+                        <li>Exploring modules and research projects that blend advanced programming, graphics, and playful learning.</li>
+                    </ul>
+                </article>
+                <article class="experience-card glass" data-reveal>
+                    <span class="experience-period">Previous</span>
+                    <h3>Geophysical Data Processing Engineer</h3>
+                    <p class="experience-org">Chile</p>
+                    <ul class="experience-points">
+                        <li>Translated complex subsurface datasets into actionable insights for multidisciplinary mining teams.</li>
+                        <li>Built a discipline for data integrity, safety, and clear communication under pressure.</li>
+                    </ul>
+                </article>
+                <article class="experience-card glass" data-reveal>
+                    <span class="experience-period">2021</span>
+                    <h3>Bachelor of Civil Engineering in Mining</h3>
+                    <p class="experience-org">Chile</p>
+                    <ul class="experience-points">
+                        <li>Graduated in 2021, grounding myself in systems thinking, problem solving, and resilient teamwork.</li>
+                        <li>Learned to navigate complex, high-stakes environments with curiosity and care.</li>
+                    </ul>
+                </article>
+                <article class="experience-card glass" data-reveal>
+                    <span class="experience-period">Global perspective</span>
+                    <h3>English for Academic Purposes</h3>
+                    <p class="experience-org">University College Dublin</p>
+                    <ul class="experience-points">
+                        <li>Immersed myself in Dublin to strengthen communication and collaboration across cultures.</li>
+                        <li>Built confidence presenting ideas to international audiences.</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section projects-section">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Projects</h2>
+                <p class="section-subtitle">Selected work that mixes immersive tech, games, and creative coding.</p>
+            </div>
+            <div class="projects-grid">
+                <article class="project project-card glass" id="project-IBM-VR" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/UnityWorkInProgress.png" alt="IBM VR AI learning tool preview" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Team project · IBM collaboration</span>
+                            <span class="project-status">In progress</span>
+                        </div>
                         <h3>IBM VR AI Learning Tool</h3>
                         <p>
-                            Ongoing team-based MSc project in collaboration with IBM. Immersive language-learning in Unity:
-                            Watson Assistant, STT, TTS, translation, and generative AI. Secure credentials, dynamic animations,
-                            and offline fallbacks for smooth NPC dialogue.
+                            MSc team project creating an immersive language-learning experience in Unity. We orchestrate Watson Assistant, speech-to-text,
+                            text-to-speech, translation, and generative AI to drive believable NPC conversations, secured credentials, and graceful offline fallbacks.
                         </p>
+                        <ul class="project-tags">
+                            <li>Unity</li>
+                            <li>Watson Assistant</li>
+                            <li>Generative AI</li>
+                            <li>XR</li>
+                        </ul>
+                        <p class="project-note">Case study and demo available on request.</p>
                     </div>
-                    <div class="project-image">
-                        <img src="assets/images/UnityWorkInProgress.png" alt="IBM VR Preview" loading="lazy" decoding="async">
-                    </div>
-                </div>
-            </div>
+                </article>
 
-            <!-- The Hatchling -->
-            <div class="project interactive" id="project-The-Hatchling">
-                <div class="project-content">
-                    <div class="project-text">
+                <article class="project project-card glass interactive" id="project-The-Hatchling" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/TheHatchling.png" alt="The Hatchling Unity project preview" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Solo project</span>
+                            <span class="project-status">In development</span>
+                        </div>
                         <h3>The Hatchling</h3>
                         <p>
-                            Solo game project born from my desire to learn Unity. Built with C#, Blender models, and self-made
-                            animations. Still in progress—mixing code, design, and animation.
+                            Personal game project born from a desire to master Unity. I sculpted characters in Blender, animated bespoke rigs, and coded
+                            interactions that blend cozy vibes with creature care.
                         </p>
+                        <ul class="project-tags">
+                            <li>Unity</li>
+                            <li>C#</li>
+                            <li>Blender</li>
+                            <li>Animation</li>
+                        </ul>
+                        <p class="project-note">Click to watch an in-progress reel.</p>
                     </div>
-                    <div class="project-image">
-                        <img src="assets/images/TheHatchling.png" alt="The Hatchling preview" loading="lazy" decoding="async">
-                    </div>
-                </div>
-            </div>
+                </article>
 
-            <!-- PengWings -->
-            <div class="project interactive" id="project-pengwings">
-                <div class="project-content">
-                    <div class="project-text">
-                        <h3>PengWings game</h3>
+                <article class="project project-card glass interactive" id="project-pengwings" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/pengWings/pengWingsImage.png" alt="PengWings gameplay preview" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Team project · MSc Software Engineering</span>
+                            <span class="project-status">2024</span>
+                        </div>
+                        <h3>PengWings</h3>
                         <p>
-                            Single-player game for a Software Engineering module (MSc). Built with p5.js + HTML/CSS.
-                            I did the background mechanics, workshop, and visual design/artwork.
+                            Single-player game built with p5.js for a Software Engineering module. I owned background mechanics, workshop design, and visual direction,
+                            crafting a playful journey for curious penguins.
                         </p>
+                        <ul class="project-tags">
+                            <li>p5.js</li>
+                            <li>JavaScript</li>
+                            <li>Game design</li>
+                            <li>Teamwork</li>
+                        </ul>
+                        <p class="project-note">Click to open the repo, live build, and presentation.</p>
                     </div>
-                    <div class="project-image">
-                        <img src="assets/images/pengWings/pengWingsImage.png" alt="PengWings preview" loading="lazy" decoding="async">
-                    </div>
-                </div>
-            </div>
+                </article>
 
-            <!-- Lofi -->
-            <div class="project interactive" id="project-lofi">
-                <div class="project-content">
-                    <div class="project-text">
+                <article class="project project-card glass interactive" id="project-lofi" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/lofi-app.png" alt="Lofi fantasy radio app preview" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Solo project</span>
+                            <span class="project-status">2024</span>
+                        </div>
                         <h3>Lofi Fantasy Radio Page</h3>
                         <p>
-                            A cozy study space blending lofi + fantasy radios. Online stations, ambiences, and tools to deepen focus.
-                            First time bringing together HTML, JS, and CSS.
+                            Cozy study space blending lofi and fantasy radio stations with ambience controls. My first full stack of HTML, CSS, and JavaScript working together for focus.
                         </p>
+                        <ul class="project-tags">
+                            <li>JavaScript</li>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>Audio UX</li>
+                        </ul>
+                        <div class="project-actions">
+                            <a href="https://nicoesgeb.github.io/FantasyRadio" target="_blank" rel="noopener" class="project-link">Launch site</a>
+                        </div>
                     </div>
-                    <div class="project-image">
-                        <img src="assets/images/lofi-app.png" alt="Lofi app preview" loading="lazy" decoding="async">
-                    </div>
-                </div>
-            </div>
+                </article>
 
-            <!-- Bonfire -->
-            <div class="project interactive" id="project-bonfire">
-                <div class="project-content">
-                    <div class="project-text">
+                <article class="project project-card glass interactive" id="project-bonfire" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/bonfire-app.png" alt="Bonfire ambient app preview" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Solo project</span>
+                            <span class="project-status">2023</span>
+                        </div>
                         <h3>Bonfire Project</h3>
                         <p>
-                            Particle simulator turned ambient app: relaxing music, animations, to-do, and timer—plus ambient sounds
-                            to keep me in flow.
+                            Particle simulator turned ambient companion—combining relaxing music, animations, to-do lists, timers, and ambient sounds to keep me in flow.
                         </p>
+                        <ul class="project-tags">
+                            <li>Creative coding</li>
+                            <li>UI design</li>
+                            <li>Audio</li>
+                        </ul>
+                        <p class="project-note">Click to watch the product walkthrough.</p>
                     </div>
-                    <div class="project-image">
-                        <img src="assets/images/bonfire-app.png" alt="Bonfire app preview" loading="lazy" decoding="async">
-                    </div>
-                </div>
-            </div>
+                </article>
 
-            <!-- Steel Drum -->
-            <div class="project interactive" id="project">
-                <div class="project-content">
-                    <div class="project-text">
-                        <h3>Steel Drum app</h3>
+                <article class="project project-card glass interactive" id="project" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/steel-app.png" alt="Steel drum Android app preview" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Solo project</span>
+                            <span class="project-status">2022</span>
+                        </div>
+                        <h3>Steel Drum App</h3>
                         <p>
-                            My first Android app. I own the real instrument, but it’s heavy—so I built a digital one I can take anywhere.
+                            My first Android app—born from owning the real instrument but wanting something portable. Digitised the steel drum so I can play or practice anywhere.
                         </p>
+                        <ul class="project-tags">
+                            <li>Android</li>
+                            <li>Audio</li>
+                            <li>Product design</li>
+                        </ul>
+                        <p class="project-note">Click to watch the demo.</p>
                     </div>
-                    <div class="project-image">
-                        <img src="assets/images/steel-app.png" alt="Steel Tongue app preview" loading="lazy" decoding="async">
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Contact</h2>
+                <p class="section-subtitle">I’m exploring 2025 software developer roles across immersive, game, and creative tech teams.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-intro glass" data-reveal>
+                    <p>Tell me about the teams you’re building or the prototypes you want to test. I love projects that blend learning, play, and thoughtful systems.</p>
+                    <p class="contact-detail">Based in Bristol · open to hybrid or remote collaborations.</p>
+                </div>
+                <div class="contact-card" data-reveal>
+                    <p>Email: <a href="mailto:nico.esg.rey@gmail.com">nico.esg.rey@gmail.com</a></p>
+                    <p>Phone: <a href="tel:+447782138497">+44 7782 138497</a></p>
+                    <div class="button-container">
+                        <a href="assets/cv/NicoCv.pdf" download class="pixel-button download">Download CV</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</main>
 
 <!-- Video Modal (shared) -->
 <div id="project-modal" class="modal" aria-hidden="true">
@@ -233,15 +446,15 @@
     <div class="modal-content pengwings-content">
         <button class="close" aria-label="Close">&times;</button>
         <div class="pengwings-options vertical">
-            <a href="https://github.com/UoB-COMSM0166/2025-group-21" target="_blank" class="pengwings-option">
+            <a href="https://github.com/UoB-COMSM0166/2025-group-21" target="_blank" class="pengwings-option" rel="noopener">
                 <img src="assets/images/pengWings/pengWings_github.png" alt="GitHub" loading="lazy" decoding="async">
                 <p>Go to Repository</p>
             </a>
-            <a href="https://uob-comsm0166.github.io/2025-group-21/" target="_blank" class="pengwings-option">
+            <a href="https://uob-comsm0166.github.io/2025-group-21/" target="_blank" class="pengwings-option" rel="noopener">
                 <img src="assets/images/pengWings/pengWing_gameplay.png" alt="Play Game" loading="lazy" decoding="async">
                 <p>Play the Game</p>
             </a>
-            <a href="https://youtu.be/YOUR_PRESENTATION_VIDEO" target="_blank" class="pengwings-option">
+            <a href="https://youtu.be/YOUR_PRESENTATION_VIDEO" target="_blank" class="pengwings-option" rel="noopener">
                 <img src="assets/images/pengWings/pengWings_Video.png" alt="Watch Video" loading="lazy" decoding="async">
                 <p>Watch Presentation</p>
             </a>
@@ -249,31 +462,14 @@
     </div>
 </div>
 
-<!-- Contact -->
-<section id="contact" class="section">
-    <div class="container">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-card">
-            <p>Email: <a href="mailto:nico.esg.rey@gmail.com">nico.esg.rey@gmail.com</a></p>
-            <p>Phone: <a href="tel:+447782138497">+44 7782 138497</a></p>
-            <div class="button-container">
-                <a href="assets/cv/NicoCv.pdf" download class="pixel-button download">Download CV</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Parallax Footer Scene -->
 <section id="parallax" aria-hidden="true">
     <div class="layer" id="layer1"></div>
     <div class="layer" id="layer2"></div>
     <div class="layer" id="layer3"></div>
 </section>
 
-<!-- Pixel Character -->
 <img id="pixel-character" src="assets/images/character.png" alt="Pixel Character" loading="lazy" decoding="async">
 
-<!-- Footer -->
 <footer class="site-footer">
     <div class="container">
         <p>&copy; 2025 Nico</p>
