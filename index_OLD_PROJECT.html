@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS1BJ90TQM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date()); gtag('config', 'G-HS1BJ90TQM');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Nico’s Portfolio</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/parallax.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/pixel-character.css">
+    <link rel="stylesheet" href="css/id-card.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="css/text.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+
+    <!-- JS (order matters) -->
+    <script defer src="scripts/parallax.js"></script>
+    <script defer src="scripts/idCard.js"></script>
+    <script defer src="scripts/projectModal.js"></script>
+    <script defer src="scripts/ux.js"></script>
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <h1 class="brand">Nico<span class="accent">.</span></h1>
+        <nav>
+            <ul class="nav">
+                <li><a href="#about">About</a></li>
+                <li><a href="#capabilities">Capabilities</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section id="hero" class="hero">
+        <div class="container availability-wrap">
+            <div class="availability-badge glass" data-reveal>
+                <span class="availability-indicator"></span>
+                <div>
+                    <span class="availability-label">Open to work · 2025 software developer roles</span>
+                    <p>Fresh MSc Computer Science graduate eager to work with teams turning complex ideas into clear, useful technology.</p>
+                </div>
+            </div>
+        </div>
+        <div class="container hero-grid">
+            <div class="hero-copy" data-reveal>
+                <p class="eyebrow">MSc Computer Science, Civil Engineer</p>
+                <h1 class="hero-title">I build tools with engineering depth.</h1>
+                <p class="hero-subtitle">
+                    Hey, I’m Nico — a Chilean dev fresh out of an MSc in Computer Science at the University of Bristol. 
+                    I started out in civil, mining and geophysical engineering, and now I get a kick out of turning tricky 
+                    systems into things people actually enjoy using. Games are my favourite playground for learning and 
+                    experimenting, and that same playful approach shows up in the software I build today and the projects 
+                    I’m excited to take on with teams tomorrow.
+                </p>
+                <div class="hero-actions">
+                    <a class="pixel-button" href="mailto:nico.esg.rey@gmail.com">Start a conversation</a>
+                    <a class="button-ghost" href="assets/cv/NicoCv.pdf" download>Download CV</a>
+                    <a class="button-ghost" href="#projects">See selected work</a>
+                </div>
+                <ul class="hero-highlights">
+                    <li><span>Current</span> Partnering with IBM on a VR language coach that blends Watson Assistant, STT/TTS, translation, and generative AI (watsonx.ai).</li>
+                    <li><span>Previously</span> Geophysical data processing engineer after graduating as a Civil Engineer in Mining.</li>
+                    <li><span>Global</span> International journey from Chile to Ireland to the UK, growing expertise in engineering, language and tech.</li>
+                    <li><span>Open</span> Keen to join a team that values learning, creativity and building useful things — wherever that takes me.</li>
+                </ul>
+            </div>
+            <div class="hero-visual" data-reveal>
+                <section id="id-card-section" data-reveal>
+                    <div class="id-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="rotate-hint">
+                                    <span class="arrow">↻</span>
+                                    <span class="text">Drag to rotate</span>
+                                </div>
+                                <div class="character-layer">
+                                    <img class="pixel-avatar" src="assets/images/character.png" alt="Pixel Nico" draggable="false" loading="lazy" decoding="async">
+                                </div>
+                                <div class="front-layer">
+                                    <img class="front-layer1" src="assets/images/3dLayer.png" alt="3D Overlay" draggable="false" loading="lazy" decoding="async">
+                                </div>
+                                <div class="front-letters">
+                                    <h3>Nicolas Esgeb</h3>
+                                    <p>MSc Computer Science Student</p>
+                                    <p>Civil Engineer in Mining</p>
+                                </div>
+                            </div>
+                            <div class="card-edge left"></div>
+                            <div class="card-edge right"></div>
+                            <div class="card-edge top"></div>
+                            <div class="card-edge bottom"></div>
+                            <div class="card-back">
+                                <div class="back-layer">
+                                    <img class="back-layer1" src="assets/images/3dLayer.png" alt="3D Overlay Back" draggable="false" loading="lazy" decoding="async">
+                                </div>
+                                <div class="back-letters">
+                                    <h3>More About Me</h3>
+                                    <p>- University of Bristol 🎓</p>
+                                    <p>- Always exploring new challenges 🎯</p>
+                                    <p>- Game &amp; music enthusiast 🎮</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <p class="hero-caption">Drag my presentation card to flip it! (Not my best face but my favourite hat 🤠)</p>
+            </div>
+        </div>
+        <div class="container hero-metrics">
+            <div class="metric-card glass" data-reveal>
+                <h3>Focus areas</h3>
+                <p>Conversational AI and large-language-model–powered agents, immersive learning tools, 
+                    and game-inspired systems that invite curiosity.</p>
+            </div>
+            <div class="metric-card glass" data-reveal>
+                <h3>Toolbox</h3>
+                <div class="chip-row">
+                    <span class="chip">Unity (C#)</span>
+                    <span class="chip">JavaScript</span>
+                    <span class="chip">HTML &amp; CSS</span>
+                    <span class="chip">p5.js</span>
+                    <span class="chip">Blender</span>
+                </div>
+            </div>
+            <div class="metric-card glass" data-reveal>
+                <h3>How I work</h3>
+                <p>Prototype-driven, collaborative, and comfortable translating between technical detail and player experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">About</h2>
+                <p class="section-subtitle">Engineering foundations, creative-tech ambition.</p>
+            </div>
+            <div class="about-layout">
+                <article class="about-me-text" data-reveal>
+                    <p>
+                        Hello there! I'm Nico, from Chile! I'm a Civil Mining Engineer who set sail on a multicultural adventure and
+                        ended up falling in love with computer science.
+                    </p>
+                    <p>
+                        I graduated in 2021 as a Civil Engineer in Mining and spent a year in geophysics, processing data for an 
+                        exploration company back home. Then I decided to start a new chapter and expand my language horizons in Dublin!
+                         I immersed myself in the culture, worked different jobs (from floor staff to barman) to really experience the 
+                         city, and studied English at the same time at University College Dublin.
+                    </p>
+                    <p>
+                        After that, I moved to Bristol and completed my MSc in Computer Science at the University of Bristol. I'm always
+                         looking for that sweet spot where learning meets application. Now I'm excited to begin this next journey and to
+                          find a team where my skills can make a positive impact!
+                    </p>
+                </article>
+                <aside class="about-side glass" data-reveal>
+                    <h3>Now &amp; next</h3>
+                    <ul class="about-list">
+                        <li><span>Currently</span> Co-creating an immersive AI language coach with IBM, shaping dialogue, systems design, and player experience.</li>
+                        <li><span>Strength</span> Bridging technical depth with narrative thinking—comfortable switching between code, design, delivery, and stakeholder storytelling.</li>
+                        <li><span>Next</span> 2025. Searching to join a software team where immersive thinking, product delivery, and human-centred values meet.</li>
+                    </ul>
+                    <p class="about-note">I care about inclusive teams, thoughtful pacing, and products—game-related or not—that invite people to explore new skills and feel supported.</p>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section id="capabilities" class="section capabilities-section">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Capabilities</h2>
+                <p class="section-subtitle">Where I create the most impact on cross-functional teams.</p>
+            </div>
+            <div class="capability-grid">
+                <article class="cap-card glass" data-reveal>
+                    <h3>Immersive product development</h3>
+                    <p>Build VR and 3D experiences in Unity with a gameplay-first mindset, including animation pipelines and satisfying interactions.</p>
+                    <div class="chip-row">
+                        <span class="chip">Unity</span>
+                        <span class="chip">VR / XR</span>
+                        <span class="chip">C#</span>
+                        <span class="chip">Blender</span>
+                        <span class="chip">Animation</span>
+                    </div>
+                </article>
+                <article class="cap-card glass" data-reveal>
+                    <h3>Conversational &amp; AI UX</h3>
+                    <p>Design and integrate voice, dialogue, and generative flows—balancing online services with robust offline fallbacks.</p>
+                    <div class="chip-row">
+                        <span class="chip">Watson Assistant</span>
+                        <span class="chip">STT/TTS</span>
+                        <span class="chip">Generative AI</span>
+                        <span class="chip">Dialogue design</span>
+                        <span class="chip">REST APIs</span>
+                        <span class="chip">IAM & AES</span>
+                    </div>
+                </article>
+                <article class="cap-card glass" data-reveal>
+                    <h3>Creative coding</h3>
+                    <p>Ship polished web experiences and tools with modern JavaScript, p5.js, and thoughtful UI systems.</p>
+                    <div class="chip-row">
+                        <span class="chip">JavaScript</span>
+                        <span class="chip">p5.js</span>
+                        <span class="chip">HTML &amp; CSS</span>
+                        <span class="chip">UI systems</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="collaboration" class="section collaboration-section">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Beyond Games</h2>
+                <p class="section-subtitle">Most of my projects are games. They are my sandbox for learning fast; my job goal is broader: building useful software.</p>
+            </div>
+            <div class="collaboration-grid">
+                <article class="collab-card glass" data-reveal>
+                    <h3>Team-first delivery</h3>
+                    <p>I thrive in multidisciplinary squads—facilitating syncs, translating technical detail, and co-owning milestones with designers, producers, and stakeholders.</p>
+                    <ul class="collab-list">
+                        <li>Comfortable with agile, backlog grooming, and demo storytelling.</li>
+                        <li>Balance joyful prototyping with production-ready code quality.</li>
+                    </ul>
+                </article>
+                <article class="collab-card glass" data-reveal>
+                    <h3>Creative problem solving</h3>
+                    <p>Building games keeps my systems thinking playful—every mechanic becomes a testbed for user empathy, learning loops, and experimentation.</p>
+                    <ul class="collab-list">
+                        <li>Use rapid prototypes to de-risk ideas and align teams early.</li>
+                        <li>Transform complex requirements into intuitive interactions.</li>
+                    </ul>
+                </article>
+                <article class="collab-card glass" data-reveal>
+                    <h3>Product impact</h3>
+                    <p>I’m ready to bring that creative muscle to SaaS, tools, and platform teams—anywhere thoughtful software meets curious users.</p>
+                    <ul class="collab-list">
+                        <li>Open to software developer roles across product, immersive, and creative technology.</li>
+                        <li>Available for interviews now and eager to relocate or collaborate remotely.</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section experience-section">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Experience</h2>
+                <p class="section-subtitle">A pathway that fuses engineering rigour with creative technology.</p>
+            </div>
+            <div class="experience-timeline">
+                <article class="experience-card glass" data-reveal>
+                    <span class="experience-period">2024 — 2025</span>
+                    <h3>MSc Computer Science</h3>
+                    <p class="experience-org">University of Bristol</p>
+                    <ul class="experience-points">
+                        <li>Collaborating with IBM on an immersive language-learning pilot spanning Unity, VR, Watson Assistant, and generative AI.</li>
+                        <li>Core modules: C & Java, Computer Architecture, and Software Engineering — delivered a team game, PengWings.</li>
+                    </ul>
+                </article>
+                <article class="experience-card glass" data-reveal>
+                    <span class="experience-period">Previous (2021 - 2022)</span>
+                    <h3>Geophysical Data Processing Engineer</h3>
+                    <p class="experience-org">Chile</p>
+                    <ul class="experience-points">
+                        <li>Processed seismic, magnetometry, drone photogrammetry, and ERT data into QC’d maps/models for mineral exploration clients.</li>
+                        <li>Communicated findings in clear client reports, turning complex subsurface data into actionable targets and risks.</li>
+                    </ul>
+                </article>
+                <article class="experience-card glass" data-reveal>
+                    <span class="experience-period">2021</span>
+                    <h3>Bachelor of Civil Engineering in Mining</h3>
+                    <p class="experience-org">Chile</p>
+                    <ul class="experience-points">
+                        <li>Graduated in 2021, grounding myself in systems thinking, problem solving, and resilient teamwork.</li>
+                        <li>Learned to navigate complex, high-stakes environments with curiosity and care.</li>
+                    </ul>
+                </article>
+                <article class="experience-card glass" data-reveal>
+                    <span class="experience-period">Global perspective (2022-2024)</span>
+                    <h3>English for Academic Purposes</h3>
+                    <p class="experience-org">University College Dublin</p>
+                    <ul class="experience-points">
+                        <li>Immersed myself in Dublin to strengthen communication and collaboration across cultures.</li>
+                        <li>Built confidence presenting ideas to international audiences.</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section projects-section">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Projects</h2>
+                <p class="section-subtitle">Selected work that mixes immersive tech, games, and creative coding.</p>
+            </div>
+            <div class="projects-grid">
+                <article class="project project-card glass project-featured" id="project-IBM-VR" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/UnityWorkInProgress.png" alt="IBM VR AI learning tool preview" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Team project · IBM collaboration</span>
+                            <span class="project-status">In progress</span>
+                        </div>
+                        <h3>IBM VR AI Learning Tool</h3>
+                        <p>
+                            MSc team project creating an immersive language-learning experience in Unity. We orchestrate Watson Assistant, speech-to-text,
+                            text-to-speech, translation, and generative AI to drive believable NPC conversations, secured credentials, and graceful offline fallbacks.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Unity</li>
+                            <li>Watson Assistant</li>
+                            <li>Watsonx.ai</li>
+                            <li>Generative AI</li>
+                            <li>VR/XR</li>
+                            <li>REST APIs</li>
+                            <li>Azure</li>
+                        </ul>
+                        <p class="project-note">Videos and more information available on request.</p>
+                    </div>
+                </article>
+
+                <article class="project project-card glass interactive" id="project-The-Hatchling" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/TheHatchling.png" alt="The Hatchling Unity project preview" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Solo project</span>
+                            <span class="project-status">In development</span>
+                        </div>
+                        <h3>The Hatchling</h3>
+                        <p>
+                            Personal game project born from a desire to master Unity. I sculpted characters in Blender, animated bespoke rigs, and coded
+                            interactions that blend cozy vibes with creature care.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Unity</li>
+                            <li>C#</li>
+                            <li>Blender</li>
+                            <li>Animation</li>
+                        </ul>
+                        <p class="project-note">Click to watch an in-progress reel.</p>
+                    </div>
+                </article>
+
+                <article class="project project-card glass interactive" id="project-pengwings" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/pengWings/pengWingsImage.png" alt="PengWings gameplay preview" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Team project · MSc Software Engineering</span>
+                            <span class="project-status">2024</span>
+                        </div>
+                        <h3>PengWings</h3>
+                        <p>
+                            Single-player game built with p5.js for a Software Engineering module. I owned background mechanics, workshop design, and visual direction,
+                            crafting a playful journey for curious penguins.
+                        </p>
+                        <ul class="project-tags">
+                            <li>p5.js</li>
+                            <li>JavaScript</li>
+                            <li>HTML</li>
+                            <li>css</li>
+                            <li>Game design</li>
+                            <li>Teamwork</li>
+                        </ul>
+                        <p class="project-note">Click to open the repo, live build, and presentation.</p>
+                    </div>
+                </article>
+
+                <article class="project project-card glass interactive" id="project-lofi" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/lofi-app.png" alt="Lofi fantasy radio app preview" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Solo project</span>
+                            <span class="project-status">2024</span>
+                        </div>
+                        <h3>Lofi Fantasy Radio Page</h3>
+                        <p>
+                            Cozy study space blending lofi and fantasy radio stations with ambience controls. My first full stack of HTML, CSS, and JavaScript working together for focus.
+                        </p>
+                        <ul class="project-tags">
+                            <li>JavaScript</li>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>Audio UX</li>
+                        </ul>
+                        <div class="project-actions">
+                            <a href="https://nicoesgeb.github.io/FantasyRadio" target="_blank" rel="noopener" class="project-link">Launch site</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project project-card glass interactive" id="project-bonfire" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/bonfire-app.png" alt="Bonfire ambient app preview" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Solo project</span>
+                            <span class="project-status">2023</span>
+                        </div>
+                        <h3>Bonfire Project</h3>
+                        <p>
+                            Particle simulator turned ambient companion—combining relaxing music, animations, to-do lists, timers, and ambient sounds to keep me in flow.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Creative coding</li>
+                            <li>UI design</li>
+                            <li>Audio</li>
+                        </ul>
+                        <p class="project-note">Click to watch the product walkthrough.</p>
+                    </div>
+                </article>
+
+                <article class="project project-card glass interactive" id="project" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/steel-app.png" alt="Steel drum Android app preview" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Solo project</span>
+                            <span class="project-status">2022</span>
+                        </div>
+                        <h3>Steel Drum App</h3>
+                        <p>
+                            My first Android app—born from owning the real instrument but wanting something portable. Digitised the steel drum so I can play or practice anywhere.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Android</li>
+                            <li>Audio</li>
+                            <li>Product design</li>
+                        </ul>
+                        <p class="project-note">Click to watch the demo.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Contact</h2>
+                <p class="section-subtitle">I’m exploring 2025 software developer roles across immersive, game, and creative tech teams.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-intro glass" data-reveal>
+                    <p>Tell me about the teams you’re building or the prototypes you want to test. I love projects that blend learning, play, and thoughtful systems—and I’m ready to help them reach production.</p>
+                    <p class="contact-detail">Recently completed my MSc as an international student in the UK · actively interviewing for software developer roles · open to hybrid or remote collaborations.</p>
+                </div>
+                <div class="contact-card" data-reveal>
+                    <p>Email: <a href="mailto:nico.esg.rey@gmail.com">nico.esg.rey@gmail.com</a></p>
+                    <p>Phone: <a href="tel:+447782138497">+44 7782 138497</a></p>
+                    <div class="button-container">
+                        <a href="assets/cv/NicoCv.pdf" download class="pixel-button download">Download CV</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Video Modal (shared) -->
+<div id="project-modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+        <button class="close" aria-label="Close">&times;</button>
+        <video controls playsinline>
+            <source src="assets/videos/bonfire-preview.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+<!-- PengWings Modal -->
+<div id="pengwings-modal" class="modal">
+    <div class="modal-content pengwings-content">
+        <button class="close" aria-label="Close">&times;</button>
+        <div class="pengwings-options vertical">
+            <a href="https://github.com/UoB-COMSM0166/2025-group-21" target="_blank" class="pengwings-option" rel="noopener">
+                <img src="assets/images/pengWings/pengWings_github.png" alt="GitHub" loading="lazy" decoding="async">
+                <p>Go to Repository</p>
+            </a>
+            <a href="https://uob-comsm0166.github.io/2025-group-21/" target="_blank" class="pengwings-option" rel="noopener">
+                <img src="assets/images/pengWings/pengWing_gameplay.png" alt="Play Game" loading="lazy" decoding="async">
+                <p>Play the Game</p>
+            </a>
+            <a href="https://youtu.be/YOUR_PRESENTATION_VIDEO" target="_blank" class="pengwings-option" rel="noopener">
+                <img src="assets/images/pengWings/pengWings_Video.png" alt="Watch Video" loading="lazy" decoding="async">
+                <p>Watch Presentation</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<section id="parallax" aria-hidden="true">
+    <div class="layer" id="layer1"></div>
+    <div class="layer" id="layer2"></div>
+    <div class="layer" id="layer3"></div>
+</section>
+
+<img id="pixel-character" src="assets/images/character.png" alt="Pixel Character" loading="lazy" decoding="async">
+
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; 2025 Nico</p>
+    </div>
+</footer>
+</body>
+</html>

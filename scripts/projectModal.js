@@ -9,10 +9,15 @@ const bonfireProject = document.getElementById("project-bonfire");
 const steelProject   = document.getElementById("project"); // steel drum
 const lofiProject    = document.getElementById("project-lofi");
 const hatchling      = document.getElementById("project-The-Hatchling");
+const shotmergeProject = document.getElementById("project-shotmerge");
 
 // PengWings modal
 const pengwingsProject = document.getElementById("project-pengwings");
 const pengwingsModal   = document.getElementById("pengwings-modal");
+
+// ShotMerge modal
+const shotmergeModal = document.getElementById("shotmerge-modal");
+const shotmergeCloseBtn = shotmergeModal.querySelector(".close");
 
 // Open shared modal with a given video
 function openModal(videoSrc){
@@ -42,6 +47,28 @@ steelProject.addEventListener("click", () => {
 });
 hatchling.addEventListener("click", () => {
     openModal("assets/videos/TheHatchlingVideo.mp4");
+});
+
+// ShotMerge modal
+function openShotmergeModal(){
+    shotmergeModal.classList.add("show");
+    shotmergeModal.setAttribute("aria-hidden", "false");
+}
+function closeShotmergeModal(){
+    shotmergeModal.classList.remove("show");
+    shotmergeModal.setAttribute("aria-hidden", "true");
+}
+shotmergeProject.addEventListener("click", openShotmergeModal);
+shotmergeCloseBtn.addEventListener("click", closeShotmergeModal);
+window.addEventListener("click", (event) => {
+    if (event.target === shotmergeModal) {
+        closeShotmergeModal();
+    }
+});
+window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && shotmergeModal.classList.contains("show")) {
+        closeShotmergeModal();
+    }
 });
 
 // Lofi: redirect
