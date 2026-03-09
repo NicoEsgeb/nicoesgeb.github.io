@@ -19,6 +19,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     targets.forEach(el => el.classList.add("reveal"));
 
+    // Reliable hero CTA: scroll to contact and briefly highlight it.
+    const startConversation = document.querySelector("[data-start-conversation]");
+    const contactSection = document.getElementById("contact");
+    let contactFocusTimer;
+    if (startConversation && contactSection) {
+        startConversation.addEventListener("click", (event) => {
+            event.preventDefault();
+            contactSection.scrollIntoView({
+                behavior: prefersReduced ? "auto" : "smooth",
+                block: "start"
+            });
+            contactSection.classList.add("contact-focus");
+            window.clearTimeout(contactFocusTimer);
+            contactFocusTimer = window.setTimeout(() => {
+                contactSection.classList.remove("contact-focus");
+            }, 1400);
+        });
+    }
+
     if (prefersReduced) {
         targets.forEach(el => el.classList.add("in"));
         return;
