@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nico's Cosmos — 3D Portfolio</title>
+<meta name="description" content="An interactive 3D portfolio journey through space. Built with Three.js and Claude Code.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #050510;
+  --gold: #FFB347;
+  --amber: #FF8C42;
+  --warm-white: #f0e6d3;
+  --text: #e8e4f0;
+  --text-dim: rgba(232,228,240,0.5);
+  --panel-bg: rgba(10,8,20,0.75);
+  --panel-border: rgba(255,179,71,0.25);
+  --glow: rgba(255,140,66,0.3);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{overflow:hidden;height:100%;}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Inter',system-ui,sans-serif;
+  overflow:hidden;width:100vw;height:100vh;
+  cursor:default;
+}
+canvas{display:block;position:fixed;top:0;left:0;z-index:0;}
+
+/* Scroll container — invisible, drives the camera */
+#scroll-container{
+  position:fixed;inset:0;z-index:1;
+  overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+}
+#scroll-spacer{height:600vh;pointer-events:none;}
+
+/* Overlay content — screen-projected from 3D */
+#overlay{
+  position:fixed;inset:0;z-index:10;
+  pointer-events:none;
+}
+#overlay *{pointer-events:auto;}
+
+/* Nav dots */
+#nav{
+  position:fixed;right:28px;top:50%;transform:translateY(-50%);
+  z-index:100;display:flex;flex-direction:column;gap:20px;
+  pointer-events:auto;
+}
+.nav-dot{
+  width:12px;height:12px;border-radius:50%;
+  border:1.5px solid rgba(255,179,71,0.4);
+  background:transparent;cursor:pointer;
+  transition:all 0.4s ease;position:relative;
+}
+.nav-dot.active{
+  background:var(--gold);border-color:var(--gold);
+  box-shadow:0 0 12px rgba(255,179,71,0.5);
+}
+.nav-dot:hover{border-color:var(--gold);}
+.nav-label{
+  position:absolute;right:22px;top:50%;transform:translateY(-50%);
+  font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--text-dim);white-space:nowrap;opacity:0;
+  transition:opacity 0.3s;pointer-events:none;
+}
+.nav-dot:hover .nav-label{opacity:1;}
+.nav-dot.active .nav-label{opacity:0.7;}
+
+/* Section overlays — projected from Three.js world space */
+.section-overlay{
+  position:fixed;
+  left:50%;top:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;
+  pointer-events:none;
+  will-change:transform,opacity;
+  transform-origin:center center;
+}
+.section-overlay.interactive .glass-card,
+.section-overlay.interactive .project-card,
+.section-overlay.interactive .btn,
+.section-overlay.interactive .contact-info a{pointer-events:auto;}
+
+/* Hero — flex row: title left, card right */
+#hero-overlay{
+  flex-direction:row !important;gap:clamp(20px,4vw,60px);
+  flex-wrap:nowrap;padding:0 5vw;
+  align-items:center;
+}
+.hero-text{text-align:center;flex:1 1 300px;min-width:250px;}
+.hero-text h1{
+  font-size:clamp(28px,4.5vw,58px);font-weight:800;
+  letter-spacing:-0.02em;line-height:1.1;
+  background:linear-gradient(135deg,var(--warm-white),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;text-shadow:none;
+}
+.hero-text .subtitle{
+  font-size:clamp(13px,1.6vw,18px);font-weight:400;
+  color:var(--gold);margin-top:8px;letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+.hero-text .scroll-hint{
+  margin-top:32px;font-size:13px;color:var(--text-dim);
+  letter-spacing:0.1em;
+  animation:pulse-hint 2s ease-in-out infinite;
+}
+@keyframes pulse-hint{
+  0%,100%{opacity:0.4;transform:translateY(0);}
+  50%{opacity:0.8;transform:translateY(6px);}
+}
+
+/* 3D Flip Card */
+.hero-card-wrap{
+  flex:0 0 auto;perspective:1200px;
+}
+.id-card{
+  width:220px;height:300px;border-radius:16px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.6);
+  text-align:center;transform-style:preserve-3d;
+  transition:transform 0.2s ease-out;
+  animation:cardFloat 4s ease-in-out infinite alternate;
+  cursor:grab;
+}
+.id-card:active{cursor:grabbing;}
+.id-card,.id-card *{user-select:none;-webkit-user-select:none;}
+.card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.1s;}
+.card-front,.card-back{
+  position:absolute;inset:0;width:100%;height:100%;
+  background:url('../assets/images/card-texture.png') no-repeat center/cover;
+  border-radius:16px;backface-visibility:hidden;transform-style:preserve-3d;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  box-shadow:0 4px 20px rgba(255,179,71,0.15);
+}
+.card-back{transform:rotateY(180deg);}
+.id-card.flipped .card-inner{transform:rotateY(180deg);}
+.character-layer{position:relative;z-index:2;transform:translateZ(12px);backface-visibility:hidden;}
+.pixel-avatar{width:150px;height:auto;image-rendering:pixelated;border-radius:8px;box-shadow:0 4px 12px rgba(255,255,255,0.15);}
+.front-letters{position:relative;z-index:2;transform:translateZ(16px);backface-visibility:hidden;padding:0 10px;}
+.front-letters h3{font-size:14px;font-weight:700;color:#fff;margin-bottom:3px;}
+.front-letters p{font-size:11px;color:rgba(255,255,255,0.8);line-height:1.4;}
+.front-layer{position:absolute;inset:0;z-index:2;transform:translateZ(20px);backface-visibility:hidden;}
+.front-layer1{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.back-letters{position:relative;z-index:2;transform:translateZ(16px);backface-visibility:hidden;padding:0 12px;}
+.back-letters h3{font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;}
+.back-letters p{font-size:11px;color:rgba(255,255,255,0.8);line-height:1.5;}
+.back-layer{position:absolute;inset:0;z-index:2;transform:translateZ(8px);backface-visibility:hidden;}
+.back-layer1{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.rotate-hint{
+  position:absolute;top:8px;left:50%;transform:translateX(-50%);
+  text-align:center;font-size:11px;color:rgba(255,255,255,0.8);
+  opacity:0;animation:hintFadeInOut 6s ease-in-out infinite;pointer-events:none;
+}
+.rotate-hint .arrow{display:block;font-size:18px;margin-bottom:2px;animation:arrowBounce 2s ease-in-out infinite;}
+@keyframes cardFloat{
+  0%{transform:translateY(2px) rotateY(8deg) rotateX(0deg);}
+  50%{transform:translateY(-6px) rotateY(8deg) rotateX(1deg);}
+  100%{transform:translateY(2px) rotateY(2deg) rotateX(0deg);}
+}
+@keyframes hintFadeInOut{0%,20%,80%,100%{opacity:0;}40%,60%{opacity:1;}}
+@keyframes arrowBounce{0%{transform:translateY(0);}50%{transform:translateY(-4px);}100%{transform:translateY(0);}}
+
+@media(max-width:768px){
+  #hero-overlay{flex-direction:column;align-items:center;}
+  .id-card{width:180px;height:250px;}
+  .pixel-avatar{width:120px;}
+}
+.scroll-arrow{
+  display:block;margin:8px auto 0;font-size:18px;color:var(--gold);opacity:0.5;
+}
+
+/* Glass cards */
+.glass-card{
+  background:var(--panel-bg);
+  border:1px solid var(--panel-border);
+  border-radius:16px;
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  padding:clamp(18px,3vw,28px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.05);
+  max-width:420px;
+  transition:transform 0.3s ease,box-shadow 0.3s ease;
+}
+.glass-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 40px rgba(255,179,71,0.15),inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.glass-card h3{
+  font-size:14px;font-weight:700;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:10px;
+}
+.glass-card p{
+  font-size:15px;line-height:1.7;color:var(--text);opacity:0.85;
+}
+
+/* About section */
+#about-overlay{
+  display:flex;gap:clamp(16px,3vw,28px);
+  flex-wrap:wrap;justify-content:center;
+  padding:0 5vw;
+}
+
+/* Skills section */
+#skills-overlay{padding:0 5vw;}
+#skills-overlay .skills-title{
+  text-align:center;margin-bottom:28px;
+  font-size:clamp(24px,3vw,36px);font-weight:800;
+  background:linear-gradient(135deg,var(--warm-white),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.skills-grid{
+  display:flex;flex-wrap:wrap;gap:10px;
+  justify-content:center;max-width:700px;margin:0 auto;
+}
+.skill-chip{
+  display:inline-flex;align-items:center;
+  padding:8px 16px;border-radius:999px;
+  background:rgba(10,8,20,0.7);
+  border:1px solid rgba(255,179,71,0.2);
+  font-size:13px;letter-spacing:0.04em;
+  color:var(--warm-white);
+  transition:all 0.3s;
+}
+.skill-chip:hover{
+  background:rgba(255,179,71,0.15);
+  border-color:rgba(255,179,71,0.4);
+  transform:scale(1.05);
+}
+.skill-chip.lang{border-color:rgba(255,179,71,0.35);color:var(--gold);}
+.skill-chip.web{border-color:rgba(255,200,120,0.3);color:#ffd699;}
+.skill-chip.tool{border-color:rgba(200,180,160,0.25);}
+
+/* Projects section */
+#projects-overlay{padding:0 3vw;}
+#projects-overlay .section-title{
+  text-align:center;margin-bottom:24px;
+  font-size:clamp(24px,3vw,36px);font-weight:800;
+  background:linear-gradient(135deg,var(--warm-white),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.projects-ring{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:16px;max-width:960px;margin:0 auto;
+}
+.project-card{
+  background:var(--panel-bg);
+  border:1px solid var(--panel-border);
+  border-radius:14px;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  padding:20px;
+  transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;
+  cursor:default;
+}
+.project-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 36px rgba(255,179,71,0.12);
+  border-color:rgba(255,179,71,0.35);
+}
+.project-card h4{
+  font-size:16px;font-weight:700;margin-bottom:6px;color:var(--warm-white);
+}
+.project-card .meta{
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--gold);opacity:0.7;margin-bottom:8px;
+}
+.project-card p{font-size:13px;line-height:1.6;color:var(--text);opacity:0.75;}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.project-tags span{
+  font-size:10px;padding:3px 8px;border-radius:999px;
+  border:1px solid rgba(255,179,71,0.15);
+  color:var(--text-dim);letter-spacing:0.04em;text-transform:uppercase;
+}
+
+/* Contact section */
+#contact-overlay{text-align:center;padding:0 5vw;}
+#contact-overlay .contact-title{
+  font-size:clamp(24px,3vw,36px);font-weight:800;
+  background:linear-gradient(135deg,var(--warm-white),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:24px;
+}
+.contact-info{
+  display:flex;flex-direction:column;gap:10px;
+  align-items:center;margin-bottom:24px;
+}
+.contact-info a,.contact-info span{
+  font-size:16px;color:var(--warm-white);text-decoration:none;
+  transition:color 0.3s;
+}
+.contact-info a:hover{color:var(--gold);}
+.contact-buttons{
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex;align-items:center;
+  padding:12px 24px;border-radius:12px;
+  font-size:14px;font-weight:600;text-decoration:none;
+  letter-spacing:0.04em;transition:all 0.3s;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold),var(--amber));
+  color:#0a0510;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,179,71,0.3);}
+.btn-ghost{
+  border:1px solid rgba(255,179,71,0.3);color:var(--warm-white);
+  background:transparent;
+}
+.btn-ghost:hover{
+  border-color:var(--gold);background:rgba(255,179,71,0.08);
+  transform:translateY(-2px);
+}
+
+/* Footer */
+#footer{
+  position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
+  z-index:100;text-align:center;
+  font-size:11px;color:var(--text-dim);letter-spacing:0.06em;
+}
+#footer a{color:var(--gold);opacity:0.6;text-decoration:none;transition:opacity 0.3s;}
+#footer a:hover{opacity:1;}
+
+/* Progress bar */
+#progress{
+  position:fixed;top:0;left:0;height:2px;z-index:200;
+  background:linear-gradient(90deg,var(--amber),var(--gold));
+  width:0%;transition:width 0.1s linear;
+}
+
+/* Loading screen */
+#loading{
+  position:fixed;inset:0;z-index:10000;background:#050510;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity 0.8s ease;
+}
+#loading.hidden{opacity:0;pointer-events:none;}
+#loading h2{
+  font-size:24px;font-weight:300;color:var(--warm-white);
+  letter-spacing:0.2em;text-transform:uppercase;
+  animation:fade-in 1s ease forwards;opacity:0;
+}
+#loading .loader-bar{
+  width:120px;height:2px;background:rgba(255,179,71,0.15);
+  border-radius:2px;margin-top:20px;overflow:hidden;
+  animation:fade-in 1.5s ease forwards;opacity:0;
+}
+#loading .loader-fill{
+  width:0%;height:100%;background:var(--gold);
+  transition:width 0.3s ease;
+}
+@keyframes fade-in{to{opacity:1;}}
+
+/* Responsive */
+@media(max-width:768px){
+  #nav{right:12px;gap:16px;}
+  .nav-dot{width:10px;height:10px;}
+  .projects-ring{grid-template-columns:1fr;}
+  #about-overlay{flex-direction:column;align-items:center;}
+}
+@media(max-width:480px){
+  #hero-overlay h1{font-size:28px;}
+  .glass-card{max-width:90vw;}
+}
+</style>
+</head>
+<body>
+
+<div id="loading">
+  <h2>You are entering my Portfolio!</h2>
+  <div class="loader-bar"><div class="loader-fill" id="loader-fill"></div></div>
+</div>
+
+<div id="progress"></div>
+
+<div id="scroll-container">
+  <div id="scroll-spacer"></div>
+</div>
+
+<div id="overlay">
+  <!-- Hero -->
+  <div id="hero-overlay" class="section-overlay visible">
+    <div class="hero-text">
+      <h1>Nico Esgeb</h1>
+      <div class="subtitle">Graduate Software Engineer</div>
+      <div class="scroll-hint">
+        Scroll to explore my universe
+        <span class="scroll-arrow">&#8595;</span>
+      </div>
+    </div>
+    <div class="hero-card-wrap">
+      <div class="id-card">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="rotate-hint">
+              <span class="arrow">&#8635;</span>
+              <span class="text">Drag to rotate</span>
+            </div>
+            <div class="character-layer">
+              <img class="pixel-avatar" src="../assets/images/character.png" alt="Pixel Nico" draggable="false">
+            </div>
+            <div class="front-layer">
+              <img class="front-layer1" src="../assets/images/3dLayer.png" alt="" draggable="false">
+            </div>
+            <div class="front-letters">
+              <h3>Nicolas Esgeb Reyes</h3>
+              <p>Graduate Software Engineer</p>
+              <p>MSc Computer Science</p>
+            </div>
+          </div>
+          <div class="card-back">
+            <div class="back-layer">
+              <img class="back-layer1" src="../assets/images/3dLayer.png" alt="" draggable="false">
+            </div>
+            <div class="back-letters">
+              <h3>More About Me</h3>
+              <p>University of Bristol</p>
+              <p>London, UK</p>
+              <p>C# &middot; Java &middot; Python &middot; JS</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <div id="about-overlay" class="section-overlay">
+    <div class="glass-card">
+      <h3>My Journey</h3>
+      <p>From mining engineer to software developer. Chilean, based in London. MSc Computer Science from the University of Bristol (2025). Passionate about turning ideas into working software.</p>
+    </div>
+    <div class="glass-card">
+      <h3>At a Glance</h3>
+      <p>UK Graduate Route &mdash; No sponsorship required.<br>
+      Spanish (native), English C1 (IELTS 8.0).<br>
+      Currently building automation platforms at ViData.cl.</p>
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <div id="skills-overlay" class="section-overlay">
+    <div class="skills-title">Skills</div>
+    <div class="skills-grid">
+      <span class="skill-chip lang">C</span>
+      <span class="skill-chip lang">C# (Unity)</span>
+      <span class="skill-chip lang">Java</span>
+      <span class="skill-chip lang">Swift</span>
+      <span class="skill-chip lang">Python</span>
+      <span class="skill-chip web">JavaScript</span>
+      <span class="skill-chip web">TypeScript</span>
+      <span class="skill-chip web">HTML</span>
+      <span class="skill-chip web">CSS</span>
+      <span class="skill-chip web">React</span>
+      <span class="skill-chip tool">Azure</span>
+      <span class="skill-chip tool">Git</span>
+      <span class="skill-chip tool">REST APIs</span>
+      <span class="skill-chip tool">SQL</span>
+      <span class="skill-chip tool">Agile</span>
+      <span class="skill-chip tool">Jira</span>
+      <span class="skill-chip tool">Confluence</span>
+    </div>
+  </div>
+
+  <!-- Projects -->
+  <div id="projects-overlay" class="section-overlay">
+    <div class="section-title">Projects</div>
+    <div class="projects-ring">
+      <div class="project-card">
+        <h4>Claude Skills Visualizer</h4>
+        <div class="meta">Three.js &middot; AI-assisted &middot; 2026</div>
+        <p>Interactive 3D visualizer that auto-scans and displays Claude Code skills in a force-directed graph.</p>
+        <div class="project-tags"><span>Three.js</span><span>JavaScript</span><span>Claude Code</span></div>
+      </div>
+      <div class="project-card">
+        <h4>ShotMerge</h4>
+        <div class="meta">iOS &middot; Swift &middot; 2025</div>
+        <p>Screenshot stitcher app. Vertical/horizontal stitching with export optimisation.</p>
+        <div class="project-tags"><span>SwiftUI</span><span>iOS</span><span>Privacy</span></div>
+      </div>
+      <div class="project-card">
+        <h4>IBM VR AI Tool</h4>
+        <div class="meta">Unity &middot; C# &middot; Watson &middot; 2025</div>
+        <p>Immersive language-learning prototype with conversational AI and VR.</p>
+        <div class="project-tags"><span>Unity</span><span>VR/XR</span><span>REST APIs</span></div>
+      </div>
+      <div class="project-card">
+        <h4>The Hatchling</h4>
+        <div class="meta">Unity &middot; Blender &middot; In development</div>
+        <p>Personal game with sculpted characters, bespoke rigs, and cozy creature care.</p>
+        <div class="project-tags"><span>Unity</span><span>C#</span><span>Blender</span></div>
+      </div>
+      <div class="project-card">
+        <h4>PengWings</h4>
+        <div class="meta">p5.js &middot; Team &middot; 2025</div>
+        <p>2D side-scroller. Led background mechanics, UI, and visual direction.</p>
+        <div class="project-tags"><span>p5.js</span><span>JavaScript</span><span>Agile</span></div>
+      </div>
+      <div class="project-card">
+        <h4>FantasyRadio</h4>
+        <div class="meta">JS / CSS &middot; 2025</div>
+        <p>Ambient web radio SPA blending lofi and fantasy stations for focus.</p>
+        <div class="project-tags"><span>JavaScript</span><span>HTML/CSS</span><span>GA4</span></div>
+      </div>
+      <div class="project-card">
+        <h4>Bonfire Project</h4>
+        <div class="meta">Creative coding &middot; 2023</div>
+        <p>Particle simulator turned ambient companion with music, timers, and to-do lists.</p>
+        <div class="project-tags"><span>Creative Coding</span><span>Audio</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div id="contact-overlay" class="section-overlay">
+    <div class="contact-title">Let's Connect</div>
+    <div class="contact-info">
+      <a href="mailto:nico.esg.rey@gmail.com">nico.esg.rey@gmail.com</a>
+      <a href="tel:+447782138497">+44 7782 138497</a>
+      <span>London, UK</span>
+    </div>
+    <div class="contact-buttons">
+      <a href="../index.html" class="btn btn-primary">View Full Portfolio</a>
+      <a href="../assets/cv/NicoCv.pdf" download class="btn btn-ghost">Download CV</a>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav id="nav">
+  <button class="nav-dot active" data-section="0"><span class="nav-label">Home</span></button>
+  <button class="nav-dot" data-section="1"><span class="nav-label">About</span></button>
+  <button class="nav-dot" data-section="2"><span class="nav-label">Skills</span></button>
+  <button class="nav-dot" data-section="3"><span class="nav-label">Projects</span></button>
+  <button class="nav-dot" data-section="4"><span class="nav-label">Contact</span></button>
+</nav>
+
+<div id="footer">
+  Built with Claude Code's Three.js Skill &nbsp;&middot;&nbsp;
+  <a href="https://claude.ai/claude-code" target="_blank" rel="noopener">Learn more</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+'use strict';
+
+/* ============================================================
+   NICO'S COSMOS — Scroll-driven 3D Space Portfolio
+   ============================================================ */
+
+// --- Config ---
+const SECTION_DEPTH = 60;
+const SECTIONS = ['hero','about','skills','projects','contact'];
+const SECTION_POSITIONS = SECTIONS.map((_,i) => i * SECTION_DEPTH);
+const TOTAL_DEPTH = (SECTIONS.length - 1) * SECTION_DEPTH;
+
+const GOLD = new THREE.Color('#FFB347');
+const AMBER = new THREE.Color('#FF8C42');
+const WARM = new THREE.Color('#f0e6d3');
+const BG_COLOR = new THREE.Color('#050510');
+
+// --- Globals ---
+let scene, camera, renderer, clock;
+let scrollProgress = 0;
+let currentSection = 0;
+let starField, nebulaParticles;
+let sectionOrbs = [];
+let orbRings = [];
+
+// --- Shaders ---
+const starVertexShader = `
+  attribute float size;
+  attribute float phase;
+  attribute vec3 customColor;
+  varying vec3 vColor;
+  varying float vDist;
+  uniform float time;
+  void main() {
+    vColor = customColor;
+    vec3 pos = position;
+    pos.x += sin(time * 0.3 + phase) * 0.05;
+    pos.y += cos(time * 0.25 + phase * 1.3) * 0.05;
+    vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+    vDist = -mvPosition.z;
+    gl_PointSize = size * (200.0 / -mvPosition.z);
+    gl_Position = projectionMatrix * mvPosition;
+  }
+`;
+
+const starFragmentShader = `
+  varying vec3 vColor;
+  varying float vDist;
+  void main() {
+    float d = length(gl_PointCoord - vec2(0.5));
+    if (d > 0.5) discard;
+    float core = exp(-d * 10.0);
+    float halo = exp(-d * 3.0) * 0.3;
+    float glow = core + halo;
+    float depthFade = clamp(1.0 - vDist / 400.0, 0.0, 1.0);
+    gl_FragColor = vec4(vColor * glow * depthFade, glow * depthFade);
+  }
+`;
+
+const orbVertexShader = `
+  varying vec3 vNormal;
+  varying vec3 vPosition;
+  void main() {
+    vNormal = normalize(normalMatrix * normal);
+    vPosition = (modelViewMatrix * vec4(position, 1.0)).xyz;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
+const orbFragmentShader = `
+  uniform vec3 glowColor;
+  uniform float time;
+  varying vec3 vNormal;
+  varying vec3 vPosition;
+  void main() {
+    vec3 viewDir = normalize(-vPosition);
+    float fresnel = pow(1.0 - max(dot(viewDir, vNormal), 0.0), 2.5);
+    float pulse = 0.85 + 0.15 * sin(time * 1.5);
+    vec3 col = glowColor * (fresnel * 1.5 + 0.2) * pulse;
+    float alpha = fresnel * 0.9 + 0.15;
+    gl_FragColor = vec4(col, alpha);
+  }
+`;
+
+// --- Init ---
+function init() {
+  clock = new THREE.Clock();
+
+  scene = new THREE.Scene();
+  scene.background = BG_COLOR;
+  scene.fog = new THREE.FogExp2(BG_COLOR, 0.006);
+
+  camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 500);
+  camera.position.set(0, 0, 10);
+
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  document.body.insertBefore(renderer.domElement, document.body.firstChild);
+
+  createStarfield();
+  createNebula();
+  createSectionOrbs();
+  createOrbRings();
+  createCometTrail();
+
+  setupScroll();
+  setupNav();
+  setupResize();
+
+  // Loading
+  let loadProg = 0;
+  const loadInterval = setInterval(() => {
+    loadProg += Math.random() * 30 + 10;
+    if (loadProg > 100) loadProg = 100;
+    document.getElementById('loader-fill').style.width = loadProg + '%';
+    if (loadProg >= 100) {
+      clearInterval(loadInterval);
+      setTimeout(() => {
+        document.getElementById('loading').classList.add('hidden');
+      }, 400);
+    }
+  }, 150);
+
+  animate();
+}
+
+// --- Starfield ---
+function createStarfield() {
+  const count = 4000;
+  const positions = new Float32Array(count * 3);
+  const colors = new Float32Array(count * 3);
+  const sizes = new Float32Array(count);
+  const phases = new Float32Array(count);
+
+  for (let i = 0; i < count; i++) {
+    const i3 = i * 3;
+    positions[i3] = (Math.random() - 0.5) * 200;
+    positions[i3+1] = (Math.random() - 0.5) * 120;
+    positions[i3+2] = Math.random() * -(TOTAL_DEPTH + 100) - 10;
+
+    const warmth = Math.random();
+    if (warmth < 0.3) {
+      colors[i3] = 1.0; colors[i3+1] = 0.7 + Math.random()*0.2; colors[i3+2] = 0.3 + Math.random()*0.2;
+    } else if (warmth < 0.6) {
+      const b = 0.7 + Math.random()*0.3;
+      colors[i3] = b; colors[i3+1] = b; colors[i3+2] = b + 0.1;
+    } else {
+      colors[i3] = 0.9; colors[i3+1] = 0.85; colors[i3+2] = 0.7;
+    }
+
+    sizes[i] = Math.random() * 1.8 + 0.3;
+    phases[i] = Math.random() * Math.PI * 2;
+  }
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geo.setAttribute('customColor', new THREE.BufferAttribute(colors, 3));
+  geo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+  geo.setAttribute('phase', new THREE.BufferAttribute(phases, 1));
+
+  const mat = new THREE.ShaderMaterial({
+    uniforms: { time: { value: 0 } },
+    vertexShader: starVertexShader,
+    fragmentShader: starFragmentShader,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    transparent: true,
+  });
+
+  starField = new THREE.Points(geo, mat);
+  scene.add(starField);
+}
+
+// --- Nebula particles ---
+function createNebula() {
+  const count = 800;
+  const positions = new Float32Array(count * 3);
+  const colors = new Float32Array(count * 3);
+  const sizes = new Float32Array(count);
+  const phases = new Float32Array(count);
+
+  for (let i = 0; i < count; i++) {
+    const i3 = i * 3;
+    const sectionIdx = Math.floor(Math.random() * SECTIONS.length);
+    const sZ = -SECTION_POSITIONS[sectionIdx];
+
+    positions[i3] = (Math.random() - 0.5) * 50;
+    positions[i3+1] = (Math.random() - 0.5) * 30;
+    positions[i3+2] = sZ + (Math.random() - 0.5) * 40;
+
+    const r = 0.8 + Math.random()*0.2;
+    const g = 0.5 + Math.random()*0.3;
+    const b = 0.15 + Math.random()*0.15;
+    colors[i3] = r; colors[i3+1] = g; colors[i3+2] = b;
+
+    sizes[i] = Math.random() * 6 + 2;
+    phases[i] = Math.random() * Math.PI * 2;
+  }
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geo.setAttribute('customColor', new THREE.BufferAttribute(colors, 3));
+  geo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+  geo.setAttribute('phase', new THREE.BufferAttribute(phases, 1));
+
+  const mat = new THREE.ShaderMaterial({
+    uniforms: { time: { value: 0 } },
+    vertexShader: starVertexShader,
+    fragmentShader: `
+      varying vec3 vColor;
+      varying float vDist;
+      void main() {
+        float d = length(gl_PointCoord - vec2(0.5));
+        if (d > 0.5) discard;
+        float glow = exp(-d * 2.5) * 0.25;
+        float depthFade = clamp(1.0 - vDist / 200.0, 0.0, 1.0);
+        gl_FragColor = vec4(vColor * glow * depthFade, glow * depthFade * 0.4);
+      }
+    `,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    transparent: true,
+  });
+
+  nebulaParticles = new THREE.Points(geo, mat);
+  scene.add(nebulaParticles);
+}
+
+// --- Section orbs — unique geometry per section ---
+let sectionWireframes = [];
+function createSectionOrbs() {
+  const orbColors = [
+    new THREE.Color('#FFB347'), // Hero — sun
+    new THREE.Color('#FF9F43'), // About — gem
+    new THREE.Color('#FECA57'), // Skills — dodecahedron
+    new THREE.Color('#FF8C42'), // Projects — torus
+    new THREE.Color('#FFD93D'), // Contact — beacon
+  ];
+
+  // Different geometry per section
+  const geometries = [
+    new THREE.SphereGeometry(3.5, 32, 32),           // Hero: glowing sun
+    new THREE.IcosahedronGeometry(2.2, 0),            // About: faceted gem
+    new THREE.DodecahedronGeometry(1.8, 0),           // Skills: many-sided
+    new THREE.TorusGeometry(2.5, 0.8, 16, 32),        // Projects: ring/portal
+    new THREE.OctahedronGeometry(2.0, 0),             // Contact: beacon diamond
+  ];
+
+  // Core sizes (inner glow)
+  const coreSizes = [1.4, 0.8, 0.7, 0, 0.7]; // torus has no core
+
+  for (let i = 0; i < SECTIONS.length; i++) {
+    // Main shape with fresnel glow shader
+    const mat = new THREE.ShaderMaterial({
+      uniforms: {
+        glowColor: { value: orbColors[i] },
+        time: { value: 0 },
+      },
+      vertexShader: orbVertexShader,
+      fragmentShader: orbFragmentShader,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      side: THREE.FrontSide,
+    });
+
+    const mesh = new THREE.Mesh(geometries[i], mat);
+    mesh.position.set(0, 0, -SECTION_POSITIONS[i]);
+    mesh.userData.sectionType = SECTIONS[i];
+    scene.add(mesh);
+    sectionOrbs.push(mesh);
+
+    // Wireframe overlay for non-sphere shapes (gives that ethereal crystalline look)
+    if (i !== 0) {
+      const wireMat = new THREE.MeshBasicMaterial({
+        color: orbColors[i],
+        wireframe: true,
+        transparent: true,
+        opacity: 0.3,
+        blending: THREE.AdditiveBlending,
+      });
+      const wire = new THREE.Mesh(geometries[i].clone(), wireMat);
+      wire.position.copy(mesh.position);
+      // Slightly larger than the solid shape
+      wire.scale.setScalar(1.15);
+      wire.userData.parentIndex = i;
+      scene.add(wire);
+      sectionWireframes.push(wire);
+    }
+
+    // Inner core glow (not for torus)
+    if (coreSizes[i] > 0) {
+      const coreGeo = new THREE.SphereGeometry(coreSizes[i], 16, 16);
+      const coreMat = new THREE.MeshBasicMaterial({
+        color: orbColors[i],
+        transparent: true,
+        opacity: 0.6,
+        blending: THREE.AdditiveBlending,
+      });
+      const core = new THREE.Mesh(coreGeo, coreMat);
+      core.position.copy(mesh.position);
+      scene.add(core);
+    }
+  }
+}
+
+// --- Orbit rings ---
+function createOrbRings() {
+  const ringSizes = [5.5, 3.5, 2.8, 4.2, 3.2];
+
+  for (let i = 0; i < SECTIONS.length; i++) {
+    const geo = new THREE.TorusGeometry(ringSizes[i], 0.03, 8, 64);
+    const mat = new THREE.MeshBasicMaterial({
+      color: GOLD,
+      transparent: true,
+      opacity: 0.25,
+      blending: THREE.AdditiveBlending,
+    });
+    const ring = new THREE.Mesh(geo, mat);
+    ring.position.set(0, 0, -SECTION_POSITIONS[i]);
+    ring.rotation.x = Math.PI * 0.4;
+    ring.userData = { speed: 0.15 + Math.random() * 0.1, tiltPhase: Math.random() * Math.PI * 2 };
+    scene.add(ring);
+    orbRings.push(ring);
+
+    // Second ring
+    if (i === 0 || i === 3) {
+      const geo2 = new THREE.TorusGeometry(ringSizes[i] * 1.3, 0.02, 8, 64);
+      const mat2 = new THREE.MeshBasicMaterial({
+        color: AMBER,
+        transparent: true,
+        opacity: 0.15,
+        blending: THREE.AdditiveBlending,
+      });
+      const ring2 = new THREE.Mesh(geo2, mat2);
+      ring2.position.copy(ring.position);
+      ring2.rotation.x = Math.PI * 0.6;
+      ring2.userData = { speed: 0.08, tiltPhase: Math.random() * Math.PI };
+      scene.add(ring2);
+      orbRings.push(ring2);
+    }
+  }
+}
+
+// --- Comet trail between sections ---
+function createCometTrail() {
+  const points = [];
+  for (let i = 0; i < SECTIONS.length; i++) {
+    const z = -SECTION_POSITIONS[i];
+    points.push(new THREE.Vector3(0, 0, z));
+    if (i < SECTIONS.length - 1) {
+      const nextZ = -SECTION_POSITIONS[i+1];
+      const midZ = (z + nextZ) / 2;
+      points.push(new THREE.Vector3(
+        Math.sin(i * 1.5) * 8,
+        Math.cos(i * 2.1) * 4,
+        midZ
+      ));
+    }
+  }
+
+  const curve = new THREE.CatmullRomCurve3(points);
+  const curvePoints = curve.getPoints(200);
+  const geo = new THREE.BufferGeometry().setFromPoints(curvePoints);
+
+  const mat = new THREE.LineBasicMaterial({
+    color: GOLD,
+    transparent: true,
+    opacity: 0.08,
+    blending: THREE.AdditiveBlending,
+  });
+
+  const line = new THREE.Line(geo, mat);
+  scene.add(line);
+}
+
+// --- Scroll handling ---
+function setupScroll() {
+  const container = document.getElementById('scroll-container');
+
+  container.addEventListener('scroll', () => {
+    const maxScroll = container.scrollHeight - container.clientHeight;
+    scrollProgress = container.scrollTop / maxScroll;
+    scrollProgress = Math.max(0, Math.min(1, scrollProgress));
+
+    // Update progress bar
+    document.getElementById('progress').style.width = (scrollProgress * 100) + '%';
+
+    // Determine current section
+    const sectionFloat = scrollProgress * (SECTIONS.length - 1);
+    const newSection = Math.round(sectionFloat);
+    if (newSection !== currentSection) {
+      currentSection = newSection;
+      updateNav();
+    }
+
+  }, { passive: true });
+}
+
+// Project orb world positions to screen and position overlays to match
+const _projVec = new THREE.Vector3();
+function updateOverlays() {
+  const overlayIds = ['hero-overlay','about-overlay','skills-overlay','projects-overlay','contact-overlay'];
+  const hw = window.innerWidth * 0.5;
+  const hh = window.innerHeight * 0.5;
+
+  overlayIds.forEach((id, i) => {
+    const el = document.getElementById(id);
+    const orb = sectionOrbs[i];
+    if (!orb) return;
+
+    // Project the orb's world position through the actual Three.js camera
+    _projVec.copy(orb.position);
+    _projVec.project(camera);
+
+    // Behind camera → hide
+    if (_projVec.z > 1) {
+      el.style.opacity = '0';
+      el.classList.remove('interactive');
+      return;
+    }
+
+    // Screen position (CSS pixels, centered at viewport center)
+    const sx = _projVec.x * hw;
+    const sy = -_projVec.y * hh;
+
+    // Distance from camera to orb in world space (orbs are ~60 units apart)
+    // Camera rests ~10 units in front of the target orb when "at" a section
+    const worldDist = camera.position.distanceTo(orb.position);
+
+    // Scale: full size when camera is approaching (~18 units out)
+    // This ensures cards are readable before the camera fully settles
+    const refDist = 18;
+    const scale = Math.min(1.0, refDist / Math.max(worldDist, 0.5));
+
+    // Opacity: full when within 15 units, fade between 15-50
+    let opacity;
+    if (worldDist < 15) {
+      opacity = 1;
+    } else if (worldDist < 50) {
+      opacity = Math.max(0, 1 - (worldDist - 15) / 35);
+    } else {
+      opacity = 0;
+    }
+
+    el.style.transform = `translate(calc(-50% + ${sx}px), calc(-50% + ${sy}px)) scale(${scale})`;
+    el.style.opacity = String(opacity);
+
+    // Interactive when close and visible
+    if (worldDist < 18 && opacity > 0.5) {
+      el.classList.add('interactive');
+    } else {
+      el.classList.remove('interactive');
+    }
+  });
+}
+
+// --- Nav ---
+function setupNav() {
+  const dots = document.querySelectorAll('.nav-dot');
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const section = parseInt(dot.dataset.section);
+      const container = document.getElementById('scroll-container');
+      const maxScroll = container.scrollHeight - container.clientHeight;
+      const targetScroll = (section / (SECTIONS.length - 1)) * maxScroll;
+      container.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    });
+  });
+}
+
+function updateNav() {
+  const dots = document.querySelectorAll('.nav-dot');
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentSection);
+  });
+}
+
+// --- Resize ---
+function setupResize() {
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+}
+
+// --- Animate ---
+function animate() {
+  requestAnimationFrame(animate);
+  const time = clock.getElapsedTime();
+
+  // Camera follows scroll
+  const targetZ = 10 - scrollProgress * TOTAL_DEPTH;
+  const sway = Math.sin(time * 0.3) * 0.5;
+  const swayY = Math.cos(time * 0.2) * 0.3;
+
+  camera.position.z += (targetZ - camera.position.z) * 0.12;
+  camera.position.x += (sway - camera.position.x) * 0.03;
+  camera.position.y += (swayY - camera.position.y) * 0.03;
+  camera.lookAt(camera.position.x * 0.3, camera.position.y * 0.3, camera.position.z - 30);
+
+  // Update shaders
+  if (starField) starField.material.uniforms.time.value = time;
+  if (nebulaParticles) nebulaParticles.material.uniforms.time.value = time;
+
+  // Orbs pulse + unique rotations per shape
+  sectionOrbs.forEach((orb, i) => {
+    orb.material.uniforms.time.value = time;
+    const pulse = 1 + Math.sin(time * 0.8 + i * 1.2) * 0.05;
+    orb.scale.setScalar(pulse);
+    if (i === 1) { orb.rotation.y = time * 0.12; orb.rotation.x = Math.sin(time * 0.08) * 0.3; }
+    else if (i === 2) { orb.rotation.y = time * 0.18; orb.rotation.z = time * 0.06; }
+    else if (i === 3) { orb.rotation.x = Math.PI * 0.5; orb.rotation.z = time * 0.15; }
+    else if (i === 4) { orb.rotation.y = time * 0.2; orb.rotation.x = Math.sin(time * 0.15) * 0.2; }
+  });
+  sectionWireframes.forEach(w => { const p = sectionOrbs[w.userData.parentIndex]; if (p) w.rotation.copy(p.rotation); });
+
+  // Rings rotate
+  orbRings.forEach(ring => {
+    ring.rotation.z += ring.userData.speed * 0.01;
+    ring.rotation.x = Math.PI * 0.4 + Math.sin(time * 0.2 + ring.userData.tiltPhase) * 0.1;
+  });
+
+  // Position HTML overlays to match their orbs in 3D space
+  updateOverlays();
+
+  renderer.render(scene, camera);
+}
+
+// --- ID Card interaction ---
+(function initCard() {
+  const card = document.querySelector('.id-card');
+  const cardInner = document.querySelector('.card-inner');
+  if (!card || !cardInner) return;
+
+  let isDragging = false, prevX = 0, prevY = 0, rotX = 0, rotY = 0;
+
+  card.addEventListener('mousedown', (e) => {
+    e.preventDefault(); e.stopPropagation();
+    isDragging = true; prevX = e.clientX; prevY = e.clientY;
+    cardInner.style.transition = 'none';
+    card.style.animation = 'none';
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    cardInner.style.transition = 'transform 0.8s ease-out';
+    rotY = Math.round(rotY / 180) * 180;
+    rotX = 0;
+    cardInner.style.transform = `rotateY(${rotY}deg) rotateX(${rotX}deg)`;
+    card.style.animation = '';
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    rotY += (e.clientX - prevX) * 0.5;
+    rotX = Math.max(-20, Math.min(20, rotX - (e.clientY - prevY) * 0.3));
+    if (rotY > 180) rotY -= 360;
+    if (rotY < -180) rotY += 360;
+    cardInner.style.transform = `rotateY(${rotY}deg) rotateX(${rotX}deg)`;
+    prevX = e.clientX; prevY = e.clientY;
+  });
+
+  card.addEventListener('dblclick', () => card.classList.toggle('flipped'));
+})();
+
+// --- Start ---
+init();
+</script>
+</body>
+</html>

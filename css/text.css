@@ -18,3 +18,6 @@
     transform: translateY(-2px);
     box-shadow: 0 16px 34px rgba(76,245,234,.14);
 }
+.about-me-text p + p{
+    margin-top: 14px;
+}

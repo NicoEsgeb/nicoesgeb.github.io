@@ -11,39 +11,40 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Nico’s Portfolio</title>
+    <title>Nicolas Esgeb Reyes — Graduate Software Engineer</title>
+    <meta name="description" content="Graduate Software Engineer specialising in automation, AI systems, Unity/C#, and REST APIs. MSc Computer Science from the University of Bristol.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/parallax.css">
     <link rel="stylesheet" href="css/buttons.css">
-    <link rel="stylesheet" href="css/pixel-character.css">
     <link rel="stylesheet" href="css/id-card.css">
     <link rel="stylesheet" href="css/projects.css">
     <link rel="stylesheet" href="css/text.css">
-    <link rel="stylesheet" href="css/portfolio.css?v=2026-03-09-cta1">
+    <link rel="stylesheet" href="css/portfolio.css?v=2026-03-19">
+    <link rel="stylesheet" href="css/pixel-character.css">
 
-    <!-- JS (order matters) -->
-    <script defer src="scripts/parallax.js"></script>
+    <!-- JS -->
     <script defer src="scripts/idCard.js"></script>
     <script defer src="scripts/projectModal.js"></script>
-    <script defer src="scripts/ux.js?v=2026-03-09-cta1"></script>
+    <script defer src="scripts/ux.js?v=2026-03-19"></script>
 </head>
 <body>
+
+
 <header class="site-header">
     <div class="container header-inner">
-        <h1 class="brand">Nico<span class="accent">.</span></h1>
+        <a href="#" class="brand">Nico<span class="accent">.</span></a>
         <nav>
             <ul class="nav">
                 <li><a href="#about">About</a></li>
-                <li><a href="#capabilities">Capabilities</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -52,37 +53,38 @@
 </header>
 
 <main>
+    <!-- ==================== HERO ==================== -->
     <section id="hero" class="hero">
         <div class="container availability-wrap">
             <div class="availability-badge glass" data-reveal>
                 <span class="availability-indicator"></span>
                 <div>
-                    <span class="availability-label">Open to work · 2025 software developer roles</span>
-                    <p>Fresh MSc Computer Science graduate eager to work with teams turning complex ideas into clear, useful technology.</p>
+                    <span class="availability-label">Open to work &middot; UK Graduate Route &middot; No sponsorship required</span>
+                    <p>Graduate Software Engineer actively interviewing for roles in London and remote.</p>
                 </div>
             </div>
         </div>
+
         <div class="container hero-grid">
             <div class="hero-copy" data-reveal>
-                <p class="eyebrow">MSc Computer Science, Civil Engineer</p>
-                <h1 class="hero-title">I build tools with engineering depth.</h1>
+                <p class="eyebrow">Graduate Software Engineer &middot; London</p>
+                <h1 class="hero-title">I turn complex ideas into working software.</h1>
                 <p class="hero-subtitle">
-                    Hey, I’m Nico — a Chilean dev fresh out of an MSc in Computer Science at the University of Bristol. 
-                    I started out in civil, mining and geophysical engineering, and now I get a kick out of turning tricky 
-                    systems into things people actually enjoy using. Games are my favourite playground for learning and 
-                    experimenting, and that same playful approach shows up in the software I build today and the projects 
-                    I’m excited to take on with teams tomorrow.
+                    Hey, I'm Nico — a Chilean engineer with an MSc in Computer Science from the University of Bristol.
+                    I started in civil and mining engineering, discovered a passion for code, and haven't looked back.
+                    I care about building things that work well and feel right — whether that's automation platforms,
+                    conversational AI, or playful interactive experiences.
                 </p>
                 <div class="hero-actions">
-                    <a class="pixel-button" href="#contact" data-start-conversation="true">Start a conversation</a>
-                    <a class="button-ghost" href="assets/cv/NicoCv.pdf?v=2026-03-09" download>Download CV</a>
-                    <a class="button-ghost" href="#projects">See selected work</a>
+                    <a class="pixel-button" href="#contact" data-start-conversation="true">Get in touch</a>
+                    <a class="button-ghost" href="assets/cv/NicoCv.pdf?v=2026-03-19" download>Download CV</a>
+                    <a class="button-ghost" href="#projects">See my work</a>
+                    <a class="button-ghost" href="My3DPortfolio/" style="border-color:rgba(255,179,71,.35);color:#FFB347;">Go to my 3D Portfolio</a>
                 </div>
                 <ul class="hero-highlights">
-                    <li><span>Current</span> Partnering with IBM on a VR language coach that blends Watson Assistant, STT/TTS, translation, and generative AI (watsonx.ai).</li>
-                    <li><span>Previously</span> Geophysical data processing engineer after graduating as a Civil Engineer in Mining.</li>
-                    <li><span>Global</span> International journey from Chile to Ireland to the UK, growing expertise in engineering, language and tech.</li>
-                    <li><span>Open</span> Keen to join a team that values learning, creativity and building useful things — wherever that takes me.</li>
+                    <li><span>Currently</span> Building an automation platform at ViData.cl — integrating RPA bots into a unified management interface.</li>
+                    <li><span>Previously</span> IBM project intern shipping a Unity/C# conversational-AI prototype with Watson Assistant.</li>
+                    <li><span>Background</span> Civil Engineer in Mining turned software developer — international path from Chile to Ireland to the UK.</li>
                 </ul>
             </div>
             <div class="hero-visual" data-reveal>
@@ -91,7 +93,7 @@
                         <div class="card-inner">
                             <div class="card-front">
                                 <div class="rotate-hint">
-                                    <span class="arrow">↻</span>
+                                    <span class="arrow">&#8635;</span>
                                     <span class="text">Drag to rotate</span>
                                 </div>
                                 <div class="character-layer">
@@ -101,9 +103,9 @@
                                     <img class="front-layer1" src="assets/images/3dLayer.png" alt="3D Overlay" draggable="false" loading="lazy" decoding="async">
                                 </div>
                                 <div class="front-letters">
-                                    <h3>Nicolas Esgeb</h3>
-                                    <p>MSc Computer Science Student</p>
-                                    <p>Civil Engineer in Mining</p>
+                                    <h3>Nicolas Esgeb Reyes</h3>
+                                    <p>Graduate Software Engineer</p>
+                                    <p>MSc Computer Science</p>
                                 </div>
                             </div>
                             <div class="card-edge left"></div>
@@ -116,232 +118,281 @@
                                 </div>
                                 <div class="back-letters">
                                     <h3>More About Me</h3>
-                                    <p>- University of Bristol 🎓</p>
-                                    <p>- Always exploring new challenges 🎯</p>
-                                    <p>- Game &amp; music enthusiast 🎮</p>
+                                    <p>University of Bristol</p>
+                                    <p>London, UK</p>
+                                    <p>C# &middot; Java &middot; Python &middot; JS</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <p class="hero-caption">Drag my presentation card to flip it! (Not my best face but my favourite hat 🤠)</p>
+                <p class="hero-caption">Drag my card to flip it!</p>
             </div>
         </div>
+
         <div class="container hero-metrics">
             <div class="metric-card glass" data-reveal>
-                <h3>Focus areas</h3>
-                <p>Conversational AI and large-language-model–powered agents, immersive learning tools, 
-                    and game-inspired systems that invite curiosity.</p>
+                <h3>Strengths</h3>
+                <p>C, C# (Unity), Java, Python, JavaScript/TypeScript — comfortable across the stack from backend services to interactive frontends.</p>
             </div>
             <div class="metric-card glass" data-reveal>
                 <h3>Toolbox</h3>
                 <div class="chip-row">
                     <span class="chip">Unity (C#)</span>
-                    <span class="chip">JavaScript</span>
-                    <span class="chip">HTML &amp; CSS</span>
-                    <span class="chip">p5.js</span>
-                    <span class="chip">Blender</span>
+                    <span class="chip">React</span>
+                    <span class="chip">REST APIs</span>
+                    <span class="chip">Azure</span>
+                    <span class="chip">SQL</span>
+                    <span class="chip">Git</span>
                 </div>
             </div>
             <div class="metric-card glass" data-reveal>
                 <h3>How I work</h3>
-                <p>Prototype-driven, collaborative, and comfortable translating between technical detail and player experience.</p>
+                <p>Agile, collaborative, and prototype-driven. Comfortable translating between technical detail and stakeholder communication.</p>
             </div>
         </div>
     </section>
 
+    <!-- ==================== ABOUT ==================== -->
     <section id="about" class="section about-section">
         <div class="container">
             <div class="section-heading">
                 <h2 class="section-title">About</h2>
-                <p class="section-subtitle">Engineering foundations, creative-tech ambition.</p>
+                <p class="section-subtitle">From mining engineer to software developer — a path shaped by curiosity.</p>
             </div>
             <div class="about-layout">
                 <article class="about-me-text" data-reveal>
                     <p>
-                        Hello there! I'm Nico, from Chile! I'm a Civil Mining Engineer who set sail on a multicultural adventure and
-                        ended up falling in love with computer science.
+                        I'm Nico, from Chile. I graduated as a Civil Engineer in Mining in 2021, spent a year processing
+                        geophysical data for an exploration company, then decided to chase a bigger dream. I moved to Dublin
+                        to sharpen my English, worked everything from floor staff to barman while studying at University College Dublin,
+                        and then moved to Bristol to complete my MSc in Computer Science at the University of Bristol.
                     </p>
                     <p>
-                        I graduated in 2021 as a Civil Engineer in Mining and spent a year in geophysics, processing data for an 
-                        exploration company back home. Then I decided to start a new chapter and expand my language horizons in Dublin!
-                         I immersed myself in the culture, worked different jobs (from floor staff to barman) to really experience the 
-                         city, and studied English at the same time at University College Dublin.
-                    </p>
-                    <p>
-                        After that, I moved to Bristol and completed my MSc in Computer Science at the University of Bristol. I'm always
-                         looking for that sweet spot where learning meets application. Now I'm excited to begin this next journey and to
-                          find a team where my skills can make a positive impact!
+                        Today I work as a Software Associate at ViData.cl building automation platforms, and I review AI-generated
+                        code at Outlier. Before that I interned at IBM, where I shipped a Unity/C# conversational-AI prototype
+                        used in client reviews. I'm always looking for that sweet spot where engineering discipline meets creative
+                        problem-solving.
                     </p>
                 </article>
                 <aside class="about-side glass" data-reveal>
-                    <h3>Now &amp; next</h3>
+                    <h3>At a glance</h3>
                     <ul class="about-list">
-                        <li><span>Currently</span> Co-creating an immersive AI language coach with IBM, shaping dialogue, systems design, and player experience.</li>
-                        <li><span>Strength</span> Bridging technical depth with narrative thinking—comfortable switching between code, design, delivery, and stakeholder storytelling.</li>
-                        <li><span>Next</span> 2025. Searching to join a software team where immersive thinking, product delivery, and human-centred values meet.</li>
+                        <li><span>Role</span> Graduate Software Engineer</li>
+                        <li><span>Location</span> London, UK</li>
+                        <li><span>Visa</span> UK Graduate Route — no sponsorship required</li>
+                        <li><span>Languages</span> Spanish (native), English (C1 — IELTS 8.0)</li>
+                        <li><span>Looking for</span> Software engineering roles where I can grow, contribute, and build things that matter.</li>
                     </ul>
-                    <p class="about-note">I care about inclusive teams, thoughtful pacing, and products—game-related or not—that invite people to explore new skills and feel supported.</p>
                 </aside>
             </div>
         </div>
     </section>
 
-    <section id="capabilities" class="section capabilities-section">
-        <div class="container">
-            <div class="section-heading">
-                <h2 class="section-title">Capabilities</h2>
-                <p class="section-subtitle">Where I create the most impact on cross-functional teams.</p>
-            </div>
-            <div class="capability-grid">
-                <article class="cap-card glass" data-reveal>
-                    <h3>Immersive product development</h3>
-                    <p>Build VR and 3D experiences in Unity with a gameplay-first mindset, including animation pipelines and satisfying interactions.</p>
-                    <div class="chip-row">
-                        <span class="chip">Unity</span>
-                        <span class="chip">VR / XR</span>
-                        <span class="chip">C#</span>
-                        <span class="chip">Blender</span>
-                        <span class="chip">Animation</span>
-                    </div>
-                </article>
-                <article class="cap-card glass" data-reveal>
-                    <h3>Conversational &amp; AI UX</h3>
-                    <p>Design and integrate voice, dialogue, and generative flows—balancing online services with robust offline fallbacks.</p>
-                    <div class="chip-row">
-                        <span class="chip">Watson Assistant</span>
-                        <span class="chip">STT/TTS</span>
-                        <span class="chip">Generative AI</span>
-                        <span class="chip">Dialogue design</span>
-                        <span class="chip">REST APIs</span>
-                        <span class="chip">IAM & AES</span>
-                    </div>
-                </article>
-                <article class="cap-card glass" data-reveal>
-                    <h3>Creative coding</h3>
-                    <p>Ship polished web experiences and tools with modern JavaScript, p5.js, and thoughtful UI systems.</p>
-                    <div class="chip-row">
-                        <span class="chip">JavaScript</span>
-                        <span class="chip">p5.js</span>
-                        <span class="chip">HTML &amp; CSS</span>
-                        <span class="chip">UI systems</span>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section id="collaboration" class="section collaboration-section">
-        <div class="container">
-            <div class="section-heading">
-                <h2 class="section-title">Beyond Games</h2>
-                <p class="section-subtitle">Most of my projects are games. They are my sandbox for learning fast; my job goal is broader: building useful software.</p>
-            </div>
-            <div class="collaboration-grid">
-                <article class="collab-card glass" data-reveal>
-                    <h3>Team-first delivery</h3>
-                    <p>I thrive in multidisciplinary squads—facilitating syncs, translating technical detail, and co-owning milestones with designers, producers, and stakeholders.</p>
-                    <ul class="collab-list">
-                        <li>Comfortable with agile, backlog grooming, and demo storytelling.</li>
-                        <li>Balance joyful prototyping with production-ready code quality.</li>
-                    </ul>
-                </article>
-                <article class="collab-card glass" data-reveal>
-                    <h3>Creative problem solving</h3>
-                    <p>Building games keeps my systems thinking playful—every mechanic becomes a testbed for user empathy, learning loops, and experimentation.</p>
-                    <ul class="collab-list">
-                        <li>Use rapid prototypes to de-risk ideas and align teams early.</li>
-                        <li>Transform complex requirements into intuitive interactions.</li>
-                    </ul>
-                </article>
-                <article class="collab-card glass" data-reveal>
-                    <h3>Product impact</h3>
-                    <p>I’m ready to bring that creative muscle to SaaS, tools, and platform teams—anywhere thoughtful software meets curious users.</p>
-                    <ul class="collab-list">
-                        <li>Open to software developer roles across product, immersive, and creative technology.</li>
-                        <li>Available for interviews now and eager to relocate or collaborate remotely.</li>
-                    </ul>
-                </article>
-            </div>
-        </div>
-    </section>
-
+    <!-- ==================== EXPERIENCE ==================== -->
     <section id="experience" class="section experience-section">
         <div class="container">
             <div class="section-heading">
                 <h2 class="section-title">Experience</h2>
-                <p class="section-subtitle">A pathway that fuses engineering rigour with creative technology.</p>
+                <p class="section-subtitle">Professional roles and education that built my engineering foundation.</p>
             </div>
-            <div class="experience-timeline">
-                <article class="experience-card glass" data-reveal>
-                    <span class="experience-period">2024 — 2025</span>
-                    <h3>MSc Computer Science</h3>
-                    <p class="experience-org">University of Bristol</p>
-                    <ul class="experience-points">
-                        <li>Collaborating with IBM on an immersive language-learning pilot spanning Unity, VR, Watson Assistant, and generative AI.</li>
-                        <li>Core modules: C & Java, Computer Architecture, and Software Engineering — delivered a team game, PengWings.</li>
-                    </ul>
-                </article>
-                <article class="experience-card glass" data-reveal>
-                    <span class="experience-period">Previous (2021 - 2022)</span>
-                    <h3>Geophysical Data Processing Engineer</h3>
-                    <p class="experience-org">Chile</p>
-                    <ul class="experience-points">
-                        <li>Processed seismic, magnetometry, drone photogrammetry, and ERT data into QC’d maps/models for mineral exploration clients.</li>
-                        <li>Communicated findings in clear client reports, turning complex subsurface data into actionable targets and risks.</li>
-                    </ul>
-                </article>
-                <article class="experience-card glass" data-reveal>
-                    <span class="experience-period">2021</span>
-                    <h3>Bachelor of Civil Engineering in Mining</h3>
-                    <p class="experience-org">Chile</p>
-                    <ul class="experience-points">
-                        <li>Graduated in 2021, grounding myself in systems thinking, problem solving, and resilient teamwork.</li>
-                        <li>Learned to navigate complex, high-stakes environments with curiosity and care.</li>
-                    </ul>
-                </article>
-                <article class="experience-card glass" data-reveal>
-                    <span class="experience-period">Global perspective (2022-2024)</span>
-                    <h3>English for Academic Purposes</h3>
-                    <p class="experience-org">University College Dublin</p>
-                    <ul class="experience-points">
-                        <li>Immersed myself in Dublin to strengthen communication and collaboration across cultures.</li>
-                        <li>Built confidence presenting ideas to international audiences.</li>
-                    </ul>
-                </article>
+
+            <div class="experience-split">
+                <div class="experience-col">
+                    <h3 class="experience-col-title">Work</h3>
+                    <div class="experience-timeline">
+                        <article class="experience-card glass" data-reveal>
+                            <span class="experience-period">Nov 2025 — Present</span>
+                            <h3>Software Associate (Automation Platform)</h3>
+                            <p class="experience-org">ViData.cl &middot; Remote</p>
+                            <ul class="experience-points">
+                                <li>Contributing to an internal platform that integrates multiple RPA bots into a unified management interface.</li>
+                                <li>Developing features for a centralised UI to monitor, run, and manage automation workflows.</li>
+                                <li>Assisting in the creation and integration of new automation bots and backend services.</li>
+                            </ul>
+                        </article>
+
+                        <article class="experience-card glass" data-reveal>
+                            <span class="experience-period">Sep 2025 — Present</span>
+                            <h3>AI Data Annotator &amp; Senior Reviewer</h3>
+                            <p class="experience-org">Outlier &middot; London</p>
+                            <ul class="experience-points">
+                                <li>Using structured prompting to generate and refine AI-produced React layouts in a time-tracked remote workflow.</li>
+                            </ul>
+                        </article>
+
+                        <article class="experience-card glass" data-reveal>
+                            <span class="experience-period">May — Sep 2025</span>
+                            <h3>Project Intern</h3>
+                            <p class="experience-org">IBM &middot; Bristol</p>
+                            <ul class="experience-points">
+                                <li>Built and shipped a Unity/C# conversational-AI prototype integrating Watson Assistant via REST/JSON, used in client reviews.</li>
+                                <li>Improved reliability by implementing request batching and lightweight caching, reducing average response time.</li>
+                                <li>Secured secrets via environment encryption and documented the setup for teammates.</li>
+                            </ul>
+                        </article>
+
+                        <article class="experience-card glass" data-reveal>
+                            <span class="experience-period">2021 — 2022</span>
+                            <h3>Geophysical Data Processing Engineer</h3>
+                            <p class="experience-org">GEODATOS S.A.I.C. &middot; Santiago, Chile</p>
+                            <ul class="experience-points">
+                                <li>Processed field datasets from magnetometry, ERT, seismic surveys, and downhole profiles with QA/QC workflows.</li>
+                                <li>Interpreted results to delineate subsurface structures and targets across multiple methods.</li>
+                                <li>Authored client reports with methodology, interpretations, maps, and recommendations.</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="experience-col">
+                    <h3 class="experience-col-title">Education</h3>
+                    <div class="experience-timeline">
+                        <article class="experience-card glass" data-reveal>
+                            <span class="experience-period">2024 — 2025</span>
+                            <h3>MSc Computer Science</h3>
+                            <p class="experience-org">University of Bristol &middot; United Kingdom</p>
+                            <ul class="experience-points">
+                                <li>Core modules: C &amp; Java, Computer Architecture, Software Engineering.</li>
+                                <li>MSc project: Immersive language-learning tool with IBM — Unity, VR, Watson Assistant, generative AI.</li>
+                            </ul>
+                        </article>
+
+                        <article class="experience-card glass" data-reveal>
+                            <span class="experience-period">2022 — 2024</span>
+                            <h3>General English Programme (C1)</h3>
+                            <p class="experience-org">University College Dublin &middot; Ireland</p>
+                            <ul class="experience-points">
+                                <li>Three 25-week intensive programmes. Achieved IELTS 8.0 (C1).</li>
+                                <li>Built confidence presenting ideas to international audiences.</li>
+                            </ul>
+                        </article>
+
+                        <article class="experience-card glass" data-reveal>
+                            <span class="experience-period">2019 — 2021</span>
+                            <h3>Civil Engineering in Mining</h3>
+                            <p class="experience-org">Pontifical Catholic University of Valparaiso &middot; Chile</p>
+                        </article>
+
+                        <article class="experience-card glass" data-reveal>
+                            <span class="experience-period">2015 — 2018</span>
+                            <h3>BSc-level Licentiate in Engineering Sciences</h3>
+                            <p class="experience-org">Pontifical Catholic University of Valparaiso &middot; Chile</p>
+                        </article>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- ==================== SKILLS ==================== -->
+    <section id="skills" class="section skills-section">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Skills</h2>
+                <p class="section-subtitle">Technologies and tools I work with.</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-group glass" data-reveal>
+                    <h3>Languages &amp; Engines</h3>
+                    <div class="chip-row">
+                        <span class="chip">C</span>
+                        <span class="chip">C# (Unity)</span>
+                        <span class="chip">Java</span>
+                        <span class="chip">Swift</span>
+                        <span class="chip">Python</span>
+                    </div>
+                </div>
+                <div class="skill-group glass" data-reveal>
+                    <h3>Web</h3>
+                    <div class="chip-row">
+                        <span class="chip">JavaScript</span>
+                        <span class="chip">TypeScript</span>
+                        <span class="chip">HTML</span>
+                        <span class="chip">CSS</span>
+                        <span class="chip">React (fundamentals)</span>
+                    </div>
+                </div>
+                <div class="skill-group glass" data-reveal>
+                    <h3>Cloud &amp; Tools</h3>
+                    <div class="chip-row">
+                        <span class="chip">Azure</span>
+                        <span class="chip">Git</span>
+                        <span class="chip">REST APIs</span>
+                        <span class="chip">SQL</span>
+                        <span class="chip">Agile</span>
+                        <span class="chip">Jira</span>
+                        <span class="chip">Confluence</span>
+                    </div>
+                </div>
+                <div class="skill-group glass" data-reveal>
+                    <h3>Other</h3>
+                    <div class="chip-row">
+                        <span class="chip">Prompt Engineering</span>
+                        <span class="chip">AI-assisted Dev</span>
+                        <span class="chip">Blender</span>
+                        <span class="chip">VR / XR</span>
+                        <span class="chip">CI/CD Basics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROJECTS ==================== -->
     <section id="projects" class="section projects-section">
         <div class="container">
             <div class="section-heading">
                 <h2 class="section-title">Projects</h2>
-                <p class="section-subtitle">Selected work that mixes immersive tech, games, and creative coding.</p>
+                <p class="section-subtitle">Selected work — from shipped apps to creative experiments.</p>
             </div>
             <div class="projects-grid">
-                <article class="project project-card glass interactive" id="project-shotmerge" data-reveal>
+                <article class="project project-card glass interactive" id="project-skills-visualizer" data-reveal>
                     <figure class="project-media">
-                        <img src="assets/images/shotmerge/7_final_horizontal_example.PNG" alt="Shot Merge stitched screenshot preview" loading="lazy" decoding="async">
+                        <img src="assets/images/skills-visualizer/skillssVisualizer1.png" alt="Claude Skills Visualizer 3D preview" loading="lazy" decoding="async">
                     </figure>
                     <div class="project-content">
                         <div class="project-topline">
-                            <span class="project-label">Solo project · iOS app</span>
-                            <span class="project-status">2025</span>
+                            <span class="project-label">Solo project &middot; AI-assisted</span>
+                            <span class="project-status">2026</span>
                         </div>
-                        <h3>Shot Merge: Screenshot Stitcher</h3>
+                        <h3>Claude Skills Visualizer</h3>
                         <p>
-                            Stitch multiple screenshots into one clean image in seconds. ShotMerge is a simple and powerful iPhone tool for chats, receipts,
-                            social posts, or long conversations.
+                            Interactive 3D web visualizer that auto-scans and displays Claude Code skills
+                            in a force-directed graph environment. Built with Three.js using AI-assisted workflows.
                         </p>
                         <ul class="project-tags">
+                            <li>Three.js</li>
+                            <li>JavaScript</li>
+                            <li>3D</li>
+                            <li>Claude Code</li>
+                        </ul>
+                        <p class="project-note">Click to view the repo.</p>
+                    </div>
+                </article>
+
+                <article class="project project-card glass interactive" id="project-shotmerge" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/shotmerge/7_final_horizontal_example.PNG" alt="ShotMerge stitched screenshot preview" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Solo project &middot; iOS App</span>
+                            <span class="project-status">2025</span>
+                        </div>
+                        <h3>ShotMerge: Screenshot Stitcher</h3>
+                        <p>
+                            SwiftUI app for stitching and exporting screenshots. Vertical/horizontal stitching with
+                            background options, optimised large exports, and integrated PhotosPicker + Share Sheet.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Swift</li>
+                            <li>SwiftUI</li>
                             <li>iOS</li>
-                            <li>Screenshot stitching</li>
                             <li>Offline-first</li>
                             <li>Privacy</li>
-                            <li>Utility</li>
                         </ul>
-                        <p class="project-note">Click to explore the app flow, settings, and stitched results.</p>
+                        <p class="project-note">Click to explore the app flow.</p>
                     </div>
                 </article>
 
@@ -351,24 +402,25 @@
                     </figure>
                     <div class="project-content">
                         <div class="project-topline">
-                            <span class="project-label">Team project · IBM collaboration</span>
-                            <span class="project-status">In progress</span>
+                            <span class="project-label">Team project &middot; IBM collaboration</span>
+                            <span class="project-status">2025</span>
                         </div>
                         <h3>IBM VR AI Learning Tool</h3>
                         <p>
-                            MSc team project creating an immersive language-learning experience in Unity. We orchestrate Watson Assistant, speech-to-text,
-                            text-to-speech, translation, and generative AI to drive believable NPC conversations, secured credentials, and graceful offline fallbacks.
+                            MSc team project — an immersive language-learning experience in Unity. Orchestrated Watson Assistant,
+                            speech-to-text, text-to-speech, translation, and generative AI for believable NPC conversations,
+                            secured credentials, and graceful offline fallbacks.
                         </p>
                         <ul class="project-tags">
                             <li>Unity</li>
+                            <li>C#</li>
                             <li>Watson Assistant</li>
                             <li>Watsonx.ai</li>
-                            <li>Generative AI</li>
                             <li>VR/XR</li>
                             <li>REST APIs</li>
                             <li>Azure</li>
                         </ul>
-                        <p class="project-note">Videos and more information available on request.</p>
+                        <p class="project-note">Details available on request.</p>
                     </div>
                 </article>
 
@@ -383,8 +435,8 @@
                         </div>
                         <h3>The Hatchling</h3>
                         <p>
-                            Personal game project born from a desire to master Unity. I sculpted characters in Blender, animated bespoke rigs, and coded
-                            interactions that blend cozy vibes with creature care.
+                            Personal game project to master Unity. Sculpted characters in Blender, animated bespoke rigs,
+                            and coded interactions blending cozy vibes with creature care.
                         </p>
                         <ul class="project-tags">
                             <li>Unity</li>
@@ -402,44 +454,44 @@
                     </figure>
                     <div class="project-content">
                         <div class="project-topline">
-                            <span class="project-label">Team project · MSc Software Engineering</span>
-                            <span class="project-status">2024</span>
+                            <span class="project-label">Team project &middot; MSc Software Engineering</span>
+                            <span class="project-status">2025</span>
                         </div>
                         <h3>PengWings</h3>
                         <p>
-                            Single-player game built with p5.js for a Software Engineering module. I owned background mechanics, workshop design, and visual direction,
-                            crafting a playful journey for curious penguins.
+                            2D side-scroller built with p5.js for a Software Engineering module. Led background mechanics and UI;
+                            shipped polished art and UX.
                         </p>
                         <ul class="project-tags">
                             <li>p5.js</li>
                             <li>JavaScript</li>
-                            <li>HTML</li>
-                            <li>css</li>
-                            <li>Game design</li>
-                            <li>Teamwork</li>
+                            <li>HTML/CSS</li>
+                            <li>Game Design</li>
+                            <li>Agile</li>
                         </ul>
-                        <p class="project-note">Click to open the repo, live build, and presentation.</p>
+                        <p class="project-note">Click to open the repo, live build, or presentation.</p>
                     </div>
                 </article>
 
                 <article class="project project-card glass interactive" id="project-lofi" data-reveal>
                     <figure class="project-media">
-                        <img src="assets/images/lofi-app.png" alt="Lofi fantasy radio app preview" loading="lazy" decoding="async">
+                        <img src="assets/images/lofi-app.png" alt="Lofi Fantasy Radio app preview" loading="lazy" decoding="async">
                     </figure>
                     <div class="project-content">
                         <div class="project-topline">
                             <span class="project-label">Solo project</span>
-                            <span class="project-status">2024</span>
+                            <span class="project-status">2025</span>
                         </div>
-                        <h3>Lofi Fantasy Radio Page</h3>
+                        <h3>FantasyRadio</h3>
                         <p>
-                            Cozy study space blending lofi and fantasy radio stations with ambience controls. My first full stack of HTML, CSS, and JavaScript working together for focus.
+                            Ambient web radio SPA with custom styling, player controls, and Google Analytics integration.
+                            Built as a focus tool blending lofi and fantasy radio stations.
                         </p>
                         <ul class="project-tags">
                             <li>JavaScript</li>
-                            <li>HTML</li>
-                            <li>CSS</li>
+                            <li>HTML/CSS</li>
                             <li>Audio UX</li>
+                            <li>GA4</li>
                         </ul>
                         <div class="project-actions">
                             <a href="https://nicoesgeb.github.io/FantasyRadio" target="_blank" rel="noopener" class="project-link">Launch site</a>
@@ -458,20 +510,21 @@
                         </div>
                         <h3>Bonfire Project</h3>
                         <p>
-                            Particle simulator turned ambient companion—combining relaxing music, animations, to-do lists, timers, and ambient sounds to keep me in flow.
+                            Particle simulator turned ambient companion — combining relaxing music, animations, to-do lists,
+                            timers, and ambient sounds for a flow-friendly workspace.
                         </p>
                         <ul class="project-tags">
-                            <li>Creative coding</li>
-                            <li>UI design</li>
+                            <li>Creative Coding</li>
+                            <li>UI Design</li>
                             <li>Audio</li>
                         </ul>
-                        <p class="project-note">Click to watch the product walkthrough.</p>
+                        <p class="project-note">Click to watch the walkthrough.</p>
                     </div>
                 </article>
 
                 <article class="project project-card glass interactive" id="project" data-reveal>
                     <figure class="project-media">
-                        <img src="assets/images/steel-app.png" alt="Steel drum Android app preview" loading="lazy" decoding="async">
+                        <img src="assets/images/steel-app.png" alt="Steel Drum Android app preview" loading="lazy" decoding="async">
                     </figure>
                     <div class="project-content">
                         <div class="project-topline">
@@ -480,12 +533,13 @@
                         </div>
                         <h3>Steel Drum App</h3>
                         <p>
-                            My first Android app—born from owning the real instrument but wanting something portable. Digitised the steel drum so I can play or practice anywhere.
+                            My first Android app — digitised the steel drum so I can play or practice anywhere.
+                            Born from owning the real instrument but wanting something portable.
                         </p>
                         <ul class="project-tags">
                             <li>Android</li>
                             <li>Audio</li>
-                            <li>Product design</li>
+                            <li>Product Design</li>
                         </ul>
                         <p class="project-note">Click to watch the demo.</p>
                     </div>
@@ -494,22 +548,30 @@
         </div>
     </section>
 
+    <!-- ==================== CONTACT ==================== -->
     <section id="contact" class="section contact-section">
         <div class="container">
             <div class="section-heading">
                 <h2 class="section-title">Contact</h2>
-                <p class="section-subtitle">I’m exploring 2025 software developer roles across immersive, game, and creative tech teams.</p>
+                <p class="section-subtitle">I'd love to hear about what you're building.</p>
             </div>
             <div class="contact-grid">
                 <div class="contact-intro glass" data-reveal>
-                    <p>Tell me about the teams you’re building or the prototypes you want to test. I love projects that blend learning, play, and thoughtful systems—and I’m ready to help them reach production.</p>
-                    <p class="contact-detail">Recently completed my MSc as an international student in the UK · actively interviewing for software developer roles · open to hybrid or remote collaborations.</p>
+                    <p>
+                        I'm actively looking for graduate software engineering roles in London or remote.
+                        Whether you're building automation tools, interactive products, or something entirely different —
+                        I'd love to hear about it.
+                    </p>
+                    <p class="contact-detail">
+                        UK Graduate Route visa holder &middot; No sponsorship required &middot; Available immediately.
+                    </p>
                 </div>
                 <div class="contact-card" data-reveal>
                     <p>Email: <a href="mailto:nico.esg.rey@gmail.com">nico.esg.rey@gmail.com</a></p>
                     <p>Phone: <a href="tel:+447782138497">+44 7782 138497</a></p>
+                    <p>Location: London, UK</p>
                     <div class="button-container">
-                        <a href="assets/cv/NicoCv.pdf?v=2026-03-09" download class="pixel-button download">Download CV</a>
+                        <a href="assets/cv/NicoCv.pdf?v=2026-03-19" download class="pixel-button download">Download CV</a>
                     </div>
                 </div>
             </div>
@@ -517,7 +579,7 @@
     </section>
 </main>
 
-<!-- Video Modal (shared) -->
+<!-- ==================== MODALS ==================== -->
 <div id="project-modal" class="modal" aria-hidden="true">
     <div class="modal-content">
         <button class="close" aria-label="Close">&times;</button>
@@ -528,17 +590,55 @@
     </div>
 </div>
 
-<!-- ShotMerge Modal -->
+<div id="skills-visualizer-modal" class="modal" aria-hidden="true">
+    <div class="modal-content visualizer-content">
+        <button class="close" aria-label="Close">&times;</button>
+        <div class="visualizer-details">
+            <span class="visualizer-kicker">Solo project &middot; AI-assisted</span>
+            <h3>Claude Skills Visualizer</h3>
+            <p class="visualizer-tagline">Explore your Claude Code skills in an interactive 3D space.</p>
+            <p>
+                An interactive 3D web visualizer that auto-scans your local Claude Code skills directory
+                and renders them as a force-directed graph. Each skill becomes a glowing orb you can
+                click to inspect — revealing its description, trigger rules, and connections.
+            </p>
+            <ul class="visualizer-features">
+                <li>Auto-scans ~/.claude/skills for installed skills</li>
+                <li>Force-directed 3D graph layout with Three.js</li>
+                <li>Click any skill orb to see full details</li>
+                <li>Drag to orbit, scroll to zoom, sidebar navigation</li>
+                <li>Built entirely with AI-assisted workflows (Claude Code)</li>
+            </ul>
+            <div class="visualizer-actions">
+                <a class="visualizer-link" href="https://github.com/NicoEsgeb/claude-skills-visualizer" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+        </div>
+        <div class="visualizer-media">
+            <div class="visualizer-grid">
+                <figure class="visualizer-frame">
+                    <img src="assets/images/skills-visualizer/skillssVisualizer1.png" alt="Skills Visualizer overview with sidebar" loading="lazy" decoding="async">
+                </figure>
+                <figure class="visualizer-frame">
+                    <img src="assets/images/skills-visualizer/skillssVisualizer2.png" alt="Skill detail panel showing Three.js skill" loading="lazy" decoding="async">
+                </figure>
+                <figure class="visualizer-frame">
+                    <img src="assets/images/skills-visualizer/skillssVisualizer3.png" alt="Rotated view of skill constellation" loading="lazy" decoding="async">
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="shotmerge-modal" class="modal" aria-hidden="true">
     <div class="modal-content shotmerge-content">
         <button class="close" aria-label="Close">&times;</button>
         <div class="shotmerge-details">
             <span class="shotmerge-kicker">iOS utility app</span>
-            <h3>Shot Merge: Screenshot Stitcher</h3>
+            <h3>ShotMerge: Screenshot Stitcher</h3>
             <p class="shotmerge-tagline">Stitch multiple screenshots into one clean image in seconds. No ads. No tracking. One-time purchase.</p>
             <p>
-                ShotMerge is a simple and powerful screenshot stitching tool for iPhone. Combine multiple screenshots into one seamless image - perfect
-                for chats, receipts, social posts, or long conversations.
+                ShotMerge is a simple and powerful screenshot stitching tool for iPhone. Combine multiple screenshots into
+                one seamless image — perfect for chats, receipts, social posts, or long conversations.
             </p>
             <ul class="shotmerge-features">
                 <li>Stitch screenshots vertically or horizontally</li>
@@ -554,16 +654,16 @@
         <div class="shotmerge-media">
             <div class="shotmerge-grid">
                 <figure class="shotmerge-frame">
-                    <img src="assets/images/shotmerge/1_mainview.PNG" alt="Shot Merge main screen" loading="lazy" decoding="async">
+                    <img src="assets/images/shotmerge/1_mainview.PNG" alt="ShotMerge main screen" loading="lazy" decoding="async">
                 </figure>
                 <figure class="shotmerge-frame">
-                    <img src="assets/images/shotmerge/2_Settings.PNG" alt="Shot Merge settings screen" loading="lazy" decoding="async">
+                    <img src="assets/images/shotmerge/2_Settings.PNG" alt="ShotMerge settings" loading="lazy" decoding="async">
                 </figure>
                 <figure class="shotmerge-frame">
-                    <img src="assets/images/shotmerge/3_selectingIMAGES.PNG" alt="Selecting screenshots to stitch" loading="lazy" decoding="async">
+                    <img src="assets/images/shotmerge/3_selectingIMAGES.PNG" alt="Selecting screenshots" loading="lazy" decoding="async">
                 </figure>
                 <figure class="shotmerge-frame">
-                    <img src="assets/images/shotmerge/4_images_selected_view.PNG" alt="Screenshots selected view" loading="lazy" decoding="async">
+                    <img src="assets/images/shotmerge/4_images_selected_view.PNG" alt="Screenshots selected" loading="lazy" decoding="async">
                 </figure>
                 <figure class="shotmerge-frame">
                     <img src="assets/images/shotmerge/5_Vertical_result.PNG" alt="Vertical stitch result" loading="lazy" decoding="async">
@@ -576,7 +676,6 @@
     </div>
 </div>
 
-<!-- PengWings Modal -->
 <div id="pengwings-modal" class="modal">
     <div class="modal-content pengwings-content">
         <button class="close" aria-label="Close">&times;</button>
@@ -597,17 +696,11 @@
     </div>
 </div>
 
-<section id="parallax" aria-hidden="true">
-    <div class="layer" id="layer1"></div>
-    <div class="layer" id="layer2"></div>
-    <div class="layer" id="layer3"></div>
-</section>
-
-<img id="pixel-character" src="assets/images/character.png" alt="Pixel Character" loading="lazy" decoding="async">
+<img id="pixel-character" src="assets/images/character.png" alt="Pixel Nico" loading="lazy" decoding="async">
 
 <footer class="site-footer">
     <div class="container">
-        <p>&copy; 2025 Nico</p>
+        <p>&copy; 2025 Nicolas Esgeb Reyes</p>
     </div>
 </footer>
 </body>
