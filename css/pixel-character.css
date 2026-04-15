@@ -1,14 +1,33 @@
-/*------------------------------------ Pixel Me ----------------------------------------*/
+/* ================================================================
+   PIXEL CHARACTER — Floating corner companion (subtle)
+   ================================================================ */
+
 #pixel-character {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 150px;
-    image-rendering: pixelated; /* Makes it look sharp */
-    animation: float 3s ease-in-out infinite;
+    bottom: 24px;
+    right: 24px;
+    width: 100px;
+    image-rendering: pixelated;
+    opacity: 0.5;
+    z-index: 40;
+    pointer-events: none;
+    animation: pixelFloat 4s var(--ease-spring) infinite alternate;
+    transition: opacity var(--d-med) var(--ease-out);
+}
+#pixel-character:hover {
+    opacity: 0.8;
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+@keyframes pixelFloat {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
+}
+
+@media (max-width: 768px) {
+    #pixel-character {
+        width: 70px;
+        bottom: 16px;
+        right: 16px;
+        opacity: 0.35;
+    }
 }

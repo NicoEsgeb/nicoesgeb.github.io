@@ -1,97 +1,189 @@
-:root{
-    --bg-1:#0f1220;
-    --bg-2:#121626;
-    --card: rgba(255,255,255,0.06);
-    --card-stroke: rgba(255,255,255,0.12);
-    --text:#e8ebf5;
-    --muted:#b8bfd6;
-    --accent:#4cf5ea;
-    --accent-2:#9b84ff;
-    --shadow: 0 10px 30px rgba(0,0,0,.35);
+/* ================================================================
+   DESIGN SYSTEM — Grey Glass + Violet Accent
+   Vibe: Soft Structuralism meets Ethereal Glass
+   ================================================================ */
 
-    /* motion system */
-    --ease-out: cubic-bezier(.22,1,.36,1);
-    --ease-in:  cubic-bezier(.5,0,.1,1);
-    --d-fast: 220ms;
-    --d-med: 480ms;
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* ── Palette ── */
+    --bg-1: #09090b;
+    --bg-2: #0c0c0e;
+    --surface: rgba(255,255,255,0.025);
+    --card: rgba(255,255,255,0.035);
+    --card-stroke: rgba(255,255,255,0.07);
+    --card-stroke-hover: rgba(255,255,255,0.15);
+    --text: #fafafa;
+    --muted: #a1a1aa;
+    --accent: #a78bfa;
+    --accent-dim: rgba(167,139,250,0.12);
+    --accent-glow: rgba(167,139,250,0.25);
+    --shadow: 0 8px 32px rgba(0,0,0,0.45);
+    --shadow-lg: 0 24px 64px rgba(0,0,0,0.55);
+    --inset-highlight: inset 0 1px 0 rgba(255,255,255,0.06);
+
+    /* ── Motion ── */
+    --ease-out: cubic-bezier(0.32, 0.72, 0, 1);
+    --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+    --d-fast: 200ms;
+    --d-med: 500ms;
+    --d-slow: 800ms;
+
+    /* ── Radius ── */
+    --r: 1rem;
+    --r-lg: 1.5rem;
+    --r-xl: 2rem;
+    --r-pill: 999px;
 }
 
-*{ box-sizing:border-box; margin:0; padding:0; }
-html{ scroll-behavior:smooth; }
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-body{
-    min-height:100%;
-    color:var(--text);
-    background:
-            radial-gradient(1200px 800px at 10% -10%, #1c1e36 0%, transparent 60%),
-            radial-gradient(900px 700px at 100% 0%, #171a30 0%, transparent 60%),
-            linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
-    font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
+body {
+    min-height: 100dvh;
+    color: var(--text);
+    background: var(--bg-1);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 
-a{ color:var(--accent); text-decoration:none; transition: color var(--d-fast) var(--ease-out); }
-a:hover{ text-decoration:underline; }
-
-/* widened container for portfolio cards */
-.container{ width:min(1400px, 95vw); margin-inline:auto; }
-
-.section{ padding: clamp(28px, 4.5vw, 56px) 0; }
-
-.section-title{
-    font-size: clamp(26px, 2.6vw, 34px);
-    line-height:1.15;
-    margin-bottom: 18px;
-    font-weight:800; letter-spacing:.2px;
-    display:inline-block; position:relative;
+/* ── Ambient background orbs ── */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
 }
-.section-title::after{
-    content:""; position:absolute; left:0; bottom:-8px; width:48%; height:3px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius:2px;
+body::before {
+    width: 900px; height: 900px;
+    top: -20%; left: -10%;
+    background: radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%);
 }
-
-.site-footer{
-    padding:24px 0 36px;
-    border-top:1px solid rgba(255,255,255,0.08);
-    text-align:center; color:var(--muted);
+body::after {
+    width: 700px; height: 700px;
+    bottom: -15%; right: -8%;
+    background: radial-gradient(circle, rgba(139,92,246,0.04) 0%, transparent 70%);
 }
 
-/* Glass */
-.glass{
+/* ── Noise overlay (fixed, non-interactive) ── */
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+}
+
+/* ── Links ── */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--d-fast) var(--ease-out);
+}
+a:hover { color: #c4b5fd; }
+
+/* ── Container ── */
+.container {
+    width: min(1200px, 90vw);
+    margin-inline: auto;
+}
+
+/* ── Section spacing ── */
+.section {
+    padding: clamp(80px, 12vw, 160px) 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Section title ── */
+.section-title {
+    font-size: clamp(32px, 3.5vw, 48px);
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: var(--text);
+}
+
+/* ── Glass card base ── */
+.glass {
     background: var(--card);
-    backdrop-filter: blur(8px);
-    border:1px solid var(--card-stroke);
-    border-radius:16px;
-    box-shadow: var(--shadow);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--card-stroke);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow), var(--inset-highlight);
 }
 
-/* --- Reveal Animations (IntersectionObserver toggles .in) --- */
-.reveal{
-    opacity: 0;
-    transform: translateY(18px);
-    transition:
-            opacity var(--d-med) var(--ease-out),
-            transform var(--d-med) var(--ease-out),
-            box-shadow var(--d-fast) var(--ease-out),
-            border-color var(--d-fast) var(--ease-out),
-            background-color var(--d-fast) var(--ease-out);
+/* ── Double-bezel shell (outer wrapper) ── */
+.bezel {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: var(--r-xl);
+    padding: 6px;
 }
-.reveal.in{
+.bezel > .glass {
+    border-radius: calc(var(--r-xl) - 6px);
+}
+
+/* ── Reveal animations ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(6px);
+    transition:
+        opacity var(--d-slow) var(--ease-spring),
+        transform var(--d-slow) var(--ease-spring),
+        filter var(--d-slow) var(--ease-spring);
+}
+.reveal.in {
     opacity: 1;
     transform: none;
+    filter: blur(0);
 }
 
-/* Performance: paint only visible items */
+/* stagger children */
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 80ms; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 160ms; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 240ms; }
+.reveal-stagger > .reveal:nth-child(5) { transition-delay: 320ms; }
+.reveal-stagger > .reveal:nth-child(6) { transition-delay: 400ms; }
+.reveal-stagger > .reveal:nth-child(7) { transition-delay: 480ms; }
+.reveal-stagger > .reveal:nth-child(8) { transition-delay: 560ms; }
+
+/* ── Performance: paint only visible items ── */
 .about-me-text,
-.project{
+.project {
     content-visibility: auto;
-    contain-intrinsic-size: 1px 340px; /* reserve space to avoid layout shift */
+    contain-intrinsic-size: 1px 400px;
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior:auto; }
-    *, *::before, *::after{ animation: none !important; transition: none !important; }
+/* ── Footer ── */
+.site-footer {
+    padding: 32px 0 48px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
 }

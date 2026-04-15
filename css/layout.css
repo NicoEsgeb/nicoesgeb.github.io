@@ -1,51 +1,213 @@
-.site-header{
-    position: sticky; top: 0; z-index: 1001;
-    background: linear-gradient(180deg, rgba(6,8,16,.72), rgba(6,8,16,.32));
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    transition: background var(--d-fast) var(--ease-out), box-shadow var(--d-fast) var(--ease-out);
-}
-.site-header.scrolled{
-    background: rgba(6,8,16,.86);
-    box-shadow: 0 8px 22px rgba(0,0,0,.35);
+/* ================================================================
+   LAYOUT — Floating pill nav + hamburger + contact card
+   ================================================================ */
+
+/* ── Floating Pill Nav ── */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    padding: 20px 16px 0;
+    pointer-events: none;
 }
 
-.header-inner{
-    display:flex; align-items:center; justify-content:space-between;
-    padding: 10px 0;
+.header-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 10px 10px 20px;
+    border-radius: var(--r-pill);
+    background: rgba(9,9,11,0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    pointer-events: all;
+    transition:
+        background var(--d-med) var(--ease-out),
+        box-shadow var(--d-med) var(--ease-out);
+    width: auto;
+    max-width: 90vw;
 }
 
-.brand{ font-weight:800; letter-spacing:.5px; font-size: 20px; }
-.brand .accent{ color: var(--accent); }
-
-.nav{ display:flex; gap: 12px; list-style:none; }
-.nav a{
-    display:inline-block; padding:8px 10px;
-    border-radius:10px; color:var(--text); text-decoration:none; border:1px solid transparent;
-    transition: background var(--d-fast) var(--ease-out), border-color var(--d-fast) var(--ease-out), transform var(--d-fast) var(--ease-out);
-}
-.nav a:hover{
-    border-color: rgba(255,255,255,.12);
-    background: rgba(255,255,255,.06);
-    transform: translateY(-1px);
+.site-header.scrolled .header-inner {
+    background: rgba(9,9,11,0.85);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.45);
 }
 
-.contact-card{
-    --pad: 18px;
-    padding: var(--pad);
-    border-radius: 14px;
-    background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-    border:1px solid rgba(255,255,255,.12);
-    box-shadow: var(--shadow);
+.brand {
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    text-decoration: none;
+    white-space: nowrap;
+}
+.brand:hover { color: var(--text); text-decoration: none; }
+.brand .accent { color: var(--accent); }
+
+/* ── Desktop nav links ── */
+.nav {
+    display: flex;
+    gap: 2px;
+    list-style: none;
+    align-items: center;
+}
+.nav a {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: var(--r-pill);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition:
+        color var(--d-fast) var(--ease-out),
+        background var(--d-fast) var(--ease-out);
+}
+.nav a:hover {
+    color: var(--text);
+    background: rgba(255,255,255,0.06);
+    text-decoration: none;
+}
+
+/* ── Hamburger button (mobile) ── */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--r-pill);
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    cursor: pointer;
+    gap: 5px;
+    padding: 0;
+    transition: background var(--d-fast) var(--ease-out);
+}
+.hamburger:hover {
+    background: rgba(255,255,255,0.08);
+}
+.hamburger span {
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: var(--text);
+    border-radius: 2px;
+    transition:
+        transform 400ms var(--ease-spring),
+        opacity 300ms var(--ease-out);
+    transform-origin: center;
+}
+
+/* Hamburger → X morph */
+.hamburger.active span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ── Mobile menu overlay ── */
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(9,9,11,0.92);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 400ms var(--ease-spring),
+        visibility 400ms;
+}
+.mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+}
+.mobile-menu a {
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: var(--r);
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 500ms var(--ease-spring),
+        transform 500ms var(--ease-spring),
+        background var(--d-fast) var(--ease-out);
+}
+.mobile-menu.open a {
+    opacity: 1;
+    transform: none;
+}
+.mobile-menu.open a:nth-child(1) { transition-delay: 80ms; }
+.mobile-menu.open a:nth-child(2) { transition-delay: 130ms; }
+.mobile-menu.open a:nth-child(3) { transition-delay: 180ms; }
+.mobile-menu.open a:nth-child(4) { transition-delay: 230ms; }
+.mobile-menu.open a:nth-child(5) { transition-delay: 280ms; }
+.mobile-menu a:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+/* ── Contact card ── */
+.contact-card {
+    padding: clamp(24px, 4vw, 32px);
+    border-radius: var(--r-lg);
+    background: var(--card);
+    border: 1px solid var(--card-stroke);
+    box-shadow: var(--shadow), var(--inset-highlight);
     max-width: 720px;
-    margin-inline:auto;
-    line-height:1.75;
-    transition: box-shadow var(--d-fast) var(--ease-out), transform var(--d-fast) var(--ease-out);
+    margin-inline: auto;
+    line-height: 1.75;
+    transition:
+        box-shadow var(--d-med) var(--ease-out),
+        transform var(--d-med) var(--ease-out),
+        border-color var(--d-med) var(--ease-out);
 }
-.contact-card:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 14px 36px rgba(76,245,234,.12);
+.contact-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--card-stroke-hover);
+    box-shadow: var(--shadow-lg);
 }
-.contact-card a{ color: var(--text); text-decoration: none; border-bottom:1px dotted rgba(255,255,255,.25); }
-.contact-card a:hover{ color: var(--accent); border-bottom-color: var(--accent); }
-.button-container{ margin-top: 12px; }
+.contact-card a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    transition:
+        color var(--d-fast) var(--ease-out),
+        border-color var(--d-fast) var(--ease-out);
+}
+.contact-card a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+.button-container { margin-top: 16px; }
+
+/* ── Responsive: show hamburger on mobile ── */
+@media (max-width: 768px) {
+    .nav { display: none; }
+    .hamburger { display: flex; }
+    .header-inner {
+        padding: 8px 8px 8px 16px;
+    }
+}

@@ -14,11 +14,6 @@
     <title>Nicolas Esgeb Reyes — Graduate Software Engineer</title>
     <meta name="description" content="Graduate Software Engineer specialising in automation, AI systems, Unity/C#, and REST APIs. MSc Computer Science from the University of Bristol.">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
     <!-- CSS -->
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
@@ -26,19 +21,22 @@
     <link rel="stylesheet" href="css/id-card.css">
     <link rel="stylesheet" href="css/projects.css">
     <link rel="stylesheet" href="css/text.css">
-    <link rel="stylesheet" href="css/portfolio.css?v=2026-03-19">
+    <link rel="stylesheet" href="css/portfolio.css?v=2026-04-15">
     <link rel="stylesheet" href="css/pixel-character.css">
 
     <!-- JS -->
     <script defer src="scripts/idCard.js"></script>
     <script defer src="scripts/projectModal.js"></script>
-    <script defer src="scripts/ux.js?v=2026-03-19"></script>
+    <script defer src="scripts/ux.js?v=2026-04-15"></script>
 </head>
 <body>
 
+<!-- Noise texture overlay -->
+<div class="noise-overlay" aria-hidden="true"></div>
 
+<!-- ==================== FLOATING NAV ==================== -->
 <header class="site-header">
-    <div class="container header-inner">
+    <div class="header-inner">
         <a href="#" class="brand">Nico<span class="accent">.</span></a>
         <nav>
             <ul class="nav">
@@ -49,17 +47,31 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
+        <button class="hamburger" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
 </header>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" aria-hidden="true">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+</div>
 
 <main>
     <!-- ==================== HERO ==================== -->
     <section id="hero" class="hero">
         <div class="container availability-wrap">
-            <div class="availability-badge glass" data-reveal>
+            <div class="availability-badge" data-reveal>
                 <span class="availability-indicator"></span>
                 <div>
-                    <span class="availability-label">Open to work &middot; UK Graduate Route &middot; No sponsorship required</span>
+                    <span class="availability-label">Open to work · UK Graduate Route · No sponsorship required</span>
                     <p>Graduate Software Engineer actively interviewing for roles in London and remote.</p>
                 </div>
             </div>
@@ -67,8 +79,8 @@
 
         <div class="container hero-grid">
             <div class="hero-copy" data-reveal>
-                <p class="eyebrow">Graduate Software Engineer &middot; London</p>
-                <h1 class="hero-title">I turn complex ideas into working software.</h1>
+                <span class="eyebrow">Graduate Software Engineer · London</span>
+                <h1 class="hero-title">I turn complex ideas<br>into working software.</h1>
                 <p class="hero-subtitle">
                     Hey, I'm Nico — a Chilean engineer with an MSc in Computer Science from the University of Bristol.
                     I started in civil and mining engineering, discovered a passion for code, and haven't looked back.
@@ -76,10 +88,13 @@
                     conversational AI, or playful interactive experiences.
                 </p>
                 <div class="hero-actions">
-                    <a class="pixel-button" href="#contact" data-start-conversation="true">Get in touch</a>
-                    <a class="button-ghost" href="assets/cv/NicoCv.pdf?v=2026-03-19" download>Download CV</a>
-                    <a class="button-ghost" href="#projects">See my work</a>
-                    <a class="button-ghost" href="My3DPortfolio/" style="border-color:rgba(255,179,71,.35);color:#FFB347;">Go to my 3D Portfolio</a>
+                    <a class="btn-primary" href="#contact" data-start-conversation="true">
+                        Get in touch
+                        <span class="btn-icon">↗</span>
+                    </a>
+                    <a class="btn-ghost" href="assets/cv/NicoCv.pdf?v=2026-04-15" download>Download CV</a>
+                    <a class="btn-ghost" href="#projects">See my work</a>
+                    <a class="btn-accent-ghost" href="My3DPortfolio/">3D Portfolio</a>
                 </div>
                 <ul class="hero-highlights">
                     <li><span>Currently</span> Building an automation platform at ViData.cl — integrating RPA bots into a unified management interface.</li>
@@ -88,7 +103,7 @@
                 </ul>
             </div>
             <div class="hero-visual" data-reveal>
-                <section id="id-card-section" data-reveal>
+                <section id="id-card-section">
                     <div class="id-card">
                         <div class="card-inner">
                             <div class="card-front">
@@ -120,17 +135,17 @@
                                     <h3>More About Me</h3>
                                     <p>University of Bristol</p>
                                     <p>London, UK</p>
-                                    <p>C# &middot; Java &middot; Python &middot; JS</p>
+                                    <p>C# · Java · Python · JS</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <p class="hero-caption">Drag my card to flip it!</p>
+                <p class="hero-caption">Drag my card to flip it</p>
             </div>
         </div>
 
-        <div class="container hero-metrics">
+        <div class="container hero-metrics reveal-stagger">
             <div class="metric-card glass" data-reveal>
                 <h3>Strengths</h3>
                 <p>C, C# (Unity), Java, Python, JavaScript/TypeScript — comfortable across the stack from backend services to interactive frontends.</p>
@@ -156,7 +171,8 @@
     <!-- ==================== ABOUT ==================== -->
     <section id="about" class="section about-section">
         <div class="container">
-            <div class="section-heading">
+            <div class="section-heading" data-reveal>
+                <span class="section-eyebrow">Background</span>
                 <h2 class="section-title">About</h2>
                 <p class="section-subtitle">From mining engineer to software developer — a path shaped by curiosity.</p>
             </div>
@@ -192,7 +208,8 @@
     <!-- ==================== EXPERIENCE ==================== -->
     <section id="experience" class="section experience-section">
         <div class="container">
-            <div class="section-heading">
+            <div class="section-heading" data-reveal>
+                <span class="section-eyebrow">Career</span>
                 <h2 class="section-title">Experience</h2>
                 <p class="section-subtitle">Professional roles and education that built my engineering foundation.</p>
             </div>
@@ -200,11 +217,11 @@
             <div class="experience-split">
                 <div class="experience-col">
                     <h3 class="experience-col-title">Work</h3>
-                    <div class="experience-timeline">
+                    <div class="experience-timeline reveal-stagger">
                         <article class="experience-card glass" data-reveal>
                             <span class="experience-period">Nov 2025 — Present</span>
                             <h3>Software Associate (Automation Platform)</h3>
-                            <p class="experience-org">ViData.cl &middot; Remote</p>
+                            <p class="experience-org">ViData.cl · Remote</p>
                             <ul class="experience-points">
                                 <li>Contributing to an internal platform that integrates multiple RPA bots into a unified management interface.</li>
                                 <li>Developing features for a centralised UI to monitor, run, and manage automation workflows.</li>
@@ -215,7 +232,7 @@
                         <article class="experience-card glass" data-reveal>
                             <span class="experience-period">Sep 2025 — Present</span>
                             <h3>AI Data Annotator &amp; Senior Reviewer</h3>
-                            <p class="experience-org">Outlier &middot; London</p>
+                            <p class="experience-org">Outlier · London</p>
                             <ul class="experience-points">
                                 <li>Using structured prompting to generate and refine AI-produced React layouts in a time-tracked remote workflow.</li>
                             </ul>
@@ -224,7 +241,7 @@
                         <article class="experience-card glass" data-reveal>
                             <span class="experience-period">May — Sep 2025</span>
                             <h3>Project Intern</h3>
-                            <p class="experience-org">IBM &middot; Bristol</p>
+                            <p class="experience-org">IBM · Bristol</p>
                             <ul class="experience-points">
                                 <li>Built and shipped a Unity/C# conversational-AI prototype integrating Watson Assistant via REST/JSON, used in client reviews.</li>
                                 <li>Improved reliability by implementing request batching and lightweight caching, reducing average response time.</li>
@@ -235,7 +252,7 @@
                         <article class="experience-card glass" data-reveal>
                             <span class="experience-period">2021 — 2022</span>
                             <h3>Geophysical Data Processing Engineer</h3>
-                            <p class="experience-org">GEODATOS S.A.I.C. &middot; Santiago, Chile</p>
+                            <p class="experience-org">GEODATOS S.A.I.C. · Santiago, Chile</p>
                             <ul class="experience-points">
                                 <li>Processed field datasets from magnetometry, ERT, seismic surveys, and downhole profiles with QA/QC workflows.</li>
                                 <li>Interpreted results to delineate subsurface structures and targets across multiple methods.</li>
@@ -247,11 +264,11 @@
 
                 <div class="experience-col">
                     <h3 class="experience-col-title">Education</h3>
-                    <div class="experience-timeline">
+                    <div class="experience-timeline reveal-stagger">
                         <article class="experience-card glass" data-reveal>
                             <span class="experience-period">2024 — 2025</span>
                             <h3>MSc Computer Science</h3>
-                            <p class="experience-org">University of Bristol &middot; United Kingdom</p>
+                            <p class="experience-org">University of Bristol · United Kingdom</p>
                             <ul class="experience-points">
                                 <li>Core modules: C &amp; Java, Computer Architecture, Software Engineering.</li>
                                 <li>MSc project: Immersive language-learning tool with IBM — Unity, VR, Watson Assistant, generative AI.</li>
@@ -261,7 +278,7 @@
                         <article class="experience-card glass" data-reveal>
                             <span class="experience-period">2022 — 2024</span>
                             <h3>General English Programme (C1)</h3>
-                            <p class="experience-org">University College Dublin &middot; Ireland</p>
+                            <p class="experience-org">University College Dublin · Ireland</p>
                             <ul class="experience-points">
                                 <li>Three 25-week intensive programmes. Achieved IELTS 8.0 (C1).</li>
                                 <li>Built confidence presenting ideas to international audiences.</li>
@@ -271,13 +288,13 @@
                         <article class="experience-card glass" data-reveal>
                             <span class="experience-period">2019 — 2021</span>
                             <h3>Civil Engineering in Mining</h3>
-                            <p class="experience-org">Pontifical Catholic University of Valparaiso &middot; Chile</p>
+                            <p class="experience-org">Pontifical Catholic University of Valparaiso · Chile</p>
                         </article>
 
                         <article class="experience-card glass" data-reveal>
                             <span class="experience-period">2015 — 2018</span>
                             <h3>BSc-level Licentiate in Engineering Sciences</h3>
-                            <p class="experience-org">Pontifical Catholic University of Valparaiso &middot; Chile</p>
+                            <p class="experience-org">Pontifical Catholic University of Valparaiso · Chile</p>
                         </article>
                     </div>
                 </div>
@@ -288,11 +305,12 @@
     <!-- ==================== SKILLS ==================== -->
     <section id="skills" class="section skills-section">
         <div class="container">
-            <div class="section-heading">
+            <div class="section-heading" data-reveal>
+                <span class="section-eyebrow">Toolkit</span>
                 <h2 class="section-title">Skills</h2>
                 <p class="section-subtitle">Technologies and tools I work with.</p>
             </div>
-            <div class="skills-grid">
+            <div class="skills-grid reveal-stagger">
                 <div class="skill-group glass" data-reveal>
                     <h3>Languages &amp; Engines</h3>
                     <div class="chip-row">
@@ -310,7 +328,7 @@
                         <span class="chip">TypeScript</span>
                         <span class="chip">HTML</span>
                         <span class="chip">CSS</span>
-                        <span class="chip">React (fundamentals)</span>
+                        <span class="chip">React</span>
                     </div>
                 </div>
                 <div class="skill-group glass" data-reveal>
@@ -332,7 +350,7 @@
                         <span class="chip">AI-assisted Dev</span>
                         <span class="chip">Blender</span>
                         <span class="chip">VR / XR</span>
-                        <span class="chip">CI/CD Basics</span>
+                        <span class="chip">CI/CD</span>
                     </div>
                 </div>
             </div>
@@ -342,18 +360,19 @@
     <!-- ==================== PROJECTS ==================== -->
     <section id="projects" class="section projects-section">
         <div class="container">
-            <div class="section-heading">
+            <div class="section-heading" data-reveal>
+                <span class="section-eyebrow">Portfolio</span>
                 <h2 class="section-title">Projects</h2>
                 <p class="section-subtitle">Selected work — from shipped apps to creative experiments.</p>
             </div>
             <div class="projects-grid">
-                <article class="project project-card glass interactive" id="project-skills-visualizer" data-reveal>
+                <article class="project project-card interactive" id="project-skills-visualizer" data-reveal>
                     <figure class="project-media">
                         <img src="assets/images/skills-visualizer/skillssVisualizer1.png" alt="Claude Skills Visualizer 3D preview" loading="lazy" decoding="async">
                     </figure>
                     <div class="project-content">
                         <div class="project-topline">
-                            <span class="project-label">Solo project &middot; AI-assisted</span>
+                            <span class="project-label">Solo project · AI-assisted</span>
                             <span class="project-status">2026</span>
                         </div>
                         <h3>Claude Skills Visualizer</h3>
@@ -371,13 +390,13 @@
                     </div>
                 </article>
 
-                <article class="project project-card glass interactive" id="project-shotmerge" data-reveal>
+                <article class="project project-card interactive" id="project-shotmerge" data-reveal>
                     <figure class="project-media">
                         <img src="assets/images/shotmerge/7_final_horizontal_example.PNG" alt="ShotMerge stitched screenshot preview" loading="lazy" decoding="async">
                     </figure>
                     <div class="project-content">
                         <div class="project-topline">
-                            <span class="project-label">Solo project &middot; iOS App</span>
+                            <span class="project-label">Solo project · iOS App</span>
                             <span class="project-status">2025</span>
                         </div>
                         <h3>ShotMerge: Screenshot Stitcher</h3>
@@ -396,13 +415,13 @@
                     </div>
                 </article>
 
-                <article class="project project-card glass project-featured" id="project-IBM-VR" data-reveal>
+                <article class="project project-card project-featured" id="project-IBM-VR" data-reveal>
                     <figure class="project-media">
                         <img src="assets/images/UnityWorkInProgress.png" alt="IBM VR AI learning tool preview" loading="lazy" decoding="async">
                     </figure>
                     <div class="project-content">
                         <div class="project-topline">
-                            <span class="project-label">Team project &middot; IBM collaboration</span>
+                            <span class="project-label">Team project · IBM collaboration</span>
                             <span class="project-status">2025</span>
                         </div>
                         <h3>IBM VR AI Learning Tool</h3>
@@ -424,7 +443,7 @@
                     </div>
                 </article>
 
-                <article class="project project-card glass interactive" id="project-The-Hatchling" data-reveal>
+                <article class="project project-card interactive" id="project-The-Hatchling" data-reveal>
                     <figure class="project-media">
                         <img src="assets/images/TheHatchling.png" alt="The Hatchling Unity project preview" loading="lazy" decoding="async">
                     </figure>
@@ -448,13 +467,13 @@
                     </div>
                 </article>
 
-                <article class="project project-card glass interactive" id="project-pengwings" data-reveal>
+                <article class="project project-card interactive" id="project-pengwings" data-reveal>
                     <figure class="project-media">
                         <img src="assets/images/pengWings/pengWingsImage.png" alt="PengWings gameplay preview" loading="lazy" decoding="async">
                     </figure>
                     <div class="project-content">
                         <div class="project-topline">
-                            <span class="project-label">Team project &middot; MSc Software Engineering</span>
+                            <span class="project-label">Team project · MSc Software Engineering</span>
                             <span class="project-status">2025</span>
                         </div>
                         <h3>PengWings</h3>
@@ -473,7 +492,7 @@
                     </div>
                 </article>
 
-                <article class="project project-card glass interactive" id="project-lofi" data-reveal>
+                <article class="project project-card interactive" id="project-lofi" data-reveal>
                     <figure class="project-media">
                         <img src="assets/images/lofi-app.png" alt="Lofi Fantasy Radio app preview" loading="lazy" decoding="async">
                     </figure>
@@ -494,12 +513,12 @@
                             <li>GA4</li>
                         </ul>
                         <div class="project-actions">
-                            <a href="https://nicoesgeb.github.io/FantasyRadio" target="_blank" rel="noopener" class="project-link">Launch site</a>
+                            <a href="https://nicoesgeb.github.io/FantasyRadio" target="_blank" rel="noopener" class="project-link">Launch site ↗</a>
                         </div>
                     </div>
                 </article>
 
-                <article class="project project-card glass interactive" id="project-bonfire" data-reveal>
+                <article class="project project-card interactive" id="project-bonfire" data-reveal>
                     <figure class="project-media">
                         <img src="assets/images/bonfire-app.png" alt="Bonfire ambient app preview" loading="lazy" decoding="async">
                     </figure>
@@ -522,7 +541,7 @@
                     </div>
                 </article>
 
-                <article class="project project-card glass interactive" id="project" data-reveal>
+                <article class="project project-card interactive" id="project" data-reveal>
                     <figure class="project-media">
                         <img src="assets/images/steel-app.png" alt="Steel Drum Android app preview" loading="lazy" decoding="async">
                     </figure>
@@ -551,7 +570,8 @@
     <!-- ==================== CONTACT ==================== -->
     <section id="contact" class="section contact-section">
         <div class="container">
-            <div class="section-heading">
+            <div class="section-heading" data-reveal>
+                <span class="section-eyebrow">Say hello</span>
                 <h2 class="section-title">Contact</h2>
                 <p class="section-subtitle">I'd love to hear about what you're building.</p>
             </div>
@@ -563,7 +583,7 @@
                         I'd love to hear about it.
                     </p>
                     <p class="contact-detail">
-                        UK Graduate Route visa holder &middot; No sponsorship required &middot; Available immediately.
+                        UK Graduate Route visa holder · No sponsorship required · Available immediately.
                     </p>
                 </div>
                 <div class="contact-card" data-reveal>
@@ -571,7 +591,7 @@
                     <p>Phone: <a href="tel:+447782138497">+44 7782 138497</a></p>
                     <p>Location: London, UK</p>
                     <div class="button-container">
-                        <a href="assets/cv/NicoCv.pdf?v=2026-03-19" download class="pixel-button download">Download CV</a>
+                        <a href="assets/cv/NicoCv.pdf?v=2026-04-15" download class="btn-download">Download CV</a>
                     </div>
                 </div>
             </div>
@@ -594,7 +614,7 @@
     <div class="modal-content visualizer-content">
         <button class="close" aria-label="Close">&times;</button>
         <div class="visualizer-details">
-            <span class="visualizer-kicker">Solo project &middot; AI-assisted</span>
+            <span class="visualizer-kicker">Solo project · AI-assisted</span>
             <h3>Claude Skills Visualizer</h3>
             <p class="visualizer-tagline">Explore your Claude Code skills in an interactive 3D space.</p>
             <p>
@@ -610,7 +630,7 @@
                 <li>Built entirely with AI-assisted workflows (Claude Code)</li>
             </ul>
             <div class="visualizer-actions">
-                <a class="visualizer-link" href="https://github.com/NicoEsgeb/claude-skills-visualizer" target="_blank" rel="noopener">View on GitHub</a>
+                <a class="visualizer-link" href="https://github.com/NicoEsgeb/claude-skills-visualizer" target="_blank" rel="noopener">View on GitHub ↗</a>
             </div>
         </div>
         <div class="visualizer-media">
@@ -648,7 +668,7 @@
                 <li>No ads, no subscriptions, no tracking</li>
             </ul>
             <div class="shotmerge-actions">
-                <a class="shotmerge-store-link" href="https://apps.apple.com/gb/app/shotmerge-screenshot-stitcher/id6757327899" target="_blank" rel="noopener">View on App Store</a>
+                <a class="shotmerge-store-link" href="https://apps.apple.com/gb/app/shotmerge-screenshot-stitcher/id6757327899" target="_blank" rel="noopener">View on App Store ↗</a>
             </div>
         </div>
         <div class="shotmerge-media">
