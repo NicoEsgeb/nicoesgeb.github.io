@@ -98,27 +98,6 @@ window.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && aetherfocusModal.classList.contains("show")) closeAetherfocusModal();
 });
 
-// Skills Visualizer modal
-const skillsVisualizerProject = document.getElementById("project-skills-visualizer");
-const skillsVisualizerModal   = document.getElementById("skills-visualizer-modal");
-const skillsVisualizerCloseBtn = skillsVisualizerModal.querySelector(".close");
-
-function openVisualizerModal(){
-    skillsVisualizerModal.classList.add("show");
-    skillsVisualizerModal.setAttribute("aria-hidden", "false");
-}
-function closeVisualizerModal(){
-    skillsVisualizerModal.classList.remove("show");
-    skillsVisualizerModal.setAttribute("aria-hidden", "true");
-}
-skillsVisualizerProject.addEventListener("click", openVisualizerModal);
-skillsVisualizerCloseBtn.addEventListener("click", closeVisualizerModal);
-window.addEventListener("click", (event) => {
-    if (event.target === skillsVisualizerModal) closeVisualizerModal();
-});
-window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && skillsVisualizerModal.classList.contains("show")) closeVisualizerModal();
-});
 
 // Modal close behaviors
 closeModalBtn.addEventListener("click", closeModal);
