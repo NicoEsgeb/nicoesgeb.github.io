@@ -76,6 +76,28 @@ lofiProject.addEventListener("click", () => {
     window.location.href = "https://nicoesgeb.github.io/FantasyRadio";
 });
 
+// AetherFocus modal
+const aetherfocusProject = document.getElementById("project-aetherfocus");
+const aetherfocusModal   = document.getElementById("aetherfocus-modal");
+const aetherfocusCloseBtn = aetherfocusModal.querySelector(".close");
+
+function openAetherfocusModal() {
+    aetherfocusModal.classList.add("show");
+    aetherfocusModal.setAttribute("aria-hidden", "false");
+}
+function closeAetherfocusModal() {
+    aetherfocusModal.classList.remove("show");
+    aetherfocusModal.setAttribute("aria-hidden", "true");
+}
+aetherfocusProject.addEventListener("click", openAetherfocusModal);
+aetherfocusCloseBtn.addEventListener("click", closeAetherfocusModal);
+window.addEventListener("click", (event) => {
+    if (event.target === aetherfocusModal) closeAetherfocusModal();
+});
+window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && aetherfocusModal.classList.contains("show")) closeAetherfocusModal();
+});
+
 // Skills Visualizer modal
 const skillsVisualizerProject = document.getElementById("project-skills-visualizer");
 const skillsVisualizerModal   = document.getElementById("skills-visualizer-modal");

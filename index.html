@@ -21,13 +21,13 @@
     <link rel="stylesheet" href="css/id-card.css">
     <link rel="stylesheet" href="css/projects.css">
     <link rel="stylesheet" href="css/text.css">
-    <link rel="stylesheet" href="css/portfolio.css?v=2026-04-15">
+    <link rel="stylesheet" href="css/portfolio.css?v=2026-04-16">
     <link rel="stylesheet" href="css/pixel-character.css">
 
     <!-- JS -->
     <script defer src="scripts/idCard.js"></script>
     <script defer src="scripts/projectModal.js"></script>
-    <script defer src="scripts/ux.js?v=2026-04-15"></script>
+    <script defer src="scripts/ux.js?v=2026-04-16"></script>
 </head>
 <body>
 
@@ -390,6 +390,32 @@
                     </div>
                 </article>
 
+                <article class="project project-card interactive" id="project-aetherfocus" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/aetherfocus/Screenshot%202026-04-16%20at%2014.00.32.png" alt="AetherFocus — Lumenfall ambient scene with dragon" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Solo project · macOS &amp; iOS App</span>
+                            <span class="project-status">2026</span>
+                        </div>
+                        <h3>AetherFocus</h3>
+                        <p>
+                            A music ambient focus app blending lo-fi ambience with fantasy worldbuilding. Themed scenes,
+                            live ambience mixer, audio-reactive sphere visualizers, Pomodoro timer, and multi-tab notes —
+                            all from a single Swift codebase for macOS and iOS.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Swift</li>
+                            <li>SwiftUI</li>
+                            <li>AVFoundation</li>
+                            <li>ScreenCaptureKit</li>
+                            <li>StoreKit 2</li>
+                        </ul>
+                        <p class="project-note">Click to explore the app.</p>
+                    </div>
+                </article>
+
                 <article class="project project-card interactive" id="project-shotmerge" data-reveal>
                     <figure class="project-media">
                         <img src="assets/images/shotmerge/7_final_horizontal_example.PNG" alt="ShotMerge stitched screenshot preview" loading="lazy" decoding="async">
@@ -643,6 +669,56 @@
                 </figure>
                 <figure class="visualizer-frame">
                     <img src="assets/images/skills-visualizer/skillssVisualizer3.png" alt="Rotated view of skill constellation" loading="lazy" decoding="async">
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="aetherfocus-modal" class="modal" aria-hidden="true">
+    <div class="modal-content aetherfocus-content">
+        <button class="close" aria-label="Close">&times;</button>
+        <div class="aetherfocus-details">
+            <div class="aetherfocus-header">
+                <img class="aetherfocus-icon" src="assets/images/aetherfocus/Logo_aetherFocus.jpg" alt="AetherFocus app icon">
+                <div>
+                    <span class="aetherfocus-kicker">Solo project · macOS &amp; iOS</span>
+                    <h3>AetherFocus</h3>
+                </div>
+            </div>
+            <p class="aetherfocus-tagline">A music ambient focus app for deep work and study.</p>
+            <p>
+                AetherFocus blends lo-fi ambience with fantasy worldbuilding to create immersive focus environments.
+                Choose from themed atmospheric scenes with layered soundscapes, mix them live, and pair with a curated
+                music station. Audio-reactive sphere visualizers pulse in sync with your music. A built-in Pomodoro timer,
+                todo list, and multi-tab notes keep everything in one place.
+            </p>
+            <ul class="aetherfocus-features">
+                <li>5 themed scenes with looping video backgrounds</li>
+                <li>Live ambience mixer — fire, rain, forest, wind</li>
+                <li>Audio-reactive sphere visualizers (mic or system audio)</li>
+                <li>Pomodoro timer, todo list, multi-tab notes</li>
+                <li>Premium sphere packs — one-time purchase, no subscription</li>
+                <li>macOS + iOS from a single Swift codebase</li>
+            </ul>
+            <p class="aetherfocus-tech">Swift · SwiftUI · AVFoundation · ScreenCaptureKit · StoreKit 2 · MVVM</p>
+            <div class="aetherfocus-actions">
+                <a class="aetherfocus-store-link" href="#" target="_blank" rel="noopener">View on App Store ↗</a>
+            </div>
+        </div>
+        <div class="aetherfocus-media">
+            <div class="aetherfocus-grid">
+                <figure class="aetherfocus-frame">
+                    <img src="assets/images/aetherfocus/Screenshot%202026-04-16%20at%2014.00.32.png" alt="AetherFocus — Lumenfall fantasy scene" loading="lazy" decoding="async">
+                </figure>
+                <figure class="aetherfocus-frame">
+                    <img src="assets/images/aetherfocus/Screenshot%202026-04-16%20at%2014.00.40.png" alt="AetherFocus — Stillwater Andes scene" loading="lazy" decoding="async">
+                </figure>
+                <figure class="aetherfocus-frame">
+                    <img src="assets/images/aetherfocus/Screenshot%202026-04-16%20at%2014.00.20.png" alt="AetherFocus — Deep in the night ambience" loading="lazy" decoding="async">
+                </figure>
+                <figure class="aetherfocus-frame">
+                    <img src="assets/images/aetherfocus/Screenshot%202026-04-16%20at%2013.59.41.png" alt="AetherFocus — Orbital sphere focus mode" loading="lazy" decoding="async">
                 </figure>
             </div>
         </div>
