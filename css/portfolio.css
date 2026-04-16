@@ -52,6 +52,99 @@
     font-size: 13px;
 }
 
+/* ===== Latest Project Card ===== */
+.latest-project-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: clamp(28px, 5vw, 48px);
+}
+.latest-project-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 16px 10px 10px;
+    border-radius: var(--r-pill);
+    border: 1px solid rgba(255,255,255,0.09);
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-decoration: none;
+    color: var(--text);
+    max-width: min(580px, 94vw);
+    width: 100%;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.25), var(--inset-highlight);
+    transition:
+        transform 400ms var(--ease-spring),
+        border-color 400ms var(--ease-out),
+        background 400ms var(--ease-out),
+        box-shadow 400ms var(--ease-out);
+}
+.latest-project-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(167,139,250,0.4);
+    background: rgba(167,139,250,0.06);
+    box-shadow: 0 10px 36px rgba(167,139,250,0.14), var(--inset-highlight);
+    text-decoration: none;
+    color: var(--text);
+}
+.latest-project-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+.latest-project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+.latest-project-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+}
+.latest-project-name {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+.latest-project-sub {
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.latest-project-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px;
+    border-radius: var(--r-pill);
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: rgba(255,255,255,0.04);
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition:
+        background 300ms var(--ease-out),
+        border-color 300ms var(--ease-out);
+}
+.latest-project-card:hover .latest-project-cta {
+    background: rgba(167,139,250,0.15);
+    border-color: rgba(167,139,250,0.5);
+}
+
 /* ===== Hero ===== */
 .hero {
     padding: clamp(120px, 18vw, 200px) 0 clamp(60px, 10vw, 120px);
