@@ -39,8 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // crosses the viewport. Driven from the Lenis rAF loop above so the image
     // tracks the eased scroll position instead of lagging a frame behind it.
     // See css/media-parallax.css for the properties these values feed.
-    const PARALLAX_TRAVEL = 5;   // % of frame height the image drifts
-    const PARALLAX_TILT = 2.5;   // degrees of rotateX at the viewport edges
+    // Travel must stay under the bleed --pl-zoom provides in media-parallax.css,
+    // or the image edge shows inside the frame. 1.24 gives 12% to work with.
+    const PARALLAX_TRAVEL = 10;  // % of frame height the image drifts
+    const PARALLAX_TILT = 4;     // degrees of rotateX at the viewport edges
 
     const parallaxItems = lenis
         ? [...document.querySelectorAll(".project-media")]
