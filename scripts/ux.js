@@ -39,10 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // crosses the viewport. Driven from the Lenis rAF loop above so the image
     // tracks the eased scroll position instead of lagging a frame behind it.
     // See css/media-parallax.css for the properties these values feed.
-    // Travel must stay under the bleed --pl-zoom provides in media-parallax.css,
-    // or the image edge shows inside the frame. 1.24 gives 12% to work with.
-    const PARALLAX_TRAVEL = 10;  // % of frame height the image drifts
-    const PARALLAX_TILT = 4;     // degrees of rotateX at the viewport edges
+    // Two layers of motion, because travel alone is a bad lever here: it has to
+    // stay under the bleed --pl-zoom provides in media-parallax.css (1.32 gives
+    // 16%), and raising that zoom crops these UI screenshots past legibility —
+    // 1.44 cut the tool rails clean off the Ember shot. Moving the frame itself
+    // against the card adds displacement at no cost to the crop.
+    const PARALLAX_TRAVEL = 14;  // % of frame height the image drifts inside the frame
+    const PARALLAX_FRAME = 20;   // px the frame itself drifts against the card
+    const PARALLAX_TILT = 6;     // degrees of rotateX at the viewport edges
 
     const parallaxItems = lenis
         ? [...document.querySelectorAll(".project-media")]
@@ -65,7 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 (rect.top + rect.height / 2 - vh / 2) / (vh / 2 + rect.height / 2)
             ));
             const { frame, img } = parallaxItems[i];
+            // Frame and image drift the same way, so their displacements add up
             img.style.setProperty("--pl-shift", (-p * PARALLAX_TRAVEL).toFixed(2) + "%");
+            frame.style.setProperty("--pl-frame", (-p * PARALLAX_FRAME).toFixed(1) + "px");
             frame.style.setProperty("--pl-tilt", (p * PARALLAX_TILT).toFixed(2) + "deg");
         }
     }
