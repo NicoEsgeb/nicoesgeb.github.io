@@ -1,0 +1,45 @@
+/* ================================================================
+   MEDIA PARALLAX — scroll-linked depth on project imagery
+   Same idea as konrad.com: a masked frame with an oversized cover
+   image that drifts against it, plus a couple of degrees of 3D tilt
+   as the card crosses the viewport.
+
+   `--pl-shift` and `--pl-tilt` are written per-frame by scripts/ux.js
+   from the same rAF loop that drives Lenis, so the image never lags
+   behind the eased page position. Loaded after portfolio-v2.css,
+   which is where the rest of .project-media lives.
+   ================================================================ */
+
+/* Registered so --pl-zoom can transition on hover while --pl-shift,
+   rewritten every frame, stays instant. */
+@property --pl-zoom {
+    syntax: '<number>';
+    initial-value: 1.14;
+    inherits: false;
+}
+
+/* The tilt needs a vanishing point on the card, not the page */
+.project-card { perspective: 1200px; }
+
+.project-media {
+    --pl-tilt: 0deg;
+    transform: rotateX(var(--pl-tilt));
+    will-change: transform;
+}
+
+.project-media img {
+    --pl-shift: 0%;
+    --pl-zoom: 1.14;
+    /* scale resolves first, so 1.14 leaves 7% of bleed on each edge —
+       comfortably more than the 5% the image is ever shifted */
+    transform: translate3d(0, var(--pl-shift), 0) scale(var(--pl-zoom));
+    transition: --pl-zoom 600ms var(--ease-spring);
+    will-change: transform;
+}
+
+.project-card:hover .project-media img { --pl-zoom: 1.2; }
+
+@media (prefers-reduced-motion: reduce) {
+    .project-media { transform: none; }
+    .project-media img { --pl-shift: 0%; --pl-zoom: 1; }
+}

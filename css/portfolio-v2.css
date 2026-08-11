@@ -500,10 +500,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 600ms var(--ease-spring);
-}
-.project-card:hover .project-media img {
-    transform: scale(1.03);
+    /* transform + hover zoom are owned by css/media-parallax.css */
 }
 
 .project-featured {

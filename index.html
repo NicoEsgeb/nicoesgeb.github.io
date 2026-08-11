@@ -21,13 +21,16 @@
     <link rel="stylesheet" href="css/id-card.css">
     <link rel="stylesheet" href="css/projects.css">
     <link rel="stylesheet" href="css/text.css">
-    <link rel="stylesheet" href="css/portfolio-v2.css">
+    <link rel="stylesheet" href="css/portfolio-v2.css?v=2026-08-11">
+    <link rel="stylesheet" href="css/media-parallax.css?v=2026-08-11">
     <link rel="stylesheet" href="css/pixel-character.css">
 
     <!-- JS -->
+    <!-- Lenis must execute before ux.js — deferred scripts run in document order -->
+    <script defer src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
     <script defer src="scripts/idCard.js"></script>
     <script defer src="scripts/projectModal.js"></script>
-    <script defer src="scripts/ux.js?v=2026-04-16"></script>
+    <script defer src="scripts/ux.js?v=2026-08-11"></script>
 </head>
 <body>
 
@@ -645,7 +648,7 @@
 
 <!-- ==================== MODALS ==================== -->
 <div id="project-modal" class="modal" aria-hidden="true">
-    <div class="modal-content">
+    <div class="modal-content" data-lenis-prevent>
         <button class="close" aria-label="Close">&times;</button>
         <video controls playsinline>
             <source src="assets/videos/bonfire-preview.mp4" type="video/mp4">
@@ -656,7 +659,7 @@
 
 
 <div id="aetherfocus-modal" class="modal" aria-hidden="true">
-    <div class="modal-content aetherfocus-content">
+    <div class="modal-content aetherfocus-content" data-lenis-prevent>
         <button class="close" aria-label="Close">&times;</button>
         <div class="aetherfocus-details">
             <div class="aetherfocus-header">
@@ -706,7 +709,7 @@
 </div>
 
 <div id="shotmerge-modal" class="modal" aria-hidden="true">
-    <div class="modal-content shotmerge-content">
+    <div class="modal-content shotmerge-content" data-lenis-prevent>
         <button class="close" aria-label="Close">&times;</button>
         <div class="shotmerge-details">
             <span class="shotmerge-kicker">iOS utility app</span>
@@ -753,7 +756,7 @@
 </div>
 
 <div id="pengwings-modal" class="modal">
-    <div class="modal-content pengwings-content">
+    <div class="modal-content pengwings-content" data-lenis-prevent>
         <button class="close" aria-label="Close">&times;</button>
         <div class="pengwings-options vertical">
             <a href="https://github.com/UoB-COMSM0166/2025-group-21" target="_blank" class="pengwings-option" rel="noopener">
