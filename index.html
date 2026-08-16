@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/buttons.css">
-    <link rel="stylesheet" href="css/id-card.css">
-    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="css/id-card.css?v=2026-08-16">
+    <link rel="stylesheet" href="css/projects.css?v=2026-08-16">
     <link rel="stylesheet" href="css/text.css">
-    <link rel="stylesheet" href="css/portfolio-v2.css?v=2026-08-11e">
-    <link rel="stylesheet" href="css/media-parallax.css?v=2026-08-11e">
+    <link rel="stylesheet" href="css/portfolio-v2.css?v=2026-08-16">
+    <link rel="stylesheet" href="css/media-parallax.css?v=2026-08-11f">
     <link rel="stylesheet" href="css/pixel-character.css">
 
     <!-- JS -->
@@ -30,7 +30,7 @@
     <script defer src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
     <script defer src="scripts/idCard.js"></script>
     <script defer src="scripts/projectModal.js"></script>
-    <script defer src="scripts/ux.js?v=2026-08-11e"></script>
+    <script defer src="scripts/ux.js?v=2026-08-11f"></script>
 </head>
 <body>
 
@@ -81,15 +81,18 @@
         </div>
 
         <div class="container latest-project-wrap">
-            <a class="latest-project-card" href="https://apps.apple.com/gb/app/aetherfocus/id6759236405" target="_blank" rel="noopener" data-reveal>
-                <img class="latest-project-icon" src="assets/images/aetherfocus/Logo_aetherFocus.jpg" alt="AetherFocus icon">
+            <div class="latest-project-card" data-reveal>
+                <img class="latest-project-icon" src="assets/images/aetherfocus/Logo_aetherFocus.jpg" alt="NanaiNest icon">
                 <div class="latest-project-info">
                     <span class="latest-project-eyebrow">Latest Release</span>
-                    <span class="latest-project-name">AetherFocus</span>
-                    <span class="latest-project-sub">Music ambient focus app · macOS &amp; iOS</span>
+                    <span class="latest-project-name">NanaiNest</span>
+                    <span class="latest-project-sub">Focus app with collectible eggs · iOS now, macOS soon</span>
                 </div>
-                <span class="latest-project-cta">App Store ↗</span>
-            </a>
+                <div class="latest-project-actions">
+                    <a class="latest-project-cta" href="https://apps.apple.com/gb/app/aetherfocus/id6759236405" target="_blank" rel="noopener">App Store ↗</a>
+                    <a class="latest-project-cta website" href="https://nanainest.com" target="_blank" rel="noopener">nanainest.com ↗</a>
+                </div>
+            </div>
         </div>
 
         <div class="container hero-grid">
@@ -125,7 +128,7 @@
                                     <span class="text">Drag to rotate</span>
                                 </div>
                                 <div class="character-layer">
-                                    <img class="pixel-avatar" src="assets/images/character.png" alt="Pixel Nico" draggable="false" loading="lazy" decoding="async">
+                                    <img class="card-photo" src="assets/images/me_1-card.png" alt="Nicolas Esgeb Reyes" draggable="false" decoding="async">
                                 </div>
                                 <div class="front-layer">
                                     <img class="front-layer1" src="assets/images/3dLayer.png" alt="3D Overlay" draggable="false" loading="lazy" decoding="async">
@@ -380,6 +383,34 @@
             </div>
             <div class="projects-grid">
 
+                <article class="project project-card interactive" id="project-aetherfocus" data-reveal>
+                    <figure class="project-media">
+                        <img src="assets/images/aetherfocus/nanainest-main.png" alt="NanaiNest — egg, animation, and card: every pulse of sound becomes a spark, then a card to collect" loading="lazy" decoding="async">
+                    </figure>
+                    <div class="project-content">
+                        <div class="project-topline">
+                            <span class="project-label">Solo project · iOS App · macOS soon</span>
+                            <span class="project-status">2026</span>
+                        </div>
+                        <h3>NanaiNest</h3>
+                        <p>
+                            A focus app built around a collectible loop — lock in and grow a primordial egg that hatches
+                            into an animated sphere and a holographic collectible card. Pairs a Pomodoro timer with
+                            original music, live radio stations, and a live ambience mixer (fire, rain, forest, wind),
+                            plus audio-reactive sphere visualizers, todo list, and notes — live now on iOS, with macOS
+                            coming soon.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Swift</li>
+                            <li>SwiftUI</li>
+                            <li>AVFoundation</li>
+                            <li>Firebase</li>
+                            <li>MVVM</li>
+                        </ul>
+                        <p class="project-note">Click to explore the app.</p>
+                    </div>
+                </article>
+
                 <article class="project project-card" id="project-ember" data-reveal>
                     <figure class="project-media">
                         <img src="assets/images/ember-pixel-forge.png" alt="Ember — pixel forge editor interface with tool rail, canvas, layers and animation timeline" loading="lazy" decoding="async">
@@ -407,32 +438,6 @@
                             <a href="https://nicoesgeb.github.io/pixel-art-editor/" target="_blank" rel="noopener" class="project-link">Launch editor ↗</a>
                             <a href="https://github.com/NicoEsgeb/pixel-art-editor" target="_blank" rel="noopener" class="project-link">Source ↗</a>
                         </div>
-                    </div>
-                </article>
-
-                <article class="project project-card interactive" id="project-aetherfocus" data-reveal>
-                    <figure class="project-media">
-                        <img src="assets/images/aetherfocus/Screenshot%202026-04-16%20at%2014.00.32.png" alt="AetherFocus — Lumenfall ambient scene with dragon" loading="lazy" decoding="async">
-                    </figure>
-                    <div class="project-content">
-                        <div class="project-topline">
-                            <span class="project-label">Solo project · macOS &amp; iOS App</span>
-                            <span class="project-status">2026</span>
-                        </div>
-                        <h3>AetherFocus</h3>
-                        <p>
-                            A music ambient focus app blending lo-fi ambience with fantasy worldbuilding. Themed scenes,
-                            live ambience mixer, audio-reactive sphere visualizers, Pomodoro timer, and multi-tab notes —
-                            all from a single Swift codebase for macOS and iOS.
-                        </p>
-                        <ul class="project-tags">
-                            <li>Swift</li>
-                            <li>SwiftUI</li>
-                            <li>AVFoundation</li>
-                            <li>ScreenCaptureKit</li>
-                            <li>StoreKit 2</li>
-                        </ul>
-                        <p class="project-note">Click to explore the app.</p>
                     </div>
                 </article>
 
@@ -659,45 +664,47 @@
         <button class="close" aria-label="Close">&times;</button>
         <div class="aetherfocus-details">
             <div class="aetherfocus-header">
-                <img class="aetherfocus-icon" src="assets/images/aetherfocus/Logo_aetherFocus.jpg" alt="AetherFocus app icon">
+                <img class="aetherfocus-icon" src="assets/images/aetherfocus/Logo_aetherFocus.jpg" alt="NanaiNest app icon">
                 <div>
-                    <span class="aetherfocus-kicker">Solo project · macOS &amp; iOS</span>
-                    <h3>AetherFocus</h3>
+                    <span class="aetherfocus-kicker">Solo project · iOS · macOS soon</span>
+                    <h3>NanaiNest</h3>
                 </div>
             </div>
-            <p class="aetherfocus-tagline">A music ambient focus app for deep work and study.</p>
+            <p class="aetherfocus-tagline">Focus, grow eggs, hatch collectible cards — with music, live radio, and ambience.</p>
             <p>
-                AetherFocus blends lo-fi ambience with fantasy worldbuilding to create immersive focus environments.
-                Choose from themed atmospheric scenes with layered soundscapes, mix them live, and pair with a curated
-                music station. Audio-reactive sphere visualizers pulse in sync with your music. A built-in Pomodoro timer,
+                NanaiNest blends a focus timer with fantasy worldbuilding: every session grows a primordial egg, which
+                hatches into an animated sphere and a holographic collectible card, telling a story one session at a
+                time. Pair your focus time with original music, live radio stations, and a live ambience mixer, or
+                switch to audio-reactive sphere visualizers that pulse with your sound. A built-in Pomodoro timer,
                 todo list, and multi-tab notes keep everything in one place.
             </p>
             <ul class="aetherfocus-features">
-                <li>5 themed scenes with looping video backgrounds</li>
+                <li>Primordial eggs — focus grows an egg that hatches into a collectible animated sphere and holographic card</li>
+                <li>Original music and curated live radio stations</li>
                 <li>Live ambience mixer — fire, rain, forest, wind</li>
                 <li>Audio-reactive sphere visualizers (mic or system audio)</li>
                 <li>Pomodoro timer, todo list, multi-tab notes</li>
-                <li>Premium sphere packs — one-time purchase, no subscription</li>
-                <li>macOS + iOS from a single Swift codebase</li>
+                <li>Free to use — live now on iOS, macOS coming soon</li>
             </ul>
-            <p class="aetherfocus-tech">Swift · SwiftUI · AVFoundation · ScreenCaptureKit · StoreKit 2 · MVVM</p>
+            <p class="aetherfocus-tech">Swift · SwiftUI · AVFoundation · Firebase · MVVM</p>
             <div class="aetherfocus-actions">
                 <a class="aetherfocus-store-link" href="https://apps.apple.com/gb/app/aetherfocus/id6759236405" target="_blank" rel="noopener">View on App Store ↗</a>
+                <a class="aetherfocus-website-link" href="https://nanainest.com" target="_blank" rel="noopener">Visit nanainest.com ↗</a>
             </div>
         </div>
         <div class="aetherfocus-media">
             <div class="aetherfocus-grid">
                 <figure class="aetherfocus-frame">
-                    <img src="assets/images/aetherfocus/Screenshot%202026-04-16%20at%2014.00.32.png" alt="AetherFocus — Lumenfall fantasy scene" loading="lazy" decoding="async">
+                    <img src="assets/images/aetherfocus/steps/01-incubate.png" alt="Step 1: Incubate — choose an egg, press play, and your soundscape feeds it" loading="lazy" decoding="async">
                 </figure>
                 <figure class="aetherfocus-frame">
-                    <img src="assets/images/aetherfocus/Screenshot%202026-04-16%20at%2014.00.40.png" alt="AetherFocus — Stillwater Andes scene" loading="lazy" decoding="async">
+                    <img src="assets/images/aetherfocus/steps/02-hatch.png" alt="Step 2: Hatch — hold your focus and the shell gives way to living, audio-reactive energy" loading="lazy" decoding="async">
                 </figure>
                 <figure class="aetherfocus-frame">
-                    <img src="assets/images/aetherfocus/Screenshot%202026-04-16%20at%2014.00.20.png" alt="AetherFocus — Deep in the night ambience" loading="lazy" decoding="async">
+                    <img src="assets/images/aetherfocus/steps/03-forge.png" alt="Step 3: Forge — every hatch forges a one-of-a-kind 3D holographic card for your collection binder" loading="lazy" decoding="async">
                 </figure>
                 <figure class="aetherfocus-frame">
-                    <img src="assets/images/aetherfocus/Screenshot%202026-04-16%20at%2013.59.41.png" alt="AetherFocus — Orbital sphere focus mode" loading="lazy" decoding="async">
+                    <img src="assets/images/aetherfocus/steps/04-focus.png" alt="Step 4: Focus — your new sphere becomes the centrepiece of every focus session" loading="lazy" decoding="async">
                 </figure>
             </div>
         </div>
